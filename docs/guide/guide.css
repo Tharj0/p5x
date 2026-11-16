@@ -68,6 +68,8 @@ a:hover{color:#ff6b7b}
 .ghero{display:flex;gap:22px;align-items:flex-end;margin:4px 0 18px}
 .ghero img{width:116px;height:auto;background:#111;flex:none;box-shadow:0 0 0 3px #fff,9px 9px 0 3px var(--red)}
 .ghero h1 span{font-family:var(--bfont);font-style:normal;text-transform:none;letter-spacing:0}
+.ghero>div{min-width:0}
+.ghero h1{overflow-wrap:anywhere}
 .ghero .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
 .badge{font-size:12px;padding:2px 8px;background:#1f1f1f;border:1px solid #343434;color:#d0d0d0;white-space:nowrap;font-weight:600}
 .badge.el{color:#000;background:var(--el);border-color:transparent;font-weight:800;transform:skewX(-10deg)}
@@ -101,7 +103,7 @@ footer.gfoot{max-width:1180px;margin:0 auto;padding:14px 16px 30px;color:var(--d
 .gcard:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--red);border-color:#fff}
 .gcard img{width:100%;aspect-ratio:240/402;object-fit:cover;object-position:top;background:#111;display:block;max-height:210px;border-bottom:3px solid var(--red)}
 .gcard .gi{padding:8px 10px 10px;display:flex;flex-direction:column;gap:3px}
-.gcard b{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:14px;letter-spacing:.3px}
+.gcard b{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:14px;letter-spacing:.3px;line-height:1.2;overflow-wrap:anywhere}
 .gcard .nm{font-size:12px;color:var(--muted)}
 .gcard .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .gcard .meta .badge{font-size:10.5px;padding:1px 6px}

@@ -30,6 +30,7 @@ EXTRA_DOCS = [  # altri documenti di knowledge/ pubblicati come guide (roster_tr
 EL_KEY = lambda e: 'WindIce' if e.startswith('Wind/Ice') else e.split(' ')[0]
 MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic']
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)
+brk = lambda s: re.sub(r'([\u00b7-])', r'\1<wbr>', esc(s))   # nomi lunghi: a capo dopo «·» o «-»
 
 
 def fmt_date(iso):
@@ -116,7 +117,7 @@ def build_guides(chars):
                 % (EL_KEY(c['element']), esc(c['element']), esc(c['position']), '★' * int(c['rarity']), esc(c['type'])) +
                 '<span class="badge%s">%s · %s%s</span>' % (' nr' if out_of_glb else '', esc(c['rel']['v']), '≈ ' if c['rel'].get('st') in ('upcoming', 'future') else '', fmt_date(c['rel']['d'])))
         hero = ('<div class="ghero"><img src="../img/char/%s.webp" alt="" width="116" height="194"><div><h1>%s</h1><div class="src">%s · %s</div><div class="meta">%s</div></div></div>'
-                % (c['slug'], esc(c['codename']) + ' <span style="color:var(--muted);font-weight:400;font-size:.7em">' + esc(c['name']) + '</span>', 'Persona: ' + esc(c['persona']), esc(c.get('reswk') or ''), meta))
+                % (c['slug'], brk(c['codename']) + ' <span style="color:var(--muted);font-weight:400;font-size:.7em">' + esc(c['name']) + '</span>', 'Persona: ' + esc(c['persona']), esc(c.get('reswk') or ''), meta))
         prv, nxt = order[i - 1], order[(i + 1) % len(order)]
         pn = '<nav class="pn"><a href="%s.html">← %s</a><a href="%s.html">%s →</a></nav>' % (prv['slug'], esc(prv['codename']), nxt['slug'], esc(nxt['codename']))
         top = '<a class="pri" href="../index.html#c=%s">Apri nel tracker</a><a href="%s" target="_blank" rel="noopener">lufel ↗</a>' % (c['slug'], esc(c['lufel_url']))
@@ -135,7 +136,7 @@ def build_guides(chars):
     for c in order:
         q = ' '.join([c['codename'], c['name'], c['persona'], c['element'], c['position'], c['type'], c.get('tags') or '', c['slug']])
         cards.append('<a class="gcard" href="%s.html" data-el="%s" data-pos="%s" data-rar="%s" data-reld="%s" data-name="%s" data-q="%s"><img src="../img/char/%s.webp" alt="" loading="lazy"><span class="gi"><b>%s</b><span class="nm">%s</span><span class="meta"><span class="badge el" style="--el:var(--el-%s)">%s</span><span class="badge">%s</span><span class="badge">%s</span><span class="badge relb">%s</span></span></span></a>'
-                     % (c['slug'], esc(c['element']), esc(c['position']), c['rarity'], c['rel']['d'], esc(c['codename'].lower()), esc(q), c['slug'], esc(c['codename']), esc(c['name']), EL_KEY(c['element']), esc(c['element']), esc(c['position']), '★' * int(c['rarity']), esc(c['rel']['v'].split('(')[0])))
+                     % (c['slug'], esc(c['element']), esc(c['position']), c['rarity'], c['rel']['d'], esc(c['codename'].lower()), esc(q), c['slug'], brk(c['codename']), esc(c['name']), EL_KEY(c['element']), esc(c['element']), esc(c['position']), '★' * int(c['rarity']), esc(c['rel']['v'].split('(')[0])))
     chip = lambda f, vals, lab: '<div class="chips" data-f="%s">%s</div>' % (f, ''.join('<button type="button" class="chip" data-v="%s">%s</button>' % (esc(v), lab(v)) for v in vals))
     body = ('<div class="gwrap wide"><main>'
             '<div class="ihead"><h1>Guide P5X</h1><p>%d personaggi di Persona 5X: The Phantom X — tutto il contenuto delle pagine di lufel.net in italiano: setup consigliato, skill, Awareness, stat, armi, Mindscape, team.</p></div>'

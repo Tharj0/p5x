@@ -406,7 +406,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red2)!im
 .card.owned:hover{box-shadow:7px 7px 0 var(--red)}
 .card .thumb{border-radius:0;box-shadow:0 0 0 1px #3a3a3a}
 .card.owned .thumb{box-shadow:0 0 0 2px #fff}
-.card .code{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:.4px;font-size:15.5px}
+.card .code{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:.4px;font-size:15.5px;line-height:1.2;overflow-wrap:anywhere}
+.card .row1>.nmb{flex:1;min-width:0}
+.card .code .stars{font:400 12px/1 var(--bfont);letter-spacing:-1px;white-space:nowrap;vertical-align:2px;margin-left:3px;text-transform:none}
+.hero h2{overflow-wrap:anywhere}
 .card .quick{border-top:1px dashed #2f2f2f;padding-top:7px;margin-top:auto}
 .badge{border-radius:0;background:#1f1f1f;border:1px solid #343434;color:#d0d0d0;font-weight:600}
 .badge.el{transform:skewX(-10deg);font-weight:800}
@@ -883,6 +886,7 @@ function initSync(){
 
 // ---------- helpers ----------
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+const brk = s => esc(s).replace(/([\u00b7-])/g, '$1<wbr>');   // nomi lunghi: possono andare a capo dopo «·» o «-»
 function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600); }
 function stars(n){ return '★'.repeat(n); }
 function elColor(c){ return 'var(--el-' + EL_KEY(c.element) + ')'; }
@@ -942,7 +946,7 @@ function cardHTML(c){
   const quick = owned ? ('Lv ' + (e.level || '?') + ' · A' + (e.awareness || 0) + ' · Minds ' + (e.minds || 0) + (c.core && e.core ? ' · Core' : '') + (wInfo ? ' · ' + wInfo : '')) : 'Non posseduto';
   return '<div class="card ' + (owned ? 'owned' : 'notowned') + '" data-slug="' + c.slug + '" style="--el:' + elColor(c) + '">' +
     '<img class="thumb" src="' + c.img + '" alt="" loading="lazy" width="72" height="121"><div class="cbody">' +
-    '<div class="row1"><div><div class="code">' + esc(c.codename) + '</div><div class="name">' + esc(c.name) + ' · ' + esc(c.persona) + '</div>' + (ui.sort.indexOf('rel') === 0 ? '<div class="relline">' + relLine(c) + '</div>' : '') + '</div><div class="stars">' + stars(c.rarity) + '</div></div>' +
+    '<div class="row1"><div class="nmb"><div class="code">' + brk(c.codename) + ' <span class="stars" title="' + c.rarity + ' stelle">' + stars(c.rarity) + '</span></div><div class="name">' + esc(c.name) + ' · ' + esc(c.persona) + '</div>' + (ui.sort.indexOf('rel') === 0 ? '<div class="relline">' + relLine(c) + '</div>' : '') + '</div></div>' +
     '<div class="meta"><span class="badge el">' + esc(c.element) + '</span><span class="badge">' + esc(c.position) + '</span><span class="badge">' + esc(c.type) + '</span>' + (c.core ? '<span class="badge gold">Core</span>' : '') + (ui.sort.indexOf('rel') === 0 ? '' : relBadge(c)) + /*NAJOX*/(c.infographics && c.infographics.length ? '<span class="badge" title="Infografiche Najox P5X disponibili">📊 Najox</span>' : '')/*NAJOX-ELSE*/''/*/NAJOX*/ + '</div>' +
     '<div class="quick"><span>' + esc(quick) + '</span><label class="toggle" title="Posseduto"><input type="checkbox" class="ownbox" data-slug="' + c.slug + '"' + (owned ? ' checked' : '') + '> posseduto</label></div></div></div>';
 }
@@ -1349,7 +1353,7 @@ function renderHero(c, e){
   if (owned) chips.push(chip('ov', 'Lv ' + (e.level || '?'), 'Livello'), chip('aw', 'A' + (e.awareness | 0), 'Awareness'), chip('ms', 'Minds ' + (e.minds | 0) + (c.core ? (e.core ? ' · Core ✓' : ' · Core —') : ''), 'Mindscape'),
     chip('wp', eq ? eq.rarity + ' R' + ((e.weapons[eq.name] || {}).ref | 0) : (e.equipped === '__other__' ? 'Altra arma' : 'Arma —'), 'Arma equipaggiata'), chip('rv', e.rev.space || 'Revelation —', 'Revelation Space in uso'));
   else chips.push(chip('ov', relState(c) === 'out' ? c.rel.v.split('(')[0] : REL_NAME[relState(c)], relText(c)));
-  hero.innerHTML = '<img class="dimg" src="' + c.img + '" alt="">' + '<div class="hi"><h2>' + esc(c.codename) + ' <span class="nm">' + esc(c.name) + '</span></h2><div class="sub">' + esc(c.persona) + ' · ' + stars(c.rarity) + ' ' + esc(c.type) + '<br><span class="badge el" style="--el:' + elColor(c) + '">' + esc(c.element) + '</span> ' + esc(c.position) + '<br>' + esc(relText(c)) + '<br><a href="' + c.lufel_url + '" target="_blank" rel="noopener">pagina lufel ↗</a></div><div class="hchips">' + chips.join('') + '</div></div>';
+  hero.innerHTML = '<img class="dimg" src="' + c.img + '" alt="">' + '<div class="hi"><h2>' + brk(c.codename) + ' <span class="nm">' + esc(c.name) + '</span></h2><div class="sub">' + esc(c.persona) + ' · ' + stars(c.rarity) + ' ' + esc(c.type) + '<br><span class="badge el" style="--el:' + elColor(c) + '">' + esc(c.element) + '</span> ' + esc(c.position) + '<br>' + esc(relText(c)) + '<br><a href="' + c.lufel_url + '" target="_blank" rel="noopener">pagina lufel ↗</a></div><div class="hchips">' + chips.join('') + '</div></div>';
 }
 function renderTabs(c){
   document.getElementById('dTabs').innerHTML = tabsFor(c).map((t, i) => '<button type="button" class="dtab" role="tab" id="tab-' + t[0] + '" data-dtab="' + t[0] + '" aria-selected="' + (t[0] === ui.tab) + '" aria-controls="pane-' + t[0] + '" tabindex="' + (t[0] === ui.tab ? 0 : -1) + '"><span>' + t[1] + '</span><span class="r"><span class="cnt" hidden></span><span class="kb" aria-hidden="true">' + ((i + 1) % 10) + '</span></span></button>').join('');
