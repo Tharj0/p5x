@@ -27,6 +27,18 @@ python3 tools/build_personas.py   # data/persona_lufel.json per la scheda «Pers
 python3 app/build.py         # genera app/index.html (calcola anche stat base e termini con descrizione)
 ```
 
+## 4. Immagini aggiunte a mano (facoltative)
+Se estrai immagini (per esempio salvandole dal browser) mettile in una cartella e importale: vengono ritagliate, ridimensionate e convertite in webp.
+```
+python tools/import_images.py persona   <cartella>   # nome file = nome della Persona (es. Siegfried.webp, jack-frost.png)
+python tools/import_images.py awareness <cartella>   # file a0 … a6 -> stella dell'Awareness per livello (servono tutte e 7)
+python tools/import_images.py boss      <cartella>   # nome file = nome del boss (es. Nidhoggr.png, Baal Zebul.webp)
+python tools/build_personas.py   # solo dopo le Persona
+python app/build.py
+python tools/build_site.py
+```
+Il Nightmare's Gateway non va rigenerato: il sito legge da solo i dati aggiornati di lufel (`data/external/guildboss/en.json`).
+
 ## Note
 - `data/characters_lufel.json` (dati base dei 68 personaggi, testi tradotti) e le guide in `knowledge/` sono stati prodotti nelle sessioni su claude.ai leggendo le pagine di lufel: non c'è uno script che li rigeneri da zero. Per un nuovo personaggio va estratto a mano come gli altri.
 - Le traduzioni italiane di Persona, Wonder weapon e note di gruppo sono in `data/wonder_it_src.py`.

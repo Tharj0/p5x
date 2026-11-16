@@ -643,6 +643,52 @@ footer{border-top:3px solid #1f1f1f}
   .pht h2{font-size:20px}
   .pal{min-width:0;flex-basis:100%}
 }
+/* ---- Nightmare's Gateway ---- */
+.ngbox{background:#111;border:1px solid #262626;border-left:4px solid var(--red);margin:0 0 14px}
+.ngbox>summary{cursor:pointer;list-style:none;padding:9px 14px;font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:.6px;font-size:14px;color:#fff;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.ngbox>summary::-webkit-details-marker{display:none}
+.ngbox>summary::before{content:'▸';color:var(--red2);font-style:normal}
+.ngbox[open]>summary::before{content:'▾'}
+.ngbox .ngs{font-family:var(--bfont);font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;color:var(--dim)}
+.ngbody{padding:0 14px 12px}
+.ng-head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.ng-tag{display:none}
+.ng-mode{font-family:var(--hfont);font-style:italic;text-transform:uppercase;font-size:15px;background:#fff;color:var(--ink);padding:1px 14px;clip-path:var(--slant-s)}
+.ng-time{font-weight:800;color:var(--red2);text-transform:uppercase;letter-spacing:.4px;font-size:13px}
+.ng-time.ended{color:var(--muted)}
+.ng-dates{font-size:12.5px;color:var(--muted)}
+.ng-mdesc{font-size:13px;color:#d6d6d6;margin:6px 0 10px}
+.ng-note{display:block;color:var(--muted);margin-top:3px}
+.ng-bosses{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:10px}
+.ng-boss{background:#161616;border:1px solid #2a2a2a;padding:10px}
+.ng-bh{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.ng-bi{width:52px;height:52px;flex:none;object-fit:cover;background:#111;box-shadow:0 0 0 2px #fff,4px 4px 0 2px var(--red)}
+.ng-ph{display:flex;align-items:center;justify-content:center;font-family:var(--hfont);font-style:italic;font-weight:900;font-size:18px;color:#fff;background:repeating-linear-gradient(135deg,#2a0008 0 8px,#1a0005 8px 16px)}
+.ng-bn{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:16px;color:#fff}
+.ng-lv{font-family:var(--bfont);font-style:normal;font-weight:600;font-size:12px;color:var(--muted);text-transform:none}
+.ng-ad{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:4px;font-size:12px;color:var(--muted)}
+.ng-ad>span:first-child{min-width:66px}
+.ng-el{font-size:11px;font-weight:700;padding:0 7px;background:#1f1f1f;border:1px solid var(--el);color:#fff}
+.ng-ad.weak .ng-el{background:var(--el);color:#000;border-color:var(--el);font-weight:800}
+.ng-rules{display:grid;gap:4px}
+.ng-r{background:#111;border:1px solid #262626;border-left:3px solid #444}
+.ng-r>summary{cursor:pointer;padding:5px 9px;font-weight:700;font-size:13px;color:#fff;list-style:none}
+.ng-r>summary::-webkit-details-marker{display:none}
+.ng-r>div{padding:0 9px 7px;font-size:12.5px;color:#cfcfcf;line-height:1.5}
+.ng-r.key{border-color:var(--red);border-left-width:5px;background:#1a0a0d}
+.ng-k{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;background:var(--red);color:#fff;padding:0 7px;margin-right:7px;clip-path:var(--slant-s)}
+.ng-mine{margin-top:8px;padding-top:8px;border-top:1px dashed #2c2c2c}
+.ng-mt{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.ng-mr{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin:3px 0;font-size:12.5px}
+.ng-ml{color:var(--muted);margin-right:4px}
+.ng-mr.miss .ng-ml{color:var(--warn)}
+.ng-c{font-size:11.5px;font-weight:700;padding:1px 10px;background:var(--red);color:#fff;clip-path:var(--slant-s);cursor:pointer}
+.ng-c:hover{background:var(--red2)}
+.ng-none{font-size:12px;color:var(--dim)}
+.ng-foot{font-size:11.5px;color:var(--dim);margin-top:8px}
+.ng-empty{font-size:13px;color:var(--muted);padding:6px 0}
+.awstar.awimg{object-fit:contain}
+@media (max-width:640px){ .ng-bosses{grid-template-columns:1fr} .ngbox>summary{padding:8px 10px} .ngbody{padding:0 10px 10px} }
 </style>
 </head>
 <body>
@@ -665,6 +711,7 @@ footer{border-top:3px solid #1f1f1f}
 
   <section id="view-roster">
     <div class="summary" id="summary"></div>
+    <details class="ngbox" id="ngWrap" open><summary>Nightmare’s Gateway <span class="ngs">boss di gilda della settimana · dati lufel</span></summary><div class="ngbody" id="ngBody"></div></details>
     <div class="relstrip" id="relStrip"></div>
     <div class="toolbar">
       <input type="search" id="search" placeholder="Cerca per nome, codename, Persona, elemento…">
@@ -1158,9 +1205,169 @@ footer{border-top:3px solid #1f1f1f}
 
 </script>
 <script>
+/* P5X — Nightmare's Gateway (boss di gilda della settimana).
+ * Legge i dati che lufel.net pubblica nel suo repository (data/external/guildboss/<regione>.json, aggiornati più volte
+ * al giorno), converte gli orari della regione in ora locale e traduce in italiano modalità e regole.
+ * Nessun testo di lufel viene copiato nel sito: modalità e regole sono tradotte qui, il resto (nomi, livelli,
+ * debolezze, orari) è letto al momento dal file di lufel. Funziona nel tracker e nella pagina guida.
+ */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api; else root.P5XNightmare = api;
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+  const SRC = 'https://raw.githubusercontent.com/absolroot/lufelnet/main/data/external/guildboss/';
+  const TZ = { en: 9, kr: 9, jp: 9, cn: 8, tw: 8, sea: 8 };   // fuso degli orari nei file di lufel (come fa la loro home)
+  const CACHE_KEY = 'p5x_nightmare_cache_v1';
+  const norm = s => String(s || '').replace(/[‘’]/g, "'").replace(/\s+/g, ' ').trim();
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const slug = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+  // ---------- modalità ----------
+  const MODES = {
+    'Multidimensional Dreamscape': { it: 'A ogni turno gli attacchi del boss diventano più forti e aumenta anche il ritmo con cui guadagni punti.' },
+    'Devourer of Dreams': { it: 'Dopo aver subito una certa quantità di danni il boss entra nello stato Weakened (indebolito): attaccalo mentre è indebolito per ottenere punti extra.' },
+    'Nexus of Dreams': { it: 'Più Assassin e Sweeper hai nel party, più cresce il moltiplicatore dei punti.', note: 'In pratica funziona come Multidimensional Dreamscape, ma richiede 2 Assassin, 2 Sweeper o una combinazione dei due, e non c’è il requisito di sustain.', roles: ['Assassin', 'Sweeper'], min: 2 }
+  };
+
+  // ---------- regole (affix): nome breve come su lufel + testo italiano ----------
+  const CRIT = 'Gli alleati non possono infliggere colpi critici, ma il danno finale di skill e Resonance aumenta di Crit Rate × (Crit Mult − 100%) (nel calcolo il Crit Rate vale al massimo 100%).';
+  const RULES = {
+    "Allies are unable to deal critical hits, but deal increased final damage from skills and Resonances. This increase is equal to critical hit rate x (critical damage - 100%). (Max critical hit rate in this calculation is 100%).": { n: 'Critical Stability', it: CRIT, crit: true },
+    "When allies deal damage with skills or Resonances, standard critical damage calculations are not carried out (regardless of whether or not a critical hit occurs), but deal increased final damage from skills and Resonances. This increase is equal to critical hit rate x (critical damage - 100%). (Max critical hit rate in this calculation is 100%).": { n: 'Critical Stability', it: 'Con skill e Resonance non si applica il normale calcolo dei critici (che il colpo sia critico o no): il danno finale aumenta invece di Crit Rate × (Crit Mult − 100%) (nel calcolo il Crit Rate vale al massimo 100%).', crit: true },
+    "At the end of each turn, foes gain 1 Berserk stack. Berserk: Increase damage by a set amount. Stacks up to 3 times.": { n: 'Berserk', it: 'A fine turno i nemici ottengono 1 stack di Berserk. Berserk: il loro danno aumenta di un valore fisso, fino a 3 stack.' },
+    "If the party contains Guardians or Medics, all foes' final damage dealt is decreased by 60% and final damage taken is increased by 20%. If not, all foes' final damage dealt is increased by 60%.": { n: 'Guardians & Medics', it: 'Se nel party c’è almeno un Guardian o un Medic, il danno finale inflitto da tutti i nemici cala del 60% e quello che subiscono aumenta del 20%. Altrimenti il danno finale inflitto dai nemici aumenta del 60%.', key: true, roles: ['Guardian', 'Medic'], min: 1 },
+    "Whenever an ally deals damage, that ally's damage is increased by 4%. Lasts for 3 turns. Stacks up to 10 times.": { n: 'Continuous Attack', it: 'Ogni volta che un alleato infligge danno, il suo danno aumenta del 4% per 3 turni (fino a 10 stack).' },
+    "All allies' final damage is increased based on their ailment accuracy. Final damage is increased by a maximum of 15% at 150% ailment accuracy.": { n: 'Ailment Accuracy +', it: 'Il danno finale di ogni alleato aumenta in base alla sua Ailment Accuracy: fino a +15% con il 150% di Ailment Accuracy.' },
+    "Foes' damage taken is increased by 10% for each elemental ailment they have, up to 40%.": { n: 'Elemental Ailment', it: 'Il danno subito dai nemici aumenta del 10% per ogni alterazione elementale che hanno addosso, fino al 40%.' },
+    "Foes' damage taken is increased by 3% for each debuff they have, up to 45%.": { n: 'Debuff Stacking', it: 'Il danno subito dai nemici aumenta del 3% per ogni debuff che hanno addosso, fino al 45%.' },
+    "Foes' damage taken is increased by 6% for each debuff they are inflicted with, up to 30%.": { n: 'Debuff Domain', it: 'Il danno subito dai nemici aumenta del 6% per ogni debuff che hanno addosso, fino al 30%.' },
+    "When any ally receives healing, their final damage is increased by 8%. Lasts for 2 turns. Stacks up to 4 times.": { n: 'Healing', it: 'Quando un alleato riceve una cura, il suo danno finale aumenta dell’8% per 2 turni (fino a 4 stack).' },
+    "After all allies gain a shield, their final Resonance damage is increased by 8%. Lasts for 3 turns. Stacks up to 8 times.": { n: 'Scudo → Resonance', it: 'Quando tutti gli alleati ottengono uno scudo, il loro danno finale di Resonance aumenta dell’8% per 3 turni (fino a 8 stack).' },
+    "When allies are on an extra action, critical rate is increased by 20%, and critical damage is increased by 20%.": { n: 'Azione extra', it: 'Durante le azioni extra degli alleati, Crit Rate +20% e Crit Mult +20%.' },
+    "Shielded allies deal 20% increased damage.": { n: 'Shield +', it: 'Gli alleati con uno scudo infliggono il 20% di danno in più.' },
+    "Party's Resonance critical damage is increased by 25% and Attack by 25%.": { n: 'Resonance ++', it: 'Il danno critico della Resonance del party aumenta del 25% e l’Attack del 25%.' },
+    "After the boss takes an action, all allies are inflicted with Intimidation. When Intimidation is removed, all foes are inflicted with Intimidation. Intimidation: Defense decreases by 10%, up to 50%.": { n: 'Intimidation', it: 'Dopo ogni azione del boss tutti gli alleati subiscono Intimidation; quando l’Intimidation viene rimossa, la subiscono tutti i nemici. Intimidation: Defense −10% per stack, fino a −50%.' },
+    "When the party has 2 or more Sweeper or Assassin allies, all allies' final damage is increased by 20%.": { n: 'Nexus of Dreams', it: 'Se nel party ci sono almeno 2 alleati Sweeper o Assassin, il danno finale di tutti gli alleati aumenta del 20%.', roles: ['Sweeper', 'Assassin'], min: 2 },
+    "When an ally's current HP percentage is low, increase damage. When HP is at 40%, increase damage up to a maximum of 50%.": { n: 'HP bassi', it: 'Più sono bassi gli HP attuali di un alleato, più aumenta il suo danno: con il 40% di HP l’aumento arriva al massimo, +50%.' },
+    "Allies' Theurgy damage is increased by 30%. After using a Theurgy, user's damage is increased by 30% more for 3 turns.": { n: 'Theurgy +', it: 'Il danno Theurgy degli alleati aumenta del 30%. Dopo aver usato una Theurgy, il danno di chi l’ha usata aumenta di un altro 30% per 3 turni.' },
+    "Allies' Theurgy damage is increased by 30%. After using a Theurgy, user's final damage is increased by 30% more for 3 turns.": { n: 'Theurgy +', it: 'Il danno Theurgy degli alleati aumenta del 30%. Dopo aver usato una Theurgy, il danno finale di chi l’ha usata aumenta di un altro 30% per 3 turni.' },
+    "When a foe is knocked down, increase final damage by 80%.": { n: 'Down', it: 'Quando un nemico va a terra (Down), il danno finale aumenta dell’80%.' },
+    "When the party activates a Technical, Attack is increased by 25% and critical damage by 25%.": { n: 'Technical +', it: 'Quando il party attiva un Technical, Attack +25% e danno critico +25%.' },
+    "Foes inflicted with Burn take 20% increased damage.": { n: 'Burn +', it: 'I nemici in stato Burn subiscono il 20% di danno in più.' }
+  };
+  const ELEMENTS = { Physical: 'Physical', Gun: 'Gun', Fire: 'Fire', Ice: 'Ice', Electric: 'Electric', Wind: 'Wind', Psy: 'Psychokinesis', Psychokinesis: 'Psychokinesis', Nuclear: 'Nuclear', Bless: 'Bless', Curse: 'Curse', Almighty: 'Almighty' };
+  const ROLES = ['Sweeper', 'Assassin', 'Strategist', 'Saboteur', 'Guardian', 'Medic', 'Elucidator', 'Virtuoso'];
+  const KEYED = {}; Object.keys(RULES).forEach(k => { KEYED[norm(k)] = RULES[k]; });
+
+  function rule(detail) {
+    const d = norm(detail); if (KEYED[d]) return Object.assign({ en: d }, KEYED[d]);
+    let m = d.match(/^Party's (\w+) damage is increased by (\d+)%\.$/);
+    if (m && ELEMENTS[m[1]]) return { n: m[1] + ' +', it: 'Il danno ' + m[1] + ' del party aumenta del ' + m[2] + '%.', el: ELEMENTS[m[1]], en: d };
+    if (m) return { n: m[1] + ' +', it: 'Il danno ' + m[1] + ' del party aumenta del ' + m[2] + '%.', en: d };
+    m = d.match(/^(\w+) allies' damage is increased by (\d+)%\.$/);
+    if (m && ROLES.indexOf(m[1]) >= 0) return { n: m[1] + ' +', it: 'Il danno degli alleati ' + m[1] + ' aumenta del ' + m[2] + '%.', roles: [m[1]], min: 1, bonus: true, en: d };
+    return { n: 'Regola', it: null, en: d };   // nuova: si mostra il testo originale finché non viene tradotta
+  }
+  function toDate(ts, region) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?$/.exec(String(ts || '').trim());
+    return m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4] - (TZ[region] ?? 9), +m[5], +(m[6] || 0))) : null;
+  }
+  const ADAPT = [['Weak', 'Debole a'], ['Resistant', 'Resiste a'], ['Nullify', 'Annulla'], ['Absorb', 'Assorbe'], ['Reflect', 'Riflette']];
+  function view(data, region) {
+    if (!data || !Array.isArray(data.boss)) return null;
+    const mode = (data.mode && data.mode.name) || '';
+    return {
+      region: region, mode: mode, modeEn: norm(data.mode && data.mode.detail), modeIt: MODES[mode] || null,
+      start: toDate(data.startTime, region), end: toDate(data.endTime, region),
+      bosses: data.boss.map(b => { const e = b.enemy || {}, a = e.adapt || {};
+        return { name: e.name || '?', slug: slug(e.name), level: e.level || '', adapt: ADAPT.map(x => [x[0], x[1], (a[x[0]] || []).map(el => ELEMENTS[el] || el)]).filter(x => x[2].length), rules: (b.affixs || []).map(x => rule(x.detail)) }; })
+    };
+  }
+  async function fetchData(region, f) {
+    const r = await (f || fetch)(SRC + region + '.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json(); if (!j || !j.data) throw new Error('dati non validi');
+    return j.data;
+  }
+  function readCache(storage) { try { return JSON.parse(storage.getItem(CACHE_KEY) || 'null'); } catch (e) { return null; } }
+  function writeCache(storage, region, data) { try { storage.setItem(CACHE_KEY, JSON.stringify({ at: new Date().toISOString(), region: region, data: data })); } catch (e) { /* */ } }
+
+  // ---------- presentazione ----------
+  const MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+  const GG = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
+  function when(d) { if (!d) return '—'; return GG[d.getDay()] + ' ' + d.getDate() + ' ' + MESI[d.getMonth()] + ' alle ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
+  function left(d, now) {
+    if (!d) return ''; let ms = d - (now || Date.now()); if (ms <= 0) return 'terminato';
+    const g = Math.floor(ms / 864e5); ms -= g * 864e5; const h = Math.floor(ms / 36e5); ms -= h * 36e5; const mi = Math.floor(ms / 6e4);
+    return 'termina tra ' + (g ? g + ' g ' : '') + (g || h ? h + ' h ' : '') + (g ? '' : mi + ' min');
+  }
+  /* opts: { mine: [{slug, codename, element, position, img}] | null, charAttr: slug -> attributi HTML del link al personaggio,
+             bossImg: slug -> url | null, compact: bool, guideHref: url, status: testo sulla provenienza dei dati } */
+  function render(v, opts) {
+    opts = opts || {};
+    if (!v) return '<div class="ng-empty">Dati del Nightmare’s Gateway non disponibili al momento.</div>';
+    const now = Date.now(), ended = v.end && v.end <= now;
+    const elc = el => '<span class="ng-el" style="--el:var(--el-' + esc(String(el).split(' ')[0]) + ')">' + esc(el) + '</span>';
+    let h = '<div class="ng-head"><span class="ng-tag">Nightmare’s Gateway</span><b class="ng-mode">' + esc(v.mode || 'modalità sconosciuta') + '</b>' +
+      '<span class="ng-time' + (ended ? ' ended' : '') + '" data-ngend="' + (v.end ? v.end.getTime() : '') + '">' + esc(ended ? 'terminato ' + when(v.end) : left(v.end, now)) + '</span>' +
+      (v.end && !ended ? '<span class="ng-dates">fino a ' + esc(when(v.end)) + ' (ora del tuo dispositivo)</span>' : '') + '</div>';
+    h += '<div class="ng-mdesc">' + (v.modeIt ? esc(v.modeIt.it) + (v.modeIt.note ? '<span class="ng-note">' + esc(v.modeIt.note) + '</span>' : '') : esc(v.modeEn) + ' <i>(testo originale)</i>') + '</div>';
+    const mine = typeof opts.mine === 'function' ? opts.mine() : (opts.mine || null);
+    const hasEl = (c, el) => String(c.element || '').split('/').map(x => ELEMENTS[x.trim()] || x.trim()).indexOf(el) >= 0;
+    h += '<div class="ng-bosses">' + v.bosses.map(b => {
+      const img = opts.bossImg && opts.bossImg(b.slug);
+      const weak = (b.adapt.find(a => a[0] === 'Weak') || [0, 0, []])[2];
+      let s = '<div class="ng-boss"><div class="ng-bh">' + (img ? '<img class="ng-bi" src="' + esc(img) + '" alt="">' : '<span class="ng-bi ng-ph" aria-hidden="true">' + esc(b.name.replace(/[^A-Za-z ]/g, '').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()) + '</span>') +
+        '<div><div class="ng-bn">' + esc(b.name) + (b.level ? ' <span class="ng-lv">Lv ' + esc(b.level) + '</span>' : '') + '</div>' +
+        b.adapt.map(a => '<div class="ng-ad ' + a[0].toLowerCase() + '"><span>' + a[1] + '</span>' + a[2].map(elc).join('') + '</div>').join('') + '</div></div>';
+      s += '<div class="ng-rules">' + b.rules.map(r => '<details class="ng-r' + (r.key ? ' key' : '') + '"' + (r.key && !opts.compact ? ' open' : '') + '><summary>' + (r.key ? '<span class="ng-k">condizione chiave</span>' : '') + esc(r.n) + '</summary><div>' + (r.it ? esc(r.it) : esc(r.en) + ' <i>(testo originale, regola nuova non ancora tradotta)</i>') + '</div></details>').join('') + '</div>';
+      if (mine) {
+        const pick = f => mine.filter(f);
+        const rows = [];
+        if (weak.length) rows.push(['Debolezza ' + weak.join(' / '), pick(c => weak.some(el => hasEl(c, el)))]);
+        b.rules.filter(r => r.el && weak.indexOf(r.el) < 0).forEach(r => rows.push([r.n, pick(c => hasEl(c, r.el))]));
+        b.rules.filter(r => r.roles).forEach(r => { const l = pick(c => r.roles.indexOf(c.position) >= 0); rows.push([r.n + (r.min > 1 ? ' (ne servono ' + r.min + ')' : '') + (r.key ? ' — condizione chiave' : ''), l, r.key || (r.min && l.length < r.min)]); });
+        if (v.modeIt && v.modeIt.roles && !b.rules.some(r => r.n === 'Nexus of Dreams')) rows.push([v.mode + ' (ne servono ' + v.modeIt.min + ')', pick(c => v.modeIt.roles.indexOf(c.position) >= 0), true]);
+        s += '<div class="ng-mine"><div class="ng-mt">I tuoi personaggi utili</div>' + (mine.length ? rows.map(r => '<div class="ng-mr' + (r[2] && !r[1].length ? ' miss' : '') + '"><span class="ng-ml">' + esc(r[0]) + '</span>' + (r[1].length ? r[1].map(c => '<span class="ng-c"' + (opts.charAttr ? ' ' + opts.charAttr(c.slug) : '') + '>' + esc(c.codename) + '</span>').join('') : '<span class="ng-none">nessuno tra i tuoi</span>') + '</div>').join('') : '<div class="ng-none">Segna i personaggi che possiedi per vedere chi ti serve.</div>') + '</div>';
+      }
+      return s + '</div>';
+    }).join('') + '</div>';
+    h += '<div class="ng-foot">Dati: lufel.net (server Global) · ' + esc(opts.status || '') + (opts.guideHref ? ' · <a href="' + esc(opts.guideHref) + '">tutte le modalità e le regole ›</a>' : '') + '</div>';
+    return h;
+  }
+  function catalogue() {   // pagina guida: tutte le modalità e regole note
+    const seen = {}; const list = [];
+    const names = {};
+    Object.keys(RULES).forEach(k => { const r = RULES[k]; const key = r.n + '|' + r.it; if (seen[key]) return; seen[key] = 1; names[r.n] = (names[r.n] || 0) + 1; list.push(names[r.n] > 1 ? Object.assign({}, r, { n: r.n + ' (variante)' }) : r); });
+    list.push({ n: '<Elemento> +', it: 'Il danno di quell’elemento del party aumenta del 20% (es. Bless +, Fire +, Psy +).' });
+    list.push({ n: '<Posizione> +', it: 'Il danno degli alleati di quella posizione aumenta del 20% (es. Sweeper +, Assassin +).' });
+    list.push({ n: 'Resonance + / Highlight +', it: 'Il danno Resonance o Highlight del party aumenta del 50%.' });
+    return { modes: MODES, rules: list.sort((a, b) => (b.key ? 1 : 0) - (a.key ? 1 : 0) || a.n.localeCompare(b.n)) };
+  }
+  /* avvio: mostra subito i dati salvati, poi quelli aggiornati; aggiorna il conto alla rovescia ogni minuto */
+  function mount(el, opts) {
+    const region = (opts && opts.region) || 'en', storage = (opts && opts.storage) || null;
+    let last = null;
+    const draw = (data, status) => { last = [data, status]; el.innerHTML = render(view(data, region), Object.assign({}, opts, { status: status })); if (opts && opts.after) opts.after(el); };
+    const cached = storage ? readCache(storage) : null;
+    if (cached && cached.region === region) draw(cached.data, 'salvati ' + when(new Date(cached.at)));
+    else if (opts && opts.snapshot) draw(opts.snapshot, 'copia del sito, in aggiornamento…');
+    else el.innerHTML = '<div class="ng-empty">Carico il Nightmare’s Gateway da lufel…</div>';
+    const refresh = () => fetchData(region, opts && opts.fetch).then(d => { if (storage) writeCache(storage, region, d); draw(d, 'aggiornati ' + when(new Date())); })
+      .catch(() => { const c = storage ? readCache(storage) : null; if (c && c.region === region) draw(c.data, 'offline: dati salvati ' + when(new Date(c.at))); else if (opts && opts.snapshot) draw(opts.snapshot, 'offline: copia del sito'); else el.innerHTML = '<div class="ng-empty">Non riesco a leggere i dati da lufel (sei offline?). Riprova più tardi.</div>'; });
+    refresh();
+    setInterval(() => { el.querySelectorAll('[data-ngend]').forEach(t => { const e = +t.dataset.ngend; if (e) t.textContent = e <= Date.now() ? 'terminato' : left(new Date(e)); }); }, 60000);
+    return { refresh: refresh, redraw: () => { if (last) draw(last[0], last[1]); } };
+  }
+  return { SRC, TZ, MODES, RULES, rule, toDate, view, render, catalogue, mount, fetchData, when, left };
+});
+
+</script>
+<script>
 (function(){
 'use strict';
-const SITE = {"public":true,"guideBase":"guide/","sw":true};   // impostazioni di build: versione pubblica (GitHub Pages) o locale
+const SITE = {"public":true,"guideBase":"guide/","sw":true,"awImg":false,"bossImgs":[]};   // impostazioni di build: versione pubblica (GitHub Pages) o locale
 const CHARS = JSON.parse(document.getElementById('chars-data').textContent);
 const REV = JSON.parse(document.getElementById('rev-data').textContent);
 const BY = Object.fromEntries(CHARS.map(c => [c.slug, c]));
@@ -1474,6 +1681,7 @@ function renderGrid(){
 }
 function refreshCard(slug){ const el = document.querySelector('.card[data-slug="' + slug + '"]'); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = cardHTML(BY[slug]); el.replaceWith(tmp.firstElementChild); }
 function renderSummary(){
+  ngRedraw();
   const owned = CHARS.filter(c => (state.roster[c.slug] || {}).owned);
   const o5 = owned.filter(c => c.rarity === 5).length, o4 = owned.length - o5;
   const a6 = owned.filter(c => (state.roster[c.slug].awareness | 0) >= 6).length;
@@ -1849,7 +2057,8 @@ function paneStats(c, e){
 // ---------- stellina Awareness (disegno originale: 5 punte, una per livello A1–A5; A6 completa) ----------
 const STAR_PTS = (() => { const P = (r, a) => [+(r * Math.cos(a * Math.PI / 180)).toFixed(2), +(r * Math.sin(a * Math.PI / 180)).toFixed(2)]; const o = [], i = []; for (let k = 0; k < 5; k++) { o.push(P(47, -90 + 72 * k)); i.push(P(19, -54 + 72 * k)); } return { o: o, i: i }; })();
 function awStar(lv, px, label){
-  lv = Math.max(0, Math.min(6, lv | 0)); const o = STAR_PTS.o, ii = STAR_PTS.i, f = p => p.join(',');
+  lv = Math.max(0, Math.min(6, lv | 0));
+  if (SITE.awImg) return '<img class="awstar awimg" src="img/awareness/a' + lv + '.webp" width="' + px + '" height="' + px + '" alt="' + esc(label || ('Awareness A' + lv)) + '" title="' + esc(label || ('Awareness A' + lv)) + '">'; const o = STAR_PTS.o, ii = STAR_PTS.i, f = p => p.join(',');
   let s = '<svg class="awstar' + (lv >= 6 ? ' full' : '') + '" viewBox="-52 -52 104 104" width="' + px + '" height="' + px + '" role="img" aria-label="' + esc(label || ('Awareness A' + lv)) + '"><title>' + esc(label || ('Awareness A' + lv)) + '</title>';
   for (let k = 0; k < 5; k++) s += '<polygon class="tip' + (k < lv ? ' on' : '') + '" points="' + f(ii[(k + 4) % 5]) + ' ' + f(o[k]) + ' ' + f(ii[k]) + '"/>';
   s += '<polygon class="ctr" points="' + ii.map(f).join(' ') + '"/>';
@@ -2472,8 +2681,23 @@ function applyHash(){
   else if (/^p=[a-z0-9-]+$/.test(h) && PBY[h.slice(2)]) { if (ui.view !== 'persona') switchView('persona'); openPersona(h.slice(2)); }
   else if (h === 'sync' || h === 'backup') openSync();
 }
+let NG = null, ngT = 0;
+function ngMine(){ return CHARS.filter(c => isOwned(c.slug)).map(c => ({ slug: c.slug, codename: c.codename, element: c.element, position: c.position })); }
+function ngRedraw(){ clearTimeout(ngT); ngT = setTimeout(() => { if (NG) NG.redraw(); }, 300); }
+function initNightmare(){
+  const body = document.getElementById('ngBody'), wrap = document.getElementById('ngWrap'); if (!body || !window.P5XNightmare) return;
+  try { if (localStorage.getItem('p5x_ng_open') === '0') wrap.removeAttribute('open'); } catch (e) { /* */ }
+  wrap.addEventListener('toggle', () => { try { localStorage.setItem('p5x_ng_open', wrap.open ? '1' : '0'); } catch (e) { /* */ } });
+  NG = window.P5XNightmare.mount(body, { region: 'en', storage: localStorage, mine: ngMine, compact: true, guideHref: SITE.guideBase + 'nightmare-gateway.html',
+    charAttr: s => 'data-goto="' + s + '" role="button" tabindex="0" title="Apri ' + esc(BY[s] ? BY[s].name : s) + '"',
+    bossImg: s => (SITE.bossImgs || []).indexOf(s) >= 0 ? 'img/boss/' + s + '.webp' : null });
+  body.addEventListener('click', ev => { const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) openDetail(g.dataset.goto); });
+  body.addEventListener('keydown', ev => { if (ev.key !== 'Enter' && ev.key !== ' ') return; const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) { ev.preventDefault(); openDetail(g.dataset.goto); } });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && NG) NG.refresh(); });
+}
 function initSiteExtras(){
   initPersonaTab();
+  initNightmare();
   const gl = document.getElementById('guideLink'); gl.href = SITE.guideBase + 'index.html'; if (!SITE.public) { gl.target = '_blank'; gl.rel = 'noopener'; }
   document.getElementById('status').addEventListener('click', openSync);
   document.getElementById('syncBanGo').addEventListener('click', openSync);

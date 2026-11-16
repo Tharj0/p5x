@@ -52,20 +52,26 @@ def build_html(public=False, head=''):
     t = open(os.path.join(ROOT, 'app/template.html'), encoding='utf-8').read()
     sync_js = open(os.path.join(ROOT, 'app/src/ghsync.js'), encoding='utf-8').read()
     assert '</script' not in sync_js.lower()
+    ng_js = open(os.path.join(ROOT, 'app/src/nightmare.js'), encoding='utf-8').read()
+    assert '</script' not in ng_js.lower()
+    # immagini opzionali aggiunte dall'utente con tools/import_images.py
+    aw_dir = os.path.join(ROOT, 'app/img/awareness'); boss_dir = os.path.join(ROOT, 'app/img/boss')
+    aw_img = all(os.path.exists(os.path.join(aw_dir, 'a%d.webp' % i)) for i in range(7))
+    boss_imgs = sorted(f[:-5] for f in os.listdir(boss_dir) if f.endswith('.webp')) if os.path.isdir(boss_dir) else []
     # marcatori Najox: <!--NAJOX-->html<!--/NAJOX-->  e  /*NAJOX*/codice locale/*NAJOX-ELSE*/codice pubblico/*/NAJOX*/
     js_najox = re.compile(r'/\*NAJOX\*/(.*?)/\*NAJOX-ELSE\*/(.*?)/\*/NAJOX\*/', re.S)
     if public:
         for c in chars: c['infographics'] = []
         t = re.sub(r'<!--NAJOX-->.*?<!--/NAJOX-->', '', t, flags=re.S)
         t = js_najox.sub(lambda m: m.group(2), t)
-        site = {'public': True, 'guideBase': 'guide/', 'sw': True}
+        site = {'public': True, 'guideBase': 'guide/', 'sw': True, 'awImg': aw_img, 'bossImgs': boss_imgs}
     else:
         t = t.replace('<!--NAJOX-->', '').replace('<!--/NAJOX-->', '')
         t = js_najox.sub(lambda m: m.group(1), t)
-        site = {'public': False, 'guideBase': SITE_URL + 'guide/', 'sw': False}
+        site = {'public': False, 'guideBase': SITE_URL + 'guide/', 'sw': False, 'awImg': aw_img, 'bossImgs': boss_imgs}
     html = (t.replace('__CHARS__', js(chars)).replace('__REV__', js(rev)).replace('__WONDER__', js(won)).replace('__PERSONAS__', js(pers))
-             .replace('/*__GHSYNC__*/', sync_js).replace('__SITE__', js(site)).replace('<!--__HEAD__-->', head))
-    for ph in ('__CHARS__', '__REV__', '__WONDER__', '__PERSONAS__', '__GHSYNC__', '__SITE__', '__HEAD__'):
+             .replace('/*__GHSYNC__*/', sync_js).replace('/*__NIGHTMARE__*/', ng_js).replace('__SITE__', js(site)).replace('<!--__HEAD__-->', head))
+    for ph in ('__CHARS__', '__REV__', '__WONDER__', '__PERSONAS__', '__GHSYNC__', '__NIGHTMARE__', '__SITE__', '__HEAD__'):
         assert ph not in html, ph
     if public:
         assert 'najox' not in html.lower(), 'riferimenti Najox rimasti nella versione pubblica'

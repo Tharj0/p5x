@@ -8,6 +8,14 @@ Sostituisce `mio_roster.md` (non più aggiornato) come fonte di verità su CHI p
 - **Wonder**: livello, Persona principali (testo), note, Wonder weapon possedute con refinement e quella equipaggiata, Persona di Wonder possedute (checklist delle 39 consigliate da lufel).
 - **Esporta/Importa**: riepilogo Markdown (copiabile in chat, include le Persona possedute), backup JSON (copia o download), import JSON, azzeramento.
 
+## Nightmare's Gateway (v2.0, 2026-11-16)
+Richiesta dell'utente: i boss di gilda della settimana come nella home di https://lufel.net/en/ (modalità, regole, scadenza), in italiano.
+- **Dati in tempo reale**: il sito legge `https://raw.githubusercontent.com/absolroot/lufelnet/main/data/external/guildboss/en.json` (server Global; lufel lo aggiorna più volte al giorno) a ogni apertura e quando si torna sulla pagina; l'ultima versione resta nel browser per l'uso offline. Orari di lufel in UTC+9 (come la loro home), convertiti nell'ora del dispositivo: settimana 12–19 nov 2026 = fino a gio 19 nov alle 02:30 ora italiana.
+- **Traduzioni** in `app/src/nightmare.js`: 3 modalità (Multidimensional Dreamscape, Devourer of Dreams, Nexus of Dreams — per Nexus anche la nota dell'utente: 2 Assassin/2 Sweeper o combinazione, nessun requisito di sustain) e tutte le regole comparse nella cronologia lufel Global/SEA (36 rilevazioni, 0 regole non tradotte) più quelle già catalogate da lufel (`apps/home/js/affix_name.json`, da cui vengono anche i nomi brevi: Berserk, Bless +, Guardians & Medics…); le regole «<Elemento> +» e «<Posizione> +» sono riconosciute per schema. Una regola nuova compare con il testo originale finché non viene aggiunta.
+- **Tracker**: riquadro richiudibile sopra la griglia dei Personaggi: modalità, conto alla rovescia, per ogni boss livello, debolezze/resistenze, le 5 regole (tocca per il testo), «Guardians & Medics» evidenziata come condizione chiave, e «I tuoi personaggi utili» (posseduti con l'elemento debole o potenziato, Guardian/Medic, Assassin/Sweeper per Nexus) cliccabili.
+- **Guida**: `guide/nightmare-gateway.html` (link nell'indice delle guide): settimana in corso, modalità, catalogo delle regole, come si legge.
+- **Immagini**: niente immagini del gioco importate; riquadri con le iniziali. `tools/import_images.py boss <cartella>` per aggiungere quelle dei boss (e `persona`, `awareness` per icone Persona e stelle A0–A6 estratte dall'utente).
+
 ## Scheda «Persona» (v1.9, 2026-11-16)
 Richiesta dell'utente: una scheda con tutte le Persona di Wonder come su https://lufel.net/en/persona/.
 - **159 Persona** (58 dell'elenco principale lufel, 97 delle altre, 4 presenti nei dati lufel ma non ancora nell'elenco: Kurama Tengu, Mada, Mara, Michael), dati dal repo pubblico di lufel (`data/persona`, `data/kr/wonder/skills.js`, `persona_skill_from.csv`) letto il 16 nov 2026: `node tools/loadpersona.js` → `python tools/build_personas.py` → `data/persona_lufel.json`.

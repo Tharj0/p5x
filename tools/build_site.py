@@ -27,6 +27,8 @@ EXTRA_DOCS = [  # altri documenti di knowledge/ pubblicati come guide (roster_tr
     ('release_schedule_lufel.md', 'uscite', 'Release Schedule', 'ordine e date di uscita'),
     ('wonder_persona_armi_lufel.md', 'wonder', 'Wonder: Persona e armi', 'Persona e Wonder weapon consigliate'),
 ]
+EXTRA_LINKS = [('nightmare-gateway', 'Nightmare’s Gateway', 'boss della settimana, modalità e regole')]
+BOSS_IMGS = sorted(f[:-5] for f in os.listdir(os.path.join(ROOT, 'app', 'img', 'boss')) if f.endswith('.webp')) if os.path.isdir(os.path.join(ROOT, 'app', 'img', 'boss')) else []
 EL_KEY = lambda e: 'WindIce' if e.startswith('Wind/Ice') else e.split(' ')[0]
 MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic']
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)
@@ -148,12 +150,41 @@ def build_guides(chars):
             '<div class="icount" id="icount"></div><div class="ggrid" id="ggrid">%s</div><p class="empty" id="iempty" hidden>Nessuna guida con questi filtri.</p>'
             '</main></div>') % (
         len(chars),
-        ''.join('<a href="%s.html">%s<small>%s</small></a>' % (s, esc(l), esc(sub)) for _, s, l, sub in EXTRA_DOCS),
+        ''.join('<a href="%s.html">%s<small>%s</small></a>' % (s, esc(l), esc(sub)) for s, l, sub in EXTRA_LINKS) + ''.join('<a href="%s.html">%s<small>%s</small></a>' % (s, esc(l), esc(sub)) for _, s, l, sub in EXTRA_DOCS),
         chip('el', els, lambda v: '<i style="--el:var(--el-%s)"></i>%s' % (EL_KEY(v), esc(v))),
         chip('pos', poss, esc), chip('rar', ['5', '4'], lambda v: v + '★'), chip('rel', ['out', 'soon'], lambda v: 'Già usciti' if v == 'out' else 'In arrivo'),
         ''.join(cards))
     open(os.path.join(gdir, 'index.html'), 'w', encoding='utf-8', newline='\n').write(page('Guide P5X — tutti i personaggi (lufel, in italiano)', body, 'Guide in italiano di tutti i personaggi di Persona 5X: The Phantom X, dai dati di lufel.net.'))
     return len(order) + len(EXTRA_DOCS) + 1
+
+
+def build_nightmare(chars):
+    """Pagina guida del Nightmare's Gateway: dati letti in tempo reale da lufel, modalità e regole in italiano."""
+    gdir = os.path.join(DOCS, 'guide')
+    shutil.copy(os.path.join(ROOT, 'app', 'src', 'nightmare.js'), os.path.join(gdir, 'nightmare.js'))
+    ch = json.dumps([{'slug': c['slug'], 'codename': c['codename'], 'element': c['element'], 'position': c['position']} for c in chars], ensure_ascii=False, separators=(',', ':'))
+    toc = '<aside class="toc"><details open><summary>Sezioni</summary><nav><ul><li><a href="#settimana">Questa settimana</a></li><li><a href="#modalita">Modalità</a></li><li><a href="#regole">Regole possibili</a></li><li><a href="#come">Come si legge</a></li></ul></nav></details></aside>'
+    body = ('<div class="gwrap">' + toc + '<main class="doc"><h1>Nightmare’s Gateway</h1>'
+            '<p class="src">Boss di gilda della settimana sul server Global, letti ogni volta dai dati pubblici di lufel.net (gli stessi della loro home). Modalità e regole sono tradotte in italiano; nomi di boss ed elementi restano come nel gioco.</p>'
+            '<h2 id="settimana">Questa settimana</h2><div class="ngbody ngpage" id="ngLive"><div class="ng-empty">Carico i dati da lufel…</div></div>'
+            '<h2 id="modalita">Modalità</h2><div id="ngModes"></div>'
+            '<h2 id="regole">Regole possibili</h2><p>Ogni boss ha 5 regole (il gioco le chiama tutte «Special Effect»; i nomi brevi sono quelli usati da lufel). Elenco di tutte quelle comparse finora sul server Global e SEA, più quelle che lufel ha già catalogato: se ne arriva una nuova, nel riquadro della settimana compare con il testo originale finché non viene aggiunta qui.</p><div id="ngRules"></div>'
+            '<h2 id="come">Come si legge</h2><ul>'
+            '<li><b>Scadenza</b>: lufel indica gli orari del server Global in UTC+9; qui sono convertiti nell’ora del tuo dispositivo (in Italia, d’inverno, 8 ore prima: «10:30» di lufel = 02:30).</li>'
+            '<li><b>Condizione chiave</b>: la regola «Guardians & Medics» decide quanto colpisce il boss (−60% con un Guardian o un Medic nel party, +60% senza): è evidenziata in rosso.</li>'
+            '<li><b>I tuoi personaggi utili</b>: chi possiedi (dal tracker, su questo dispositivo) con l’elemento a cui il boss è debole, quello potenziato dalle regole e le posizioni richieste. È solo un filtro sui dati: la scelta del team resta tua.</li>'
+            '<li>Le immagini dei boss compaiono se le aggiungi al progetto (cartella <code>app/img/boss</code>); altrimenti c’è un riquadro con le iniziali.</li></ul>'
+            '</main></div>'
+            '<script src="nightmare.js"></script><script>(function(){var N=window.P5XNightmare;if(!N)return;var CH=' + ch.replace('</', '<\\/') + ';'
+            'var E=function(s){return String(s==null?"":s).replace(/[&<>"\']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;","\\"":"&quot;","\'":"&#39;"}[m];});};'
+            'var mine=function(){var o={};try{var j=JSON.parse(localStorage.getItem("p5x_roster_tracker_v1")||"{}");Object.keys(j.roster||{}).forEach(function(s){if(j.roster[s]&&j.roster[s].owned)o[s]=1;});}catch(e){}return CH.filter(function(c){return o[c.slug];});};'
+            'var live=document.getElementById("ngLive");N.mount(live,{region:"en",storage:localStorage,mine:mine,charAttr:function(s){return \'data-href="../index.html#c=\'+s+\'" role="link" tabindex="0"\';},bossImg:function(s){return ' + json.dumps(BOSS_IMGS) + '.indexOf(s)>=0?"../img/boss/"+s+".webp":null;}});'
+            'live.addEventListener("click",function(ev){var a=ev.target.closest("[data-href]");if(a)location.href=a.getAttribute("data-href");});'
+            'live.addEventListener("keydown",function(ev){var a=ev.target.closest("[data-href]");if(a&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();location.href=a.getAttribute("data-href");}});'
+            'var C=N.catalogue();document.getElementById("ngModes").innerHTML=Object.keys(C.modes).map(function(k){var m=C.modes[k];return \'<div class="ng-r key-m"><b>\'+E(k)+\'</b><div>\'+E(m.it)+(m.note?\'<span class="ng-note">\'+E(m.note)+\'</span>\':"")+\'</div></div>\';}).join("");'
+            'document.getElementById("ngRules").innerHTML=\'<div class="ng-rules cat">\'+C.rules.map(function(r){return \'<div class="ng-r\'+(r.key?" key":"")+\'"><b>\'+(r.key?\'<span class="ng-k">condizione chiave</span>\':"")+E(r.n)+\'</b><div>\'+E(r.it)+\'</div></div>\';}).join("")+\'</div>\';'
+            '})();</script>')
+    open(os.path.join(gdir, 'nightmare-gateway.html'), 'w', encoding='utf-8', newline='\n').write(page('Nightmare’s Gateway — boss della settimana · Guide P5X', body, 'Boss di gilda della settimana di Persona 5X (Nightmare’s Gateway): modalità, regole e scadenza, in italiano.'))
 
 
 def main():
@@ -172,6 +203,10 @@ def main():
         shutil.copytree(os.path.join(ROOT, 'app', 'img', sub), os.path.join(DOCS, 'img', sub), ignore=shutil.ignore_patterns('*--*'))
     # 4. guide
     n_guides = build_guides(chars)
+    build_nightmare(chars); n_guides += 1
+    for sub in ('awareness', 'boss'):   # immagini aggiunte dall'utente con tools/import_images.py
+        src = os.path.join(ROOT, 'app', 'img', sub)
+        if os.path.isdir(src) and os.listdir(src): shutil.copytree(src, os.path.join(DOCS, 'img', sub))
     # 5. file statici
     shutil.copy(os.path.join(SITE, 'manifest.webmanifest'), DOCS)
     shutil.copytree(os.path.join(SITE, 'icons'), os.path.join(DOCS, 'icons'))
