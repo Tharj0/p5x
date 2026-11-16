@@ -37,7 +37,7 @@ def fmt_date(iso):
 
 
 def head_tags(prefix, title, desc):
-    return ('<meta name="description" content="%s">\n<link rel="manifest" href="%smanifest.webmanifest">\n<meta name="theme-color" content="#0e0f14">\n'
+    return ('<meta name="description" content="%s">\n<link rel="manifest" href="%smanifest.webmanifest">\n<meta name="theme-color" content="#d6001c">\n'
             '<link rel="icon" type="image/png" sizes="32x32" href="%sicons/icon-32.png">\n<link rel="apple-touch-icon" href="%sicons/apple-touch-icon.png">\n'
             '<meta name="mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="P5X">' % (esc(desc), prefix, prefix, prefix))
 
@@ -177,7 +177,7 @@ def main():
     open(os.path.join(DOCS, '.nojekyll'), 'w').close()
     open(os.path.join(DOCS, '404.html'), 'w', encoding='utf-8', newline='\n').write(
         '<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pagina non trovata · P5X</title>'
-        '<style>body{margin:0;background:#0e0f14;color:#e8e9f0;font:16px/1.6 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center}a{color:#ff3b52}</style></head>'
+        '<style>body{margin:0;background:#0a0a0a;color:#f4f4f4;font:16px/1.6 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;text-align:center;border-top:6px solid #d6001c}h1{font:italic 900 30px "Arial Black",Impact,sans-serif;text-transform:uppercase;background:#d6001c;color:#fff;display:inline-block;padding:4px 24px;transform:rotate(-2deg)}a{color:#ff2e45}</style></head>'
         '<body><main><h1>Pagina non trovata</h1><p><a href="/p5x/">Vai al tracker</a> · <a href="/p5x/guide/">Vai alle guide</a></p></main></body></html>\n')
     # 6. service worker: elenco dei file da tenere offline + versione = impronta dei contenuti
     files = []

@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'site', 'icons')
-BG, RED, WHITE = (14, 15, 20), (227, 20, 47), (255, 255, 255)
+BG, RED, WHITE = (10, 10, 10), (214, 0, 28), (255, 255, 255)
 
 
 def font(size):

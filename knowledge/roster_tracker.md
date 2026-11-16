@@ -8,6 +8,9 @@ Sostituisce `mio_roster.md` (non più aggiornato) come fonte di verità su CHI p
 - **Wonder**: livello, Persona principali (testo), note, Wonder weapon possedute con refinement e quella equipaggiata, Persona di Wonder possedute (checklist delle 39 consigliate da lufel).
 - **Esporta/Importa**: riepilogo Markdown (copiabile in chat, include le Persona possedute), backup JSON (copia o download), import JSON, azzeramento.
 
+## Tema grafico (v1.7, 2026-11-16)
+Richiesta dell'utente: interfaccia con la palette di Persona 5. Tema originale rosso (#d6001c) / nero / bianco applicato a tracker e guide: titoli in maiuscolo corsivo pesante, schede, pulsanti e chip obliqui (clip-path), filtri attivi in bianco su nero, carte con ombra rossa sfalsata (posseduti) e trama a puntini sullo sfondo, scheda personaggio con barra rossa e immagine incorniciata, barra del browser rossa sul telefono (theme-color). Solo colori e forme generiche: nessun logo, font o elemento grafico preso dal gioco. Stili in `app/template.html` (blocco «Tema v1.7» in fondo al CSS) e `site/guide.css`.
+
 ## Sito GitHub e sincronizzazione (v1.6, 2026-11-16)
 Richiesta dell'utente: tracker come sito proprio su GitHub, sincronizzato tra PC e telefono, senza dipendere da Claude.
 - **Sito**: `docs/` del repo pubblico `Tharj0/p5x` (GitHub Pages), generato da `tools/build_site.py`: tracker in versione pubblica (senza infografiche Najox: file, dati, filtro, badge e sezione esclusi), immagini card/Persona/Wonder weapon, lettore delle guide `guide/` (indice con ricerca e filtri per elemento/posizione/rarità/uscita, una pagina per guida con sommario, link «Apri nel tracker» → `index.html#c=<slug>`, più Indice completo, Release Schedule, Wonder: Persona e armi). PWA: manifest, icone, service worker (offline dopo la prima visita, installabile sul telefono).
