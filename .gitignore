@@ -10,3 +10,5 @@ app/index.html
 memory/
 # Impostazioni locali di Claude Code
 .claude/settings.local.json
+# Estrazione grezza delle Persona di lufel (contiene i loro testi): solo locale, si rigenera con node tools/loadpersona.js
+data/cache/persona_all.json

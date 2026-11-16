@@ -8,6 +8,13 @@ Sostituisce `mio_roster.md` (non più aggiornato) come fonte di verità su CHI p
 - **Wonder**: livello, Persona principali (testo), note, Wonder weapon possedute con refinement e quella equipaggiata, Persona di Wonder possedute (checklist delle 39 consigliate da lufel).
 - **Esporta/Importa**: riepilogo Markdown (copiabile in chat, include le Persona possedute), backup JSON (copia o download), import JSON, azzeramento.
 
+## Scheda «Persona» (v1.9, 2026-11-16)
+Richiesta dell'utente: una scheda con tutte le Persona di Wonder come su https://lufel.net/en/persona/.
+- **159 Persona** (58 dell'elenco principale lufel, 97 delle altre, 4 presenti nei dati lufel ma non ancora nell'elenco: Kurama Tengu, Mada, Mara, Michael), dati dal repo pubblico di lufel (`data/persona`, `data/kr/wonder/skills.js`, `persona_skill_from.csv`) letto il 16 nov 2026: `node tools/loadpersona.js` → `python tools/build_personas.py` → `data/persona_lufel.json`.
+- **Solo dati strutturati**: elemento, posizione, rarità, grado, tier, Best/evento/Wild Emblem arcobaleno, versione di aggiunta, nomi di Unique Skill, Highlight, skill innate (costo, livello di apprendimento) e passive, priorità della passiva, skill consigliate per priorità con le Persona che le insegnano, come si ottiene (fusione, Wild Emblem, MEROPE Rank, Persona Gacha Ticket, eventi), skill card insegnate (e per quali Persona lufel le consiglia), personaggi per cui lufel la consiglia. Per scelta concordata con l'utente **non** sono copiati i testi degli effetti né i commenti di lufel: ogni scheda ha il link alla pagina lufel della Persona (verificati tutti i 155 link). Per le 39 Persona consigliate restano talento e unique skill in italiano già presenti.
+- **Immagini**: le 39 icone già nel progetto; per le altre 120 un riquadro grafico originale (colore dell'elemento + iniziali), nessuna nuova immagine del gioco.
+- **UI**: ricerca (nomi di Persona e skill), filtri per elemento, posizione, rarità, tier, possedute/mancanti, «consigliate per i miei personaggi», «solo elenco principale», ordinamento (lufel, tier, rarità, nome); scheda in un pannello con ◀ ▶ e frecce da tastiera, Esc per chiudere. Spunta «posseduta» condivisa con la scheda Wonder (`wonder.pers`, sincronizzata con GitHub). Link «scheda Persona ›» dalle righe Persona delle schede Wonder e Team e Wonder; link diretti `#persona` e `#p=<nome>` (es. `#p=jack-frost`).
+
 ## Sezione «Guida lufel» interattiva (v1.8, 2026-11-16)
 Richiesta dell'utente: menù interattivo per passive e abilità uniche, stellina dell'Awareness, party con immagini e motivo di ogni membro.
 - **Menù interno** (riga scorrevole, fissa in alto): Kit · Awareness · Party · Rotazione · Review · Combination · Setup · Stats + link alla guida completa e a lufel.

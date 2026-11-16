@@ -18,10 +18,12 @@ Gli script cercano il repo in `./lufelnet`; per usare un'altra posizione imposta
 | `node tools/loadpw.js` | `data/cache/personaFiles.json`, `data/cache/matchWeapons.json` (Persona e Wonder weapon) |
 | `node tools/loadsk.js` | `data/cache/lufel_skills_src.json` (testi inglesi di skill, Awareness e armi) |
 | `node tools/ci.js > data/cache/ci.json` | nomi e codename dei personaggi |
+| `node tools/loadpersona.js` | `data/cache/persona_all.json` (tutte le Persona di Wonder, skill, tabella «come si ottiene»; i file di lufel sono letti in un contesto `vm` isolato) |
 
 ## 3. Ricostruire l'app (Python 3 + Pillow)
 ```
 python3 data/build_team.py   # team e Wonder per personaggio + conversione immagini in app/img/
+python3 tools/build_personas.py   # data/persona_lufel.json per la scheda «Persona» (solo dati strutturati, niente testi degli effetti)
 python3 app/build.py         # genera app/index.html (calcola anche stat base e termini con descrizione)
 ```
 

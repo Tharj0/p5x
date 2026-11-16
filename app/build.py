@@ -48,6 +48,7 @@ def build_html(public=False, head=''):
     chars = load_chars()
     rev = json.load(open(os.path.join(ROOT, 'data/revelations_lufel.json'), encoding='utf-8'))
     won = json.load(open(os.path.join(ROOT, 'data/wonder_lufel.json'), encoding='utf-8'))
+    pers = json.load(open(os.path.join(ROOT, 'data/persona_lufel.json'), encoding='utf-8'))
     t = open(os.path.join(ROOT, 'app/template.html'), encoding='utf-8').read()
     sync_js = open(os.path.join(ROOT, 'app/src/ghsync.js'), encoding='utf-8').read()
     assert '</script' not in sync_js.lower()
@@ -62,9 +63,9 @@ def build_html(public=False, head=''):
         t = t.replace('<!--NAJOX-->', '').replace('<!--/NAJOX-->', '')
         t = js_najox.sub(lambda m: m.group(1), t)
         site = {'public': False, 'guideBase': SITE_URL + 'guide/', 'sw': False}
-    html = (t.replace('__CHARS__', js(chars)).replace('__REV__', js(rev)).replace('__WONDER__', js(won))
+    html = (t.replace('__CHARS__', js(chars)).replace('__REV__', js(rev)).replace('__WONDER__', js(won)).replace('__PERSONAS__', js(pers))
              .replace('/*__GHSYNC__*/', sync_js).replace('__SITE__', js(site)).replace('<!--__HEAD__-->', head))
-    for ph in ('__CHARS__', '__REV__', '__WONDER__', '__GHSYNC__', '__SITE__', '__HEAD__'):
+    for ph in ('__CHARS__', '__REV__', '__WONDER__', '__PERSONAS__', '__GHSYNC__', '__SITE__', '__HEAD__'):
         assert ph not in html, ph
     if public:
         assert 'najox' not in html.lower(), 'riferimenti Najox rimasti nella versione pubblica'

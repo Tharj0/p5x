@@ -566,6 +566,77 @@ footer{border-top:3px solid #1f1f1f}
   .awlist{grid-template-columns:1fr}
   .kitgrid{grid-template-columns:1fr}
 }
+/* ---- scheda Persona ---- */
+.pcount{font-size:13px;color:var(--muted);margin:4px 0 10px;text-transform:uppercase;letter-spacing:.4px}
+.pcount b{color:#fff}
+.chip .eld{display:inline-block;width:9px;height:9px;background:var(--el);margin-right:6px;transform:rotate(45deg)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.pcard{display:flex;gap:10px;align-items:stretch;background:linear-gradient(140deg,#171717,#0e0e0e);border:1px solid #2c2c2c;padding:8px 10px 8px 8px;cursor:pointer;position:relative;transition:transform .12s,box-shadow .12s,border-color .12s}
+.pcard:hover,.pcard:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--red);border-color:#fff;outline:none}
+.pcard.own{border-left:4px solid var(--el);box-shadow:4px 4px 0 var(--redd)}
+.pcard .pci{width:62px;height:84px;flex:none;object-fit:contain;background:#111}
+.pcard:not(.own) img.pci{filter:grayscale(.75);opacity:.8}
+.pph{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#151515;border:2px solid var(--el)}
+.pph::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(255,255,255,.06) 9px 11px),linear-gradient(160deg,var(--el),transparent 70%);opacity:.55}
+.pph span{position:relative;font-family:var(--hfont);font-weight:900;font-style:italic;font-size:22px;color:#fff;text-shadow:2px 2px 0 #000;transform:rotate(-6deg)}
+.pcard:not(.own) .pph{filter:saturate(.35)}
+.pcb{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.pcn{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:14.5px;line-height:1.2;overflow-wrap:anywhere}
+.pcm{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pcm .badge{font-size:10.5px}
+.badge.el{--el:inherit}
+.pcard .badge.el,.phero .badge.el{background:var(--el);color:#000;border-color:transparent}
+.ptier{font-weight:800}
+.ptier.tS{background:var(--red);color:#fff;border-color:var(--red)} .ptier.tA{background:#fff;color:#000;border-color:#fff} .ptier.tB{color:#fff;border-color:#888} .ptier.tC{color:var(--muted)}
+.pown{margin-top:auto;font-size:12.5px;color:var(--muted)}
+.plnk{background:none;border:0;padding:0;color:var(--red2);cursor:pointer;font:inherit;font-weight:700;text-align:left}
+.plnk:hover{text-decoration:underline}
+.wp .wb .t .plnk{font-size:12px;margin-left:4px}
+/* pannello della Persona */
+.pdlg{position:fixed;inset:0;z-index:65;display:none;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.78);padding:24px 12px;overflow:auto}
+.pdlg.open{display:flex}
+.pdbox{width:min(920px,100%);background:var(--bg);border:1px solid #2c2c2c;border-top:5px solid var(--red);box-shadow:10px 10px 0 rgba(214,0,28,.45),var(--shadow);display:flex;flex-direction:column;max-height:calc(100vh - 48px)}
+.pdtop{display:flex;gap:8px;align-items:center;padding:8px 10px;background:#000;border-bottom:3px solid var(--red);flex:none;font-size:13px;color:var(--muted)}
+.pdtop .btn.small{min-width:38px;height:36px}
+.pdbody{overflow:auto;padding:14px 16px 24px;overscroll-behavior:contain}
+.phero{display:flex;gap:18px;align-items:flex-start;margin-bottom:14px;background:#0f0f0f linear-gradient(168deg,rgba(214,0,28,.28),rgba(214,0,28,0) 240px);border:1px solid #262626;padding:14px}
+.phero .phi{width:120px;height:160px;flex:none;object-fit:contain;background:#111;box-shadow:0 0 0 3px #fff,8px 8px 0 3px var(--red)}
+.phero .pph span{font-size:40px}
+.pht{min-width:0;flex:1;display:flex;flex-direction:column;gap:7px}
+.pht h2{margin:0;font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:26px;line-height:1.1;overflow-wrap:anywhere}
+.pjp{color:var(--muted);font-size:13px}
+.pact{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:4px}
+.pact a.btn{text-decoration:none}
+.pnl{font-size:12.5px;color:var(--warn)}
+.psk{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:7px 0;border-top:1px solid #222}
+.psk:first-child{border-top:0}
+.psk .kt{font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#000;background:#e9e9e9;padding:1px 10px;clip-path:var(--slant-s);flex:none}
+.psk b{color:#fff;font-weight:800}
+.pskm{font-size:12px;color:var(--muted)}
+.prg h4{margin:10px 0 4px;font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.prg h4::after{content:'';flex:1;height:1px;background:#2c2c2c}
+.prg:first-child h4{margin-top:0}
+.prr{display:flex;flex-wrap:wrap;gap:3px 10px;align-items:baseline;padding:5px 0 5px 10px;border-left:3px solid #2c2c2c;margin:4px 0}
+.prg:first-child .prr{border-left-color:var(--red)}
+.prr b{color:#fff}
+.prt{font-size:12.5px;color:var(--muted)}
+.pacq{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:7px 0;border-top:1px solid #222}
+.pacq:first-child{border-top:0}
+.pal{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);min-width:110px}
+.ptok{display:inline-flex;align-items:center;gap:6px;background:#1c1c1c;border:1px solid #333;padding:3px 10px;font-size:13px}
+.ptok i{display:inline-block;width:12px;height:12px;transform:rotate(45deg)}
+.ptok.ev{border-color:var(--gold);color:var(--gold)}
+.pplus{color:var(--red2);font-weight:900}
+@media (max-width:640px){
+  .pgrid{grid-template-columns:1fr}
+  .pdlg{padding:0}
+  .pdbox{max-height:100vh;height:100%;box-shadow:none;border:0;border-top:4px solid var(--red)}
+  .phero{gap:12px;padding:10px}
+  .phero .phi{width:78px;height:104px;box-shadow:0 0 0 2px #fff,5px 5px 0 2px var(--red)}
+  .phero .pph span{font-size:28px}
+  .pht h2{font-size:20px}
+  .pal{min-width:0;flex-basis:100%}
+}
 </style>
 </head>
 <body>
@@ -582,6 +653,7 @@ footer{border-top:3px solid #1f1f1f}
   <div class="tabs">
     <button class="tab active" data-view="roster">Personaggi</button>
     <button class="tab" data-view="wonder">Wonder</button>
+    <button class="tab" data-view="persona">Persona</button>
     <button class="tab" data-view="tools">Sync e backup</button>
   </div>
 
@@ -634,11 +706,26 @@ footer{border-top:3px solid #1f1f1f}
       <div id="wonderWeapons"></div>
     </div>
     <div class="sec">
-      <h3>Persona di Wonder <span class="hint" id="persCount"></span></h3>
+      <h3>Persona di Wonder <span class="hint"><span id="persCount"></span> · <a href="#persona">tutte le 159 Persona ›</a></span></h3>
       <p class="note" style="margin-top:0">Le 39 Persona che lufel consiglia per Wonder nei team dei personaggi, ordinate per numero di personaggi che le consigliano. Spunta quelle che possiedi: lo stato compare anche nella sezione «Team e Wonder» di ogni personaggio. Ruolo, talento e unique skill tradotti da lufel.</p>
       <div class="toolbar"><div class="chips" id="persFilter"><span class="chip on" data-pf="all">Tutte</span><span class="chip" data-pf="own">Possedute</span><span class="chip" data-pf="miss">Mancanti</span><span class="chip" data-pf="team">Consigliate per i miei personaggi</span></div></div>
       <div id="wonderPersonas"></div>
     </div>
+  </section>
+
+  <section id="view-persona" style="display:none" class="ptab">
+    <div class="sec pintro"><h3>Persona di Wonder <span class="hint">tutte le 159 Persona dei dati lufel · tocca una Persona per la scheda</span></h3>
+      <p class="note" style="margin-top:0">Elemento, posizione, rarità, grado, tier, skill (nomi), skill consigliate con chi le insegna e come si ottiene, dal repository pubblico di lufel.net (letto il 16 nov 2026). Le descrizioni degli effetti e i commenti di lufel sono sulla pagina di ogni Persona (link nella scheda). La spunta «posseduta» è la stessa della scheda Wonder e si sincronizza con GitHub.</p></div>
+    <div class="toolbar"><input type="search" id="pSearch" placeholder="Cerca Persona o skill (es. Janosik, Rakunda, Tarukaja)…" aria-label="Cerca tra le Persona">
+      <select id="pSort" class="btn small" aria-label="Ordina le Persona"><option value="lufel">Ordina: come su lufel</option><option value="tier">Ordina: tier</option><option value="star">Ordina: rarità</option><option value="name">Ordina: nome</option></select>
+      <button type="button" class="chip" id="pReset">Azzera filtri</button></div>
+    <div class="toolbar"><div class="chips" id="pElF"></div></div>
+    <div class="toolbar"><div class="chips" id="pPosF"></div><div class="chips" id="pStarF"></div><div class="chips" id="pTierF"></div></div>
+    <div class="toolbar"><div class="chips" id="pOwnF"><button type="button" class="chip on" data-v="all">Tutte</button><button type="button" class="chip" data-v="yes">Possedute</button><button type="button" class="chip" data-v="no">Mancanti</button></div>
+      <button type="button" class="chip" id="pMine" title="Persona consigliate da lufel nei team dei personaggi che possiedi">Consigliate per i miei personaggi</button>
+      <button type="button" class="chip" id="pMain" title="Solo le 58 Persona dell'elenco principale di lufel">Solo elenco principale lufel</button></div>
+    <div class="pcount" id="pCount"></div>
+    <div class="pgrid" id="pGrid"></div>
   </section>
 
   <section id="view-tools" style="display:none">
@@ -717,6 +804,13 @@ footer{border-top:3px solid #1f1f1f}
   </div>
 </aside>
 
+<div class="pdlg" id="pdlg" aria-hidden="true">
+  <div class="pdbox" role="dialog" aria-modal="true" aria-label="Scheda della Persona">
+    <div class="pdtop"><button type="button" class="btn small" id="pdPrev" aria-label="Persona precedente">◀</button><span id="pdPos"></span><button type="button" class="btn small" id="pdNext" aria-label="Persona successiva">▶</button><span style="flex:1"></span><button type="button" class="btn small" id="pdClose" aria-label="Chiudi la scheda della Persona">✕</button></div>
+    <div class="pdbody" id="pdBody"></div>
+  </div>
+</div>
+
 <div class="dialog" id="dialog">
   <div class="box">
     <h3 id="dlgTitle" style="margin:0 0 8px"></h3>
@@ -732,6 +826,7 @@ footer{border-top:3px solid #1f1f1f}
 <script id="chars-data" type="application/json">__CHARS__</script>
 <script id="rev-data" type="application/json">__REV__</script>
 <script id="wonder-data" type="application/json">__WONDER__</script>
+<script id="persona-data" type="application/json">__PERSONAS__</script>
 <script>
 /*__GHSYNC__*/
 </script>
@@ -793,7 +888,7 @@ function renderRelStrip(){
 
 // ---------- state ----------
 const state = { roster: {}, wonder: null, extra: {} };   // extra = voci di personaggi assenti da questa versione dei dati (da un dispositivo più aggiornato): conservate
-const ui = { rel: 'all', tab: 'ov', dmode: 'tabs', lvcol: 0, dq: '', hist: [], pf: 'all', view: 'roster', search: '', own: 'all', els: new Set(), poss: new Set(), rars: new Set(), hideNR: false, infog: false, sort: 'code', open: null };
+const ui = { pq: '', pel: new Set(), ppos: new Set(), pstar: new Set(), ptier: new Set(), pown: 'all', pmine: false, pmain: false, psort: 'lufel', rel: 'all', tab: 'ov', dmode: 'tabs', lvcol: 0, dq: '', hist: [], pf: 'all', view: 'roster', search: '', own: 'all', els: new Set(), poss: new Set(), rars: new Set(), hideNR: false, infog: false, sort: 'code', open: null };
 let lsOK = true, deferredRender = false, syncSt = null;   // syncSt = stato della sincronizzazione GitHub (base dell'ultimo merge), salvato insieme ai dati
 
 function blankEntry(c){
@@ -1108,7 +1203,7 @@ function personaRow(name, star, ctx){
   const P = WON.personas[name]; if (!P) return ''; const own = !!(wonder().pers || {})[name];
   const attr = ctx === 'tab' ? 'data-wpers' : 'data-persown';
   const used = ctx === 'tab' ? '<div>Consigliata per ' + P.used_by.length + ' personaggi:' + charChips(P.used_by) + '</div>' : '';
-  return '<div class="wp" data-pname="' + esc(name) + '"><div class="ic"><img src="' + P.img + '" alt="" loading="lazy"></div><div class="wb"><div class="t">' + (star ? '<span class="star" title="Evidenziata su lufel">★</span>' : '') + esc(name) + ' <span class="badge">' + esc(P.element) + '</span>' + (P.tier ? '<span class="badge" title="Tier della Persona su lufel">Tier ' + esc(P.tier) + '</span>' : '') + '<label class="toggle" style="font-weight:400"><input type="checkbox" ' + attr + '="' + esc(name) + '"' + (own ? ' checked' : '') + '> posseduta</label></div><div>' + esc(P.role) + '</div>' + used + '<details><summary>Talento «' + esc(P.talent_name || '—') + '» e unique skill «' + esc(P.unique_name || '—') + '»</summary><div class="rb"><b>' + esc(P.talent_name || 'Talento') + '</b> (talento, livello massimo): ' + esc(P.talent) + '</div><div class="rb"><b>' + esc(P.unique_name || 'Unique skill') + '</b> (unique skill, valori come su lufel): ' + esc(P.unique) + '</div></details></div></div>';
+  return '<div class="wp" data-pname="' + esc(name) + '"><div class="ic"><img src="' + P.img + '" alt="" loading="lazy"></div><div class="wb"><div class="t">' + (star ? '<span class="star" title="Evidenziata su lufel">★</span>' : '') + esc(name) + ' <span class="badge">' + esc(P.element) + '</span>' + (P.tier ? '<span class="badge" title="Tier della Persona su lufel">Tier ' + esc(P.tier) + '</span>' : '') + (PEN[name] ? '<button type="button" class="plnk" data-popen="' + PEN[name].slug + '">scheda Persona ›</button>' : '') + '<label class="toggle" style="font-weight:400"><input type="checkbox" ' + attr + '="' + esc(name) + '"' + (own ? ' checked' : '') + '> posseduta</label></div><div>' + esc(P.role) + '</div>' + used + '<details><summary>Talento «' + esc(P.talent_name || '—') + '» e unique skill «' + esc(P.unique_name || '—') + '»</summary><div class="rb"><b>' + esc(P.talent_name || 'Talento') + '</b> (talento, livello massimo): ' + esc(P.talent) + '</div><div class="rb"><b>' + esc(P.unique_name || 'Unique skill') + '</b> (unique skill, valori come su lufel): ' + esc(P.unique) + '</div></details></div></div>';
 }
 function teamSection(c){
   const t = c.team || { friends: [], parties: [], weapons: [], personas: [] };
@@ -1797,7 +1892,7 @@ async function resetAll(){
 }
 
 // ---------- events ----------
-function switchView(v){ ui.view = v; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v)); ['roster', 'wonder', 'tools'].forEach(x => document.getElementById('view-' + x).style.display = x === v ? '' : 'none'); if (v === 'roster') renderGrid(); if (v === 'wonder') renderWonder(); if (v === 'tools') { storageInfo(); fillSyncForm(); } }
+function switchView(v){ ui.view = v; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v)); ['roster', 'wonder', 'persona', 'tools'].forEach(x => document.getElementById('view-' + x).style.display = x === v ? '' : 'none'); if (v === 'persona') renderPersonaTab(); if (v === 'roster') renderGrid(); if (v === 'wonder') renderWonder(); if (v === 'tools') { storageInfo(); fillSyncForm(); } }
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchView(t.dataset.view)));
 document.getElementById('search').addEventListener('input', ev => { ui.search = ev.target.value; renderGrid(); });
 document.getElementById('ownFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; ui.own = ch.dataset.own; renderFilters(); renderGrid(); lsSave(); });
@@ -1891,6 +1986,158 @@ document.getElementById('btnDownload').addEventListener('click', () => { const a
 document.getElementById('fileImport').addEventListener('change', ev => { const f = ev.target.files && ev.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => importJSON(String(rd.result)); rd.readAsText(f); ev.target.value = ''; });
 document.getElementById('btnReset').addEventListener('click', resetAll);
 
+// ---------- scheda «Persona»: le 159 Persona di Wonder (dati strutturati da lufel; testi e commenti sulla pagina lufel) ----------
+const PD = JSON.parse(document.getElementById('persona-data').textContent);
+const PL = PD.list, PBY = Object.fromEntries(PL.map(p => [p.slug, p])), PEN = Object.fromEntries(PL.map(p => [p.en, p]));
+const P_TIER = { S: 0, A: 1, B: 2, C: 3 };
+const P_PRIO = { 3: 'Priorità alta', 2: 'Priorità media', 1: 'Priorità bassa', 0: 'Opzionali' };
+const P_EMB = { white: ['bianco', '#e9e9e9'], blue: ['azzurro', '#6fd3ff'], purple: ['viola', '#b57bff'], rainbow: ['arcobaleno', 'linear-gradient(90deg,#ff5f6d,#ffc371,#5ee07a,#6fd3ff,#b57bff)'] };
+// per la ricerca: nomi delle skill che la Persona ha, consiglia o insegna
+PL.forEach(p => { p._q = [p.en, p.jp, p.el, p.pos, p.uq, p.hl].concat(p.inn.map(s => s[0]), p.pas, p.rec.map(r => r[0]), p.gives).join(' ').toLowerCase(); });
+const P_RECBY = {};   // skill -> Persona che la consigliano
+PL.forEach(p => p.rec.forEach(r => { (P_RECBY[r[0]] = P_RECBY[r[0]] || []).push(p.slug); }));
+
+function pOwned(p){ return !!((wonder().pers || {})[p.en]); }
+function pInitials(en){ const w = en.replace(/[^A-Za-z\s-]/g, '').split(/[\s-]+/).filter(Boolean); return (w.length > 1 ? w[0][0] + w[1][0] : en.slice(0, 2)).toUpperCase(); }
+function pIcon(p, cls){   // icona già nel progetto, altrimenti riquadro grafico originale (colore dell'elemento + iniziali)
+  if (p.img) return '<img class="' + cls + '" src="' + p.img + '" alt="" loading="lazy">';
+  return '<span class="' + cls + ' pph" style="--el:var(--el-' + EL_KEY(p.el) + ')" aria-hidden="true"><span>' + esc(pInitials(p.en)) + '</span></span>';
+}
+function pTier(p){ return p.tier ? '<span class="badge ptier t' + p.tier + '" title="Tier su lufel">Tier ' + p.tier + '</span>' : ''; }
+function pLink(en){ const p = PEN[en]; return p ? '<button type="button" class="plnk" data-popen="' + p.slug + '">' + esc(en) + '</button>' : esc(en); }
+function pFiltered(){
+  const q = ui.pq.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const mine = new Set(CHARS.filter(c => isOwned(c.slug)).map(c => c.slug));
+  let arr = PL.filter(p => {
+    if (ui.pel.size && !ui.pel.has(p.el)) return false;
+    if (ui.ppos.size && !ui.ppos.has(p.pos)) return false;
+    if (ui.pstar.size && !ui.pstar.has(String(p.star))) return false;
+    if (ui.ptier.size && !ui.ptier.has(p.tier || '-')) return false;
+    if (ui.pown === 'yes' && !pOwned(p)) return false;
+    if (ui.pown === 'no' && pOwned(p)) return false;
+    if (ui.pmain && !p.main) return false;
+    if (ui.pmine && !(p.wonder && WON.personas[p.en] && WON.personas[p.en].used_by.some(s => mine.has(s)))) return false;
+    return q.every(w => p._q.indexOf(w) >= 0);
+  });
+  const by = { lufel: (a, b) => a.ord - b.ord, tier: (a, b) => ((P_TIER[a.tier] ?? 9) - (P_TIER[b.tier] ?? 9)) || a.ord - b.ord, star: (a, b) => (b.star - a.star) || (b.grade - a.grade) || a.en.localeCompare(b.en), name: (a, b) => a.en.localeCompare(b.en) };
+  return arr.sort(by[ui.psort] || by.lufel);
+}
+function renderPersonaFilters(){
+  const chips = (id, vals, set, lab) => { document.getElementById(id).innerHTML = vals.map(v => '<button type="button" class="chip' + (set.has(v) ? ' on' : '') + '" data-v="' + esc(v) + '">' + lab(v) + '</button>').join(''); };
+  chips('pElF', [...new Set(PL.map(p => p.el))].sort(), ui.pel, v => '<i class="eld" style="--el:var(--el-' + EL_KEY(v) + ')"></i>' + esc(v));
+  chips('pPosF', [...new Set(PL.map(p => p.pos))].sort(), ui.ppos, esc);
+  chips('pStarF', [...new Set(PL.map(p => String(p.star)))].sort().reverse(), ui.pstar, v => v + '★');
+  chips('pTierF', ['S', 'A', 'B', 'C', '-'], ui.ptier, v => v === '-' ? 'senza tier' : 'Tier ' + v);
+  document.querySelectorAll('#pOwnF .chip').forEach(ch => ch.classList.toggle('on', ch.dataset.v === ui.pown));
+  document.getElementById('pMine').classList.toggle('on', ui.pmine); document.getElementById('pMain').classList.toggle('on', ui.pmain);
+}
+function pCard(p){
+  const own = pOwned(p);
+  return '<div class="pcard' + (own ? ' own' : '') + '" data-pslug="' + p.slug + '" style="--el:var(--el-' + EL_KEY(p.el) + ')" tabindex="0" role="button" aria-label="' + esc(p.en + ' — apri la scheda') + '">' + pIcon(p, 'pci') +
+    '<div class="pcb"><div class="pcn">' + brk(p.en) + '</div><div class="pcm"><span class="badge el">' + esc(p.el) + '</span><span class="badge">' + esc(p.pos) + '</span><span class="stars">' + stars(p.star) + '</span>' + pTier(p) + (p.wonder ? '<span class="badge gold" title="Consigliata da lufel nei team dei personaggi">consigliata</span>' : '') + '</div>' +
+    '<label class="toggle pown" title="Posseduta"><input type="checkbox" data-powned="' + esc(p.en) + '"' + (own ? ' checked' : '') + '> posseduta</label></div></div>';
+}
+function renderPersonaTab(){
+  renderPersonaFilters();
+  const arr = pFiltered(), all = PL.length, owned = PL.filter(pOwned).length;
+  document.getElementById('pCount').innerHTML = '<b>' + arr.length + '</b> di ' + all + ' Persona · possedute <b>' + owned + '</b>/' + all;
+  document.getElementById('pGrid').innerHTML = arr.length ? arr.map(pCard).join('') : '<div class="empty">' + (ui.pmine ? 'Nessuna: segna prima i personaggi posseduti nella scheda Personaggi.' : 'Nessuna Persona con questi filtri.') + '</div>';
+}
+function pTokens(list){
+  return list.map(t => {
+    if (t.t === 'persona') return '<span class="ptok per">' + pLink(t.en) + '</span>';
+    if (t.t === 'emblem') { const e = P_EMB[t.c] || [t.c, '#888']; return '<span class="ptok emb" title="Wild Emblem ' + e[0] + '"><i style="background:' + e[1] + '"></i>' + t.n + ' Wild Emblem ' + e[0] + '</span>'; }
+    if (t.t === 'merope') return '<span class="ptok">MEROPE Rank ' + t.n + '</span>';
+    if (t.t === 'gacha') return '<span class="ptok">' + t.n + ' Persona Gacha Ticket</span>';
+    if (t.t === 'event') return '<span class="ptok ev">Evento</span>';
+    if (t.t === 'payment') return '<span class="ptok ev">Evento a pagamento</span>';
+    return '<span class="ptok">' + esc(t.s) + '</span>';
+  }).join('<span class="pplus">+</span>');
+}
+function personaDetail(p){
+  const own = pOwned(p), W = p.wonder ? WON.personas[p.en] : null;
+  const sec = (title, body, hint) => body ? '<div class="sec"><h3>' + title + (hint ? ' <span class="hint">' + hint + '</span>' : '') + '</h3>' + body + '</div>' : '';
+  const row = (lab, name, extra) => name ? '<div class="psk"><span class="kt">' + lab + '</span><b>' + esc(name) + '</b>' + (extra || '') + '</div>' : '';
+  let skills = row('Unique Skill', p.uq) + (p.hl && p.hl.toUpperCase() !== 'HIGHLIGHT' ? row('Highlight', p.hl) : '') +
+    p.inn.map(s => row('Innata', s[0], '<span class="pskm">' + [s[1] ? 'costo ' + esc(s[1]) : '', s[2] ? 'si impara al Lv ' + esc(s[2]) : ''].filter(Boolean).join(' · ') + '</span>')).join('') +
+    (p.pas.length ? '<div class="psk"><span class="kt">Passiva</span><b>' + p.pas.map(esc).join(' · ') + '</b>' + (p.pp != null ? '<span class="pskm">priorità della passiva su lufel: ' + p.pp + '</span>' : '') + '</div>' : '');
+  if (W) skills += '<div class="note"><b>' + esc(W.talent_name || 'Talento') + '</b> (talento): ' + esc(W.talent) + '</div><div class="note"><b>' + esc(W.unique_name || 'Unique skill') + '</b> (unique skill): ' + esc(W.unique) + '</div>';
+  const recG = [3, 2, 1, 0].map(pr => { const l = p.rec.filter(r => r[1] === pr); return l.length ? '<div class="prg"><h4>' + P_PRIO[pr] + '</h4>' + l.map(r => { const t = (PD.teach[r[0]] || []).filter(x => x !== p.en);
+    return '<div class="prr"><b>' + esc(r[0]) + '</b><span class="prt">' + (t.length ? 'la insegnano: ' + t.map(pLink).join(', ') : 'nessuna Persona la insegna come skill card (secondo lufel)') + '</span></div>'; }).join('') + '</div>' : ''; }).join('');
+  const acq = (p.acq.length ? p.acq.map((a, i) => '<div class="pacq"><span class="pal">' + (p.acq.length > 1 ? 'Opzione ' + (i + 1) : 'Come si ottiene') + '</span>' + pTokens(a) + '</div>').join('') : '') +
+    (p.fus.length ? '<div class="pacq"><span class="pal">Fusione</span>' + p.fus.map(en => '<span class="ptok per">' + pLink(en) + '</span>').join('<span class="pplus">+</span>') + '</div>' : '');
+  const gives = p.gives.map(g => { const u = (P_RECBY[g] || []).filter(s => s !== p.slug); return '<div class="prr"><b>' + esc(g) + '</b><span class="prt">' + (u.length ? 'consigliata da lufel per ' + u.map(s => pLink(PBY[s].en)).join(', ') : '') + '</span></div>'; }).join('');
+  const used = W && W.used_by.length ? charChips(W.used_by) : '';
+  const hd = '<div class="phero" style="--el:var(--el-' + EL_KEY(p.el) + ')">' + pIcon(p, 'phi') + '<div class="pht"><h2>' + brk(p.en) + '</h2>' + (p.jp ? '<div class="pjp">' + esc(p.jp) + '</div>' : '') +
+    '<div class="pcm"><span class="badge el">' + esc(p.el) + '</span><span class="badge">' + esc(p.pos) + '</span><span class="stars">' + stars(p.star) + '</span><span class="badge">Grado ' + p.grade + '</span>' + pTier(p) +
+    (p.best ? '<span class="badge gold" title="Segnata da lufel come una delle migliori">Best (lufel)</span>' : '') + (p.event ? '<span class="badge">Evento</span>' : '') + (p.rainbow ? '<span class="badge">Wild Emblem arcobaleno</span>' : '') + (p.added ? '<span class="badge">aggiunta ' + esc(p.added) + '</span>' : '') + '</div>' +
+    '<div class="pact"><label class="toggle"><input type="checkbox" data-powned="' + esc(p.en) + '"' + (own ? ' checked' : '') + '> posseduta</label><a class="btn small primary" href="' + p.url + '" target="_blank" rel="noopener">' + (p.listed ? 'Effetti e commento su lufel ↗' : 'Elenco Persona su lufel ↗') + '</a></div>' +
+    (p.listed ? '' : '<div class="pnl">lufel ha i dati di questa Persona ma non la mostra ancora nel suo elenco: nessuna pagina dedicata.</div>') + '</div></div>';
+  return hd + sec('Skill della Persona', skills, 'nomi come su lufel · le descrizioni degli effetti sono sulla pagina lufel') +
+    sec('Skill consigliate', recG, 'da lufel, con le Persona che le insegnano') + sec('Come si ottiene', acq, 'lufel') +
+    sec('Skill card che insegna', gives, 'lufel') + sec('Consigliata da lufel per', used, 'esempi di team dei personaggi · tocca per aprirli') +
+    (!p.rec.length && !p.acq.length && !p.fus.length && !p.gives.length ? '<div class="note">Per questa Persona lufel non indica skill consigliate né come ottenerla.</div>' : '');
+}
+let pOpen = null, pLast = null;
+function openPersona(slug){
+  const p = PBY[slug]; if (!p) return;
+  const d = document.getElementById('pdlg'), wasOpen = d.classList.contains('open'); if (!wasOpen) pLast = document.activeElement;
+  pOpen = slug; document.getElementById('pdBody').innerHTML = personaDetail(p); document.getElementById('pdBody').scrollTop = 0;
+  const i = pFiltered().findIndex(x => x.slug === slug); document.getElementById('pdPos').textContent = i >= 0 ? (i + 1) + ' / ' + pFiltered().length : '';
+  d.classList.add('open'); d.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; if (!wasOpen) document.getElementById('pdClose').focus();
+}
+function closePersona(){
+  const d = document.getElementById('pdlg'); if (!d.classList.contains('open')) return; d.classList.remove('open'); d.setAttribute('aria-hidden', 'true'); pOpen = null;
+  if (!ui.open) document.body.style.overflow = ''; if (/^#p=/.test(location.hash) && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+  if (pLast && pLast.focus && document.body.contains(pLast)) { try { pLast.focus({ preventScroll: true }); } catch (e) { /* */ } } pLast = null;
+}
+function stepPersona(dir){ const arr = pFiltered(); if (!arr.length || !pOpen) return; let i = arr.findIndex(x => x.slug === pOpen); i = i < 0 ? 0 : (i + dir + arr.length) % arr.length; openPersona(arr[i].slug); }
+function setPersonaOwned(en, val){
+  const w = wonder(); w.pers = w.pers || {}; if (val) w.pers[en] = true; else delete w.pers[en];
+  scheduleSave('__wonder');
+  document.querySelectorAll('input[data-powned="' + CSS.escape(en) + '"], input[data-persown="' + CSS.escape(en) + '"], input[data-wpers="' + CSS.escape(en) + '"]').forEach(x => { x.checked = !!val; });
+  const p = PEN[en]; if (p) document.querySelectorAll('.pcard[data-pslug="' + p.slug + '"]').forEach(c => c.classList.toggle('own', !!val));
+  if (ui.view === 'persona') { const all = PL.length; document.getElementById('pCount').innerHTML = '<b>' + pFiltered().length + '</b> di ' + all + ' Persona · possedute <b>' + PL.filter(pOwned).length + '</b>/' + all; }
+}
+function initPersonaTab(){
+  const v = document.getElementById('view-persona');
+  v.addEventListener('input', ev => { if (ev.target.id === 'pSearch') { ui.pq = ev.target.value; renderPersonaTab(); } });
+  v.addEventListener('change', ev => {
+    if (ev.target.id === 'pSort') { ui.psort = ev.target.value; renderPersonaTab(); return; }
+    if (ev.target.dataset.powned) { setPersonaOwned(ev.target.dataset.powned, ev.target.checked); if (ui.pown !== 'all') renderPersonaTab(); }
+  });
+  v.addEventListener('click', ev => {
+    if (ev.target.closest('label.toggle')) return;
+    const ch = ev.target.closest('.chip'); const box = ch && ch.parentElement;
+    if (ch && box) {
+      const m = { pElF: ui.pel, pPosF: ui.ppos, pStarF: ui.pstar, pTierF: ui.ptier }[box.id];
+      if (m) { const k = ch.dataset.v; m.has(k) ? m.delete(k) : m.add(k); renderPersonaTab(); return; }
+      if (box.id === 'pOwnF') { ui.pown = ch.dataset.v; renderPersonaTab(); return; }
+      if (ch.id === 'pMine') { ui.pmine = !ui.pmine; renderPersonaTab(); return; }
+      if (ch.id === 'pMain') { ui.pmain = !ui.pmain; renderPersonaTab(); return; }
+      if (ch.id === 'pReset') { ui.pq = ''; document.getElementById('pSearch').value = ''; [ui.pel, ui.ppos, ui.pstar, ui.ptier].forEach(s => s.clear()); ui.pown = 'all'; ui.pmine = ui.pmain = false; renderPersonaTab(); return; }
+    }
+    const card = ev.target.closest('.pcard'); if (card) openPersona(card.dataset.pslug);
+  });
+  v.addEventListener('keydown', ev => { const card = ev.target.closest('.pcard'); if (card && (ev.key === 'Enter' || ev.key === ' ') && ev.target === card) { ev.preventDefault(); openPersona(card.dataset.pslug); } });
+  const d = document.getElementById('pdlg');
+  d.addEventListener('change', ev => { if (ev.target.dataset.powned) setPersonaOwned(ev.target.dataset.powned, ev.target.checked); });
+  d.addEventListener('click', ev => {
+    if (ev.target === d || ev.target.closest('#pdClose')) { closePersona(); return; }
+    if (ev.target.closest('#pdPrev')) { stepPersona(-1); return; }
+    if (ev.target.closest('#pdNext')) { stepPersona(1); return; }
+    const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) { closePersona(); switchView('roster'); openDetail(g.dataset.goto); }
+  });
+  // link «scheda Persona» da qualunque punto (Wonder, Team e Wonder, dentro la scheda stessa)
+  document.addEventListener('click', ev => { const b = ev.target.closest('[data-popen]'); if (!b) return; ev.preventDefault(); ev.stopPropagation(); openPersona(b.dataset.popen); }, true);
+  document.addEventListener('keydown', ev => {
+    if (!d.classList.contains('open')) return;
+    if (ev.key === 'Escape') { ev.stopImmediatePropagation(); closePersona(); }
+    else if (ev.key === 'ArrowLeft' && !ev.target.matches('input, select, textarea')) { ev.preventDefault(); stepPersona(-1); }
+    else if (ev.key === 'ArrowRight' && !ev.target.matches('input, select, textarea')) { ev.preventDefault(); stepPersona(1); }
+  }, true);
+}
+
 // ---------- sito: guide, link diretti, sincronizzazione, funzionamento offline ----------
 function guideUrl(c){ return SITE.guideBase + c.slug + '.html'; }
 function openSync(){ switchView('tools'); const s = document.getElementById('syncSec'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
@@ -1898,9 +2145,12 @@ function applyHash(){
   const h = decodeURIComponent((location.hash || '').slice(1)); const m = h.match(/^c=([a-z0-9-]+)$/);
   if (m && BY[m[1]]) { if (ui.view !== 'roster') switchView('roster'); openDetail(m[1]); }
   else if (h === 'wonder') switchView('wonder');
+  else if (h === 'persona') switchView('persona');
+  else if (/^p=[a-z0-9-]+$/.test(h) && PBY[h.slice(2)]) { if (ui.view !== 'persona') switchView('persona'); openPersona(h.slice(2)); }
   else if (h === 'sync' || h === 'backup') openSync();
 }
 function initSiteExtras(){
+  initPersonaTab();
   const gl = document.getElementById('guideLink'); gl.href = SITE.guideBase + 'index.html'; if (!SITE.public) { gl.target = '_blank'; gl.rel = 'noopener'; }
   document.getElementById('status').addEventListener('click', openSync);
   document.getElementById('syncBanGo').addEventListener('click', openSync);
