@@ -472,6 +472,100 @@ footer{border-top:3px solid #1f1f1f}
   .tab{padding:9px 16px;font-size:13px}
   .card:hover{transform:none}
 }
+/* ---- stellina Awareness ---- */
+.awstar{flex:none;display:inline-block;vertical-align:middle;overflow:visible}
+.awstar polygon{stroke-linejoin:round}
+.awstar .tip{fill:#2e2e2e;stroke:#0a0a0a;stroke-width:3}
+.awstar .tip.on{fill:var(--red2)}
+.awstar .ctr{fill:#161616;stroke:#0a0a0a;stroke-width:3}
+.awstar .edge{fill:none;stroke:#fff;stroke-width:2.5;opacity:.9}
+.awstar.full .tip{fill:var(--red)}
+.awstar.full .ctr{fill:#fff}
+.awstar.full .edge{stroke:var(--gold);stroke-width:3.5}
+.awstar.full{filter:drop-shadow(0 0 4px rgba(255,46,69,.85))}
+.awrow .lv{width:54px;height:60px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;background:#0f0f0f;border:1px solid #3a3a3a}
+.awrow.on .lv{background:#0f0f0f;color:#fff;border-color:var(--red);box-shadow:3px 3px 0 var(--red)}
+.hchip.awc{display:inline-flex;align-items:center;gap:5px}
+.dtab .tl{display:inline-flex;align-items:center;gap:6px}
+.dtab[aria-selected="true"] .awstar .tip.on,.dtab[aria-selected="true"] .awstar.full .tip{fill:#fff}
+.dtab[aria-selected="true"] .awstar .edge{stroke:#000}
+/* ---- sezione Guida: menù interno ---- */
+.gnav{position:sticky;top:-14px;z-index:3;display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;margin:-14px -18px 12px;padding:10px 18px 10px;background:rgba(10,10,10,.96);border-bottom:2px solid var(--red)}
+.gnav::-webkit-scrollbar{display:none}
+.gnav .chip{flex:none;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px;font-weight:800;text-decoration:none}
+.gnav .chip.gx{background:#000;color:var(--muted);margin-left:auto}
+.gnav .chip.gx+.chip.gx{margin-left:0}
+.gnav .chip:hover{background:var(--red);color:#fff}
+.gsec{scroll-margin-top:60px}
+/* ---- kit interattivo ---- */
+.kitgrp{margin-top:6px}
+.kitgrp+.kitgrp{margin-top:14px}
+.kitgrp h4{margin:0 0 8px;font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+.kitgrp h4::after{content:'';flex:1;height:1px;background:#2c2c2c}
+.kitgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:9px}
+.term.kit,.term.awi{border-bottom:0;cursor:pointer;border-radius:0}
+.term.kit{--kc:#e9e9e9;display:flex;flex-direction:column;align-items:flex-start;gap:4px;background:#171717;border:1px solid #2c2c2c;border-left:4px solid var(--kc);padding:9px 12px 10px;transition:transform .12s,box-shadow .12s,border-color .12s,background .12s}
+.term.kit.k-hl{--kc:var(--gold)} .term.kit.k-pas{--kc:var(--red2)} .term.kit.k-uni{--kc:#ff8a3d}
+.term.kit:hover,.term.kit:focus-visible,.term.kit[aria-describedby]{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);border-color:#fff;border-left-color:var(--kc);background:#1d1d1d;outline:none}
+.kit .kt{font-size:10.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#000;background:var(--kc);padding:1px 10px;clip-path:var(--slant-s)}
+.kit b{font-size:14.5px;font-weight:800;color:#fff;line-height:1.3}
+.kit .kx{font-size:12px;color:var(--gold)}
+.kit .kp,.awi .kp{font-size:12.5px;color:#bdbdbd;line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.kit .kmore{margin-top:auto;font-size:11.5px;color:var(--red2);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+/* ---- Awareness nella guida ---- */
+.awlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.term.awi{display:flex;gap:12px;align-items:flex-start;background:#151515;border:1px solid #2a2a2a;padding:9px 12px;transition:transform .12s,box-shadow .12s,border-color .12s}
+.term.awi:hover,.term.awi:focus-visible,.term.awi[aria-describedby]{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red);border-color:#fff;outline:none;background:#1b1b1b}
+.term.awi.on{border-color:#5a1420;background:#1a0d10}
+.term.awi.cur{border-color:var(--red);box-shadow:4px 4px 0 var(--red)}
+.awi .awt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.awi .awl{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+.awi .awl .mine{color:#fff;background:var(--red);padding:0 6px}
+.awi b{font-size:14px;color:#fff}
+.tt-star{float:right;margin:2px 0 4px 10px}
+/* ---- party: schema «perché c'è» ---- */
+.pnote{margin:0 0 10px}
+.pdg{background:#121212;border:1px solid #262626;border-left:4px solid var(--red);padding:10px 12px 12px;margin-top:12px}
+.pdg:first-child,.pnote+.pdg{margin-top:0}
+.pdg-h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-bottom:8px}
+.pdg-k{font-family:var(--hfont);font-weight:900;font-style:italic;text-transform:uppercase;font-size:15px;background:#fff;color:var(--ink);padding:1px 14px;clip-path:var(--slant-s)}
+.pdg-c{font-size:12.5px;color:var(--muted)}
+.pdg-row{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-end;padding:4px 0 12px;border-bottom:1px dashed #2c2c2c;margin-bottom:12px}
+.pdg-b{display:grid;grid-template-columns:118px minmax(0,1fr);gap:0 18px;align-items:center}
+.pdg-hub{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+.pdg-hub img{width:96px;height:161px;object-fit:cover;box-shadow:0 0 0 3px #fff,6px 6px 0 3px var(--red)}
+.pdg-ht{display:flex;flex-direction:column;align-items:center;gap:5px}
+.pdg-hub b{font-family:var(--hfont);font-style:italic;text-transform:uppercase;font-size:14px;margin-top:6px}
+.pdg-hub .badge{white-space:normal}
+.pdg-hub::after{content:'';position:absolute;right:-18px;top:80px;width:18px;height:3px;background:var(--red)}
+.pdg-links{position:relative;display:grid;gap:8px;padding-left:20px;border-left:3px solid var(--red)}
+.pdg-l{position:relative;display:flex;gap:10px;align-items:flex-start;background:#181818;border:1px solid #2c2c2c;padding:8px 10px}
+.pdg-l::before{content:'';position:absolute;left:-21px;top:34px;width:20px;height:3px;background:var(--red)}
+.pdg-l.shift::before{background:repeating-linear-gradient(90deg,var(--gold) 0 4px,transparent 4px 7px)}
+.pdg-l img{width:44px;height:74px;object-fit:cover;flex:none;cursor:pointer;box-shadow:0 0 0 1px #3a3a3a}
+.pdg-l.no img{filter:grayscale(1);opacity:.6}
+.pdg-t{min-width:0;flex:1}
+.pdg-n{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.pdg-n .lnk{font-family:var(--hfont);font-style:italic;text-transform:uppercase;font-size:13.5px;margin-right:2px}
+.pdg-n .badge{font-size:10.5px}
+.pdg-w{margin-top:5px;font-size:13px;line-height:1.5;color:#d6d6d6}
+.pdg-w.none{color:var(--muted)}
+.pdg-w .pair{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:#fff;background:var(--red);padding:0 7px;margin-right:6px;clip-path:var(--slant-s)}
+.pdg-s{font-size:11px;color:var(--dim);margin-top:2px}
+@media (max-width:640px){
+  .pdg-b{grid-template-columns:1fr;gap:12px}
+  .pdg-hub{flex-direction:row;text-align:left;gap:10px}
+  .pdg-hub img{width:52px;height:87px;box-shadow:0 0 0 2px #fff,4px 4px 0 2px var(--red)}
+  .pdg-ht{align-items:flex-start}
+  .pdg-hub b{margin-top:0}
+  .pdg-hub::after{display:none}
+  .pdg-links{padding-left:14px}
+  .pdg-l::before{left:-15px;width:14px}
+  .gnav{margin:-12px -12px 12px;padding:8px 12px}
+  .gnav .chip.gx{margin-left:0}
+  .awlist{grid-template-columns:1fr}
+  .kitgrid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -1124,7 +1218,7 @@ function tipText(c, it, text){ return rich(c, text, it.n, it.n === 4 ? ui.lvcol 
 let tipFor = null, tipPinned = false, tipTimer = 0, tipStack = [], tipName = null, tipMute = 0;
 function termTipHTML(c, name){
   const T = termInfo(c); const t = T.map[name]; if (!t) return '';
-  const back = tipStack.length ? '<button type="button" class="tt-back" data-tipback="1">‹ ' + esc(tipStack[tipStack.length - 1]) + '</button>' : '';
+  const back = tipStack.length ? '<button type="button" class="tt-back" data-tipback="1">‹ ' + esc(tipLabel(c, tipStack[tipStack.length - 1])) + '</button>' : '';
   let h = '<div class="tt-h"><span>' + back + '<b>' + esc(name) + '</b></span><button type="button" class="tt-x" data-tipclose="1" aria-label="Chiudi la descrizione">✕</button></div>';
   if (t[1] === 'n') { const it = T.items.filter(x => x.key === t[2])[0]; if (!it) return '';
     h += '<button type="button" class="tt-src" data-tab="' + it.tab + '">' + esc(it.title) + ' ›</button><div class="tt-b">' + tipText(c, it, it.body) + '</div>'; }
@@ -1145,7 +1239,7 @@ function placeTip(el){
   if (th <= below || below >= above) { top = r.bottom + 6; tip.style.maxHeight = Math.max(140, below) + 'px'; } else { tip.style.maxHeight = above + 'px'; top = r.top - 6 - Math.min(th, above); }
   tip.style.left = Math.max(8, Math.min(r.left, W - tw - 8)) + 'px'; tip.style.top = Math.max(8, top) + 'px';
 }
-function renderTip(name){ const c = BY[ui.open]; const tip = document.getElementById('tip'); const html = c ? termTipHTML(c, name) : ''; if (!html) return false; tipName = name; tip.innerHTML = html; tip.scrollTop = 0; tip.classList.add('open'); tip.classList.toggle('pinned', tipPinned); placeTip(tipFor); return true; }
+function renderTip(name){ const c = BY[ui.open]; const tip = document.getElementById('tip'); const html = c ? (String(name).charAt(0) === '§' ? itemTipHTML(c, String(name).slice(1)) : termTipHTML(c, name)) : ''; if (!html) return false; tipName = name; tip.innerHTML = html; tip.scrollTop = 0; tip.classList.add('open'); tip.classList.toggle('pinned', tipPinned); placeTip(tipFor); return true; }
 function showTip(el, pin){ if (!ui.open) return; clearTimeout(tipTimer); if (tipFor && tipFor !== el) tipFor.removeAttribute('aria-describedby'); tipFor = el; tipPinned = !!pin; tipStack = []; if (renderTip(el.dataset.term)) el.setAttribute('aria-describedby', 'tip'); else hideTip(); }
 function hideTip(){ clearTimeout(tipTimer); tipMute = Date.now(); if (tipFor) tipFor.removeAttribute('aria-describedby'); tipFor = null; tipPinned = false; tipStack = []; tipName = null; const tip = document.getElementById('tip'); if (tip) tip.classList.remove('open', 'pinned'); }
 
@@ -1263,7 +1357,7 @@ function paneSkills(c, e){
 function paneAwareness(c, e){
   const a = e.awareness | 0; const own = !!e.owned;
   let h = '<div class="sec"><h3>Awareness <span class="hint">tocca A0–A6 per impostare la tua</span></h3>' + seg('awareness', [0, 1, 2, 3, 4, 5, 6].map(i => [i, 'A' + i]), own ? a : -1, 'int', true) + '<div class="termhint" style="margin-top:8px">Le parole <span class="termdemo">sottolineate a puntini</span> sono skill, passive o stati di questo personaggio: passa il mouse (o tocca) per leggerne la descrizione.</div>' +
-    c.ref.awareness.map((it, i) => '<div class="awrow ' + (own ? (i <= a ? 'on' : 'off') : '') + '"><button type="button" class="lv" data-set="awareness" data-val="' + i + '" data-type="int" data-fk="awrow:' + i + '" title="Imposta la mia Awareness ad A' + i + '" aria-label="Imposta la mia Awareness ad A' + i + '">A' + i + '</button><div><b>' + esc(c.awareness['a' + i]) + '</b>' + (own && i <= a ? ' <span class="badge ok">attiva</span>' : '') + '<div class="tx">' + rich(c, it.b, 0, -1, false, 'aw:' + i) + '</div></div></div>').join('') + '</div>';
+    c.ref.awareness.map((it, i) => '<div class="awrow ' + (own ? (i <= a ? 'on' : 'off') : '') + '"><button type="button" class="lv" data-set="awareness" data-val="' + i + '" data-type="int" data-fk="awrow:' + i + '" title="Imposta la mia Awareness ad A' + i + '" aria-label="Imposta la mia Awareness ad A' + i + '">' + awStar(i, 26, 'A' + i) + '<span>A' + i + '</span></button><div><b>' + esc(c.awareness['a' + i]) + '</b>' + (own && i <= a ? ' <span class="badge ok">attiva</span>' : '') + '<div class="tx">' + rich(c, it.b, 0, -1, false, 'aw:' + i) + '</div></div></div>').join('') + '</div>';
   if (c.base && c.base.lv80) {
     const has100 = !!c.base.lv100;
     h += '<div class="sec"><h3>Stat base per Awareness <span class="hint">lufel · solo il personaggio, senza arma e Revelation</span></h3><table class="bst"><thead><tr><th></th><th colspan="3" style="text-align:center">LV80</th>' + (has100 ? '<th colspan="3" style="text-align:center">LV100</th>' : '') + '</tr><tr><th>Awareness</th><th>HP</th><th>ATK</th><th>DEF</th>' + (has100 ? '<th>HP</th><th>ATK</th><th>DEF</th>' : '') + '</tr></thead><tbody>' +
@@ -1330,12 +1424,127 @@ function paneStats(c, e){
     '<div class="sec"><h3>Note</h3><div class="f"><textarea data-path="notes" placeholder="Set in farming, obiettivi, team in cui lo usi…" aria-label="Note">' + esc(e.notes) + '</textarea></div></div>';
 }
 
-function paneGuide(c){
-  const blk = (title, txt) => txt ? '<div class="sec"><h3>' + title + '</h3><div class="tx">' + rich(c, txt, 0, -1, false, null) + '</div></div>' : '';
-  const aw = c.awareness;
-  return '<div class="sec"><h3>Rotazione e priorità <span class="hint">lufel</span></h3><div class="kv2">' + kvRow('Skill Rotation', esc(c.rotation)) + kvRow('Note', esc(c.notes)) + kvRow('Priorità skill', esc(c.skill_prio)) + kvRow('Passive', esc(c.passives.join(' · '))) + kvRow('Awareness', [0, 1, 2, 3, 4, 5, 6].map(i => 'A' + i + ' ' + esc(aw['a' + i])).join(' · ')) + '</div></div>' +
-    blk('Character Review <span class="hint">lufel</span>', c.ref.review) + blk('Recommended Combination <span class="hint">lufel</span>', c.ref.combo) + blk('Recommended Parties <span class="hint">lufel</span>', c.ref.parties) + blk('Stats <span class="hint">lufel</span>', c.ref.stats) +
-    '<div class="sec"><h3>Setup completo <span class="hint">lufel</span></h3><div class="kv2">' + kvRow('Revelation', esc(c.rev_line)) + kvRow('Sub Options', esc(c.sub)) + kvRow('Recommended Stats', esc(c.rec_stats)) + kvRow('Battle Entry +', esc(c.battle_entry)) + kvRow('Guida completa', '<a href="' + esc(guideUrl(c)) + '"' + (SITE.public ? '' : ' target="_blank" rel="noopener"') + '>guida di ' + esc(c.codename) + ' (lufel, in italiano)</a>') + kvRow('Pagina lufel', '<a href="' + c.lufel_url + '" target="_blank" rel="noopener">' + esc(c.lufel_url) + '</a>') + '</div></div>';
+// ---------- stellina Awareness (disegno originale: 5 punte, una per livello A1–A5; A6 completa) ----------
+const STAR_PTS = (() => { const P = (r, a) => [+(r * Math.cos(a * Math.PI / 180)).toFixed(2), +(r * Math.sin(a * Math.PI / 180)).toFixed(2)]; const o = [], i = []; for (let k = 0; k < 5; k++) { o.push(P(47, -90 + 72 * k)); i.push(P(19, -54 + 72 * k)); } return { o: o, i: i }; })();
+function awStar(lv, px, label){
+  lv = Math.max(0, Math.min(6, lv | 0)); const o = STAR_PTS.o, ii = STAR_PTS.i, f = p => p.join(',');
+  let s = '<svg class="awstar' + (lv >= 6 ? ' full' : '') + '" viewBox="-52 -52 104 104" width="' + px + '" height="' + px + '" role="img" aria-label="' + esc(label || ('Awareness A' + lv)) + '"><title>' + esc(label || ('Awareness A' + lv)) + '</title>';
+  for (let k = 0; k < 5; k++) s += '<polygon class="tip' + (k < lv ? ' on' : '') + '" points="' + f(ii[(k + 4) % 5]) + ' ' + f(o[k]) + ' ' + f(ii[k]) + '"/>';
+  s += '<polygon class="ctr" points="' + ii.map(f).join(' ') + '"/>';
+  s += '<polygon class="edge" points="' + o.map((p, k) => f(p) + ' ' + f(ii[k])).join(' ') + '"/>';
+  return s + '</svg>';
+}
+
+// ---------- kit del personaggio: skill, Highlight/Theurgy, passive, abilità uniche ----------
+function kitKind(t){
+  const parts = String(t || '').split(' — '), head = parts[0].trim(), name = parts.slice(1).join(' — ').trim();
+  if (/^Skill \d/.test(head)) return { k: 'skill', lab: head, name: name || head };
+  if (/^(HIGHLIGHT|Highlight)$/.test(head)) return { k: 'hl', lab: 'Highlight', name: name || 'Highlight' };
+  if (/^Theurgy$/.test(head)) return { k: 'hl', lab: 'Theurgy', name: name || 'Theurgy' };
+  if (/^Passiv/.test(head)) return { k: 'pas', lab: 'Passiva', name: name || head };
+  if (/^Assist/.test(head)) return { k: 'uni', lab: 'Assist Skill', name: name || 'Assist Skill' };
+  if (/^Stat Buff/.test(head)) return { k: 'uni', lab: 'Stat Buff', name: name || 'Stat Buff (passiva da Elucidator)' };
+  if (!head) return { k: 'info', lab: '', name: '' };
+  return { k: 'uni', lab: 'Abilità unica', name: String(t) };
+}
+function kitMeta(b){ const s = String(b || ''); const m = s.match(/^\(([^()\n]{1,90})\)\s*:?\s*/); return m ? { meta: m[1], rest: s.slice(m[0].length) } : { meta: '', rest: s }; }
+function firstSent(s, max){ s = String(s || '').replace(/\s+/g, ' ').trim(); const i = s.search(/[.!?](\s|$)/); let o = i > 0 ? s.slice(0, i + 1) : s; if (o.length > max) o = o.slice(0, max - 1).replace(/[\s,;·]+\S*$/, '') + '…'; return o; }
+const KIT_GROUPS = [['skill', 'Skill'], ['hl', 'Highlight / Theurgy'], ['pas', 'Passive'], ['uni', 'Abilità uniche']];
+function kitTile(c, it, i){
+  const kk = kitKind(it.t), km = kitMeta(it.b);
+  return '<div class="term kit k-' + kk.k + '" tabindex="0" role="button" data-term="§sk:' + i + '" aria-label="' + esc(kk.lab + ': ' + kk.name + ' — mostra l’effetto') + '">' +
+    '<span class="kt">' + esc(kk.lab) + '</span><b>' + esc(kk.name) + '</b>' + (km.meta ? '<span class="kx">' + esc(km.meta) + '</span>' : '') +
+    '<span class="kp">' + hl(firstSent(km.rest, 150), 4, ui.lvcol, true) + '</span><span class="kmore">effetto completo ›</span></div>';
+}
+// popup di una voce intera (skill, passiva, Awareness…): chiave «§sk:3», «§aw:2»
+function itemTipHTML(c, key){
+  const T = termInfo(c); const it = T.items.filter(x => x.key === key)[0]; if (!it) return '';
+  const back = tipStack.length ? '<button type="button" class="tt-back" data-tipback="1">‹ ' + esc(tipLabel(c, tipStack[tipStack.length - 1])) + '</button>' : '';
+  const tabName = (TABS.filter(t => t[0] === it.tab)[0] || ['', ''])[1];
+  return '<div class="tt-h"><span>' + back + '<b>' + esc(it.title) + '</b></span><button type="button" class="tt-x" data-tipclose="1" aria-label="Chiudi la descrizione">✕</button></div>' +
+    (it.key.indexOf('aw:') === 0 ? '<div class="tt-star">' + awStar(+it.key.slice(3), 34) + '</div>' : '') +
+    '<div class="tt-b">' + rich(c, it.body, it.n, it.n === 4 ? ui.lvcol : -1, it.n === 4, it.key) + '</div>' +
+    '<button type="button" class="tt-src" data-tab="' + it.tab + '">Apri la sezione ' + esc(tabName) + ' ›</button>' +
+    '<div class="tt-f">Testo di lufel.net (scheda di ' + esc(c.codename) + ') · i termini sottolineati qui dentro si possono aprire</div>';
+}
+function tipLabel(c, n){ if (String(n).charAt(0) !== '§') return n; const it = termInfo(c).items.filter(x => x.key === n.slice(1))[0]; return it ? it.title : n; }
+
+// ---------- party consigliati: schema «perché c'è» ----------
+const POS_IT = { Assassin: 'danno a bersaglio singolo', Sweeper: 'danno ad area', Strategist: 'buff e supporto', Saboteur: 'debuff ai nemici', Medic: 'cure', Guardian: 'scudi e difesa', Elucidator: 'navigatore' };
+function posLabel(M){ return esc(M.position) + (POS_IT[M.position] ? ' · ' + POS_IT[M.position] : ''); }
+function pairNote(a, b){   // spiegazione lufel della coppia a–b (dalla guida di a o di b)
+  const fa = ((BY[a] && BY[a].team && BY[a].team.friends) || []).filter(x => x.slug === b)[0]; if (fa) return { it: fa.it, A: fa.A, from: a };
+  const fb = ((BY[b] && BY[b].team && BY[b].team.friends) || []).filter(x => x.slug === a)[0]; if (fb) return { it: fb.it, A: fb.A, from: b };
+  return null;
+}
+function memberWhy(c, party, m){
+  let n = pairNote(c.slug, m); if (n) return Object.assign(n, { with: c.slug });
+  for (const o of party) { if (o === m || o === c.slug || !BY[o]) continue; n = pairNote(o, m); if (n) return Object.assign(n, { with: o }); }
+  return null;
+}
+function whyLine(M, w){
+  if (!w) return '<div class="pdg-w none">lufel non spiega questo membro: nel team copre il ruolo di <b>' + posLabel(M) + '</b>.</div>';
+  return '<div class="pdg-w"><span class="pair">+ ' + esc(BY[w.with].codename) + '</span>' + esc(capFirst(w.it)) + aBadge(w.A) + '</div><div class="pdg-s">fonte: guida lufel di ' + esc(BY[w.from].codename) + '</div>';
+}
+function memberNode(c, party, m, shift){
+  const M = BY[m]; if (!M) return '';
+  const own = isOwned(m);
+  return '<div class="pdg-l' + (own ? '' : ' no') + (shift ? ' shift' : '') + '"><img src="' + M.img + '" alt="" loading="lazy" data-goto="' + m + '" title="Apri ' + esc(M.codename) + '">' +
+    '<div class="pdg-t"><div class="pdg-n"><span class="lnk" data-goto="' + m + '">' + brk(M.codename) + '</span><span class="badge el" style="--el:' + elColor(M) + '">' + esc(M.element) + '</span><span class="badge">' + posLabel(M) + '</span>' + (shift ? '<span class="badge gold" title="Con FUUKA nel party il 5° membro è lo Shift Member">Shift Member</span>' : '') + (own ? '<span class="badge ok">posseduto</span>' : '') + '</div>' +
+    whyLine(M, memberWhy(c, party, m)) + '</div></div>';
+}
+function hubNode(c, shift){
+  return '<div class="pdg-hub"><img src="' + c.img + '" alt=""><div class="pdg-ht"><b>' + brk(c.codename) + '</b><span class="badge">' + posLabel(c) + '</span>' + (shift ? '<span class="badge gold" title="In questo party entra come Shift Member (con FUUKA)">Shift Member</span>' : '') + '</div></div>';
+}
+function partyDiagram(c, p, k){
+  const n = p.filter(s => s === c.slug || isOwned(s)).length;
+  return '<div class="pdg"><div class="pdg-h"><span class="pdg-k">Party ' + (k + 1) + '</span><span class="pdg-c">' + (n === p.length ? '✅ hai tutto il team' : 'ne hai ' + n + '/' + p.length) + '</span>' + (p.length > 4 ? '<span class="pdg-c">5° membro = Shift Member (con FUUKA)</span>' : '') + '</div>' +
+    '<div class="pdg-row">' + p.map((s, i) => partyMember(s, c.slug, i >= 4)).join('') + '</div>' +
+    '<div class="pdg-b">' + hubNode(c, p.indexOf(c.slug) >= 4) + '<div class="pdg-links">' + p.map((s, i) => s === c.slug ? '' : memberNode(c, p, s, i >= 4)).join('') + '</div></div></div>';
+}
+function friendsDiagram(c, friends, title){
+  return '<div class="pdg"><div class="pdg-h"><span class="pdg-k">' + title + '</span></div><div class="pdg-b">' + hubNode(c) + '<div class="pdg-links">' + friends.map(f => memberNode(c, [c.slug, f.slug], f.slug, false)).join('') + '</div></div></div>';
+}
+
+// ---------- sezione «Guida lufel» della scheda ----------
+function paneGuide(c, e){
+  const t = c.team || { friends: [], parties: [] };
+  const sec = (id, title, hint, body) => body ? '<div class="sec gsec" id="' + id + '"><h3>' + title + (hint ? ' <span class="hint">' + hint + '</span>' : '') + '</h3>' + body + '</div>' : '';
+  // kit
+  const items = c.ref.skills.map((it, i) => ({ it: it, i: i, k: kitKind(it.t).k }));
+  const info = items.filter(x => x.k === 'info').map(x => '<div class="note">' + rich(c, x.it.b, 0, -1, false, null) + '</div>').join('');
+  const kit = info + KIT_GROUPS.map(g => { const list = items.filter(x => x.k === g[0]); return list.length ? '<div class="kitgrp"><h4>' + g[1] + '</h4><div class="kitgrid">' + list.map(x => kitTile(c, x.it, x.i)).join('') + '</div></div>' : ''; }).join('');
+  // awareness
+  const a = e && e.owned ? (e.awareness | 0) : -1;
+  const aw = '<div class="awlist">' + c.ref.awareness.map((it, i) => { const km = kitMeta(it.b);
+    return '<div class="term awi' + (i <= a ? ' on' : '') + (i === a ? ' cur' : '') + '" tabindex="0" role="button" data-term="§aw:' + i + '" aria-label="' + esc('A' + i + ' ' + (c.awareness['a' + i] || '') + ' — mostra l’effetto') + '">' + awStar(i, 40) +
+      '<span class="awt"><span class="awl">A' + i + (km.meta ? ' · ' + esc(km.meta) : '') + (i === a ? ' · <span class="mine">la tua</span>' : '') + '</span><b>' + esc(c.awareness['a' + i] || '') + '</b><span class="kp">' + esc(firstSent(km.rest, 140)) + '</span></span></div>'; }).join('') + '</div>';
+  // party
+  const note = String(c.ref.parties || '').split('\n').filter(l => /^>\s*/.test(l)).map(l => l.replace(/^>\s*/, '')).join(' ');
+  const inParty = new Set([].concat.apply([], t.parties));
+  const extra = t.friends.filter(f => f.slug && BY[f.slug] && !inParty.has(f.slug));
+  let party = '';
+  if (t.parties.length) party = t.parties.map((p, k) => partyDiagram(c, p, k)).join('') + (extra.length ? friendsDiagram(c, extra, 'Altri teammate consigliati da lufel') : '');
+  else if (extra.length) party = friendsDiagram(c, extra, 'Teammate consigliati da lufel');
+  else party = '<div class="note">Su lufel la sezione «Recommended Parties» di <b>' + esc(c.codename) + '</b> è vuota.' + ((REVERSE[c.slug] || []).length || (PARTY_IN[c.slug] || []).length ? ' Compare però nei team di altri personaggi: <button type="button" class="klnk" data-tab="tm">vedi Team e Wonder ›</button>' : '') + '</div>';
+  if (note) party = '<div class="note pnote">' + esc(note) + '</div>' + party;
+  // rotazione e setup
+  const rot = '<div class="kv2">' + kvRow('Skill Rotation', esc(c.rotation)) + kvRow('Priorità skill', esc(c.skill_prio)) + kvRow('Note lufel', esc(c.notes)) + '</div>';
+  const setup = '<div class="kv2">' + kvRow('Revelation', esc(c.rev_line)) + kvRow('Sub Options', esc(c.sub)) + kvRow('Recommended Stats', esc(c.rec_stats)) + kvRow('Battle Entry +', esc(c.battle_entry)) + '</div>';
+  const txt = s => s && !/^- Sezione non presente/.test(s) ? '<div class="tx">' + rich(c, s, 0, -1, false, null) + '</div>' : '';
+  const blocks = [
+    ['g-kit', 'Kit', sec('g-kit', 'Skill, passive e abilità uniche', 'tocca o passa il mouse su una voce per leggerne l’effetto', kit)],
+    ['g-aw', 'Awareness', sec('g-aw', 'Awareness', 'la stella si riempie da A1 a A5, completa ad A6' + (a >= 0 ? ' · la tua: A' + a : ''), aw)],
+    ['g-party', 'Party', sec('g-party', 'Party consigliati', 'perché c’è ogni membro, secondo lufel · tocca un personaggio per aprirlo', party)],
+    ['g-rot', 'Rotazione', sec('g-rot', 'Rotazione e priorità', 'lufel', rot)],
+    ['g-rev', 'Review', sec('g-rev', 'Character Review', 'lufel', txt(c.ref.review))],
+    ['g-combo', 'Combination', sec('g-combo', 'Recommended Combination', 'lufel', txt(c.ref.combo))],
+    ['g-setup', 'Setup', sec('g-setup', 'Setup completo', 'lufel', setup)],
+    ['g-stats', 'Stats', sec('g-stats', 'Stats', 'lufel', txt(c.ref.stats))]
+  ].filter(b => b[2]);
+  return '<nav class="gnav" aria-label="Sezioni della guida">' + blocks.map(b => '<button type="button" class="chip" data-gjump="' + b[0] + '">' + b[1] + '</button>').join('') +
+    '<a class="chip gx" href="' + esc(guideUrl(c)) + '"' + (SITE.public ? '' : ' target="_blank" rel="noopener"') + '>Guida completa ↗</a><a class="chip gx" href="' + c.lufel_url + '" target="_blank" rel="noopener">lufel ↗</a></nav>' +
+    blocks.map(b => b[2]).join('');
 }
 
 /*NAJOX*/function infogHTML(c){ return c.infographics.map(i => '<figure><img src="' + esc(i.file) + '" loading="lazy" alt="' + esc(c.codename + ' — ' + i.label + ' (Najox P5X)') + '" data-cap="' + esc(c.codename + ' · ' + i.label + ' · Najox P5X') + '"><figcaption><span>' + esc(i.label) + '</span><a href="' + esc(i.file) + '" target="_blank" rel="noopener">apri in una scheda ↗</a></figcaption></figure>').join(''); }
@@ -1350,13 +1559,14 @@ function renderHero(c, e){
   const eq = e.equipped && e.equipped !== '__other__' ? c.weapons.find(w => w.name === e.equipped) : null;
   const chip = (tab, txt, tip) => '<button type="button" class="hchip" data-tab="' + tab + '" title="' + esc(tip) + '">' + esc(txt) + '</button>';
   const chips = ['<button type="button" class="hchip own' + (owned ? ' on' : '') + '" id="hOwn" aria-pressed="' + owned + '" title="Segna come posseduto / non posseduto">' + (owned ? '✓ Posseduto' : '+ Segna posseduto') + '</button>'];
-  if (owned) chips.push(chip('ov', 'Lv ' + (e.level || '?'), 'Livello'), chip('aw', 'A' + (e.awareness | 0), 'Awareness'), chip('ms', 'Minds ' + (e.minds | 0) + (c.core ? (e.core ? ' · Core ✓' : ' · Core —') : ''), 'Mindscape'),
+  if (owned) chips.push(chip('ov', 'Lv ' + (e.level || '?'), 'Livello'), '<button type="button" class="hchip awc" data-tab="aw" title="Awareness">' + awStar(e.awareness | 0, 16, 'A' + (e.awareness | 0)) + 'A' + (e.awareness | 0) + '</button>', chip('ms', 'Minds ' + (e.minds | 0) + (c.core ? (e.core ? ' · Core ✓' : ' · Core —') : ''), 'Mindscape'),
     chip('wp', eq ? eq.rarity + ' R' + ((e.weapons[eq.name] || {}).ref | 0) : (e.equipped === '__other__' ? 'Altra arma' : 'Arma —'), 'Arma equipaggiata'), chip('rv', e.rev.space || 'Revelation —', 'Revelation Space in uso'));
   else chips.push(chip('ov', relState(c) === 'out' ? c.rel.v.split('(')[0] : REL_NAME[relState(c)], relText(c)));
   hero.innerHTML = '<img class="dimg" src="' + c.img + '" alt="">' + '<div class="hi"><h2>' + brk(c.codename) + ' <span class="nm">' + esc(c.name) + '</span></h2><div class="sub">' + esc(c.persona) + ' · ' + stars(c.rarity) + ' ' + esc(c.type) + '<br><span class="badge el" style="--el:' + elColor(c) + '">' + esc(c.element) + '</span> ' + esc(c.position) + '<br>' + esc(relText(c)) + '<br><a href="' + c.lufel_url + '" target="_blank" rel="noopener">pagina lufel ↗</a></div><div class="hchips">' + chips.join('') + '</div></div>';
 }
 function renderTabs(c){
-  document.getElementById('dTabs').innerHTML = tabsFor(c).map((t, i) => '<button type="button" class="dtab" role="tab" id="tab-' + t[0] + '" data-dtab="' + t[0] + '" aria-selected="' + (t[0] === ui.tab) + '" aria-controls="pane-' + t[0] + '" tabindex="' + (t[0] === ui.tab ? 0 : -1) + '"><span>' + t[1] + '</span><span class="r"><span class="cnt" hidden></span><span class="kb" aria-hidden="true">' + ((i + 1) % 10) + '</span></span></button>').join('');
+  const ee = state.roster[c.slug]; const myA = ee && ee.owned ? (ee.awareness | 0) : -1;
+  document.getElementById('dTabs').innerHTML = tabsFor(c).map((t, i) => '<button type="button" class="dtab" role="tab" id="tab-' + t[0] + '" data-dtab="' + t[0] + '" aria-selected="' + (t[0] === ui.tab) + '" aria-controls="pane-' + t[0] + '" tabindex="' + (t[0] === ui.tab ? 0 : -1) + '"><span class="tl">' + (t[0] === 'aw' && myA >= 0 ? awStar(myA, 15, 'la tua Awareness: A' + myA) : '') + t[1] + '</span><span class="r"><span class="cnt" hidden></span><span class="kb" aria-hidden="true">' + ((i + 1) % 10) + '</span></span></button>').join('');
 }
 function renderTop(c){
   const j = document.getElementById('dJump'); const by = (a, b) => a.codename.localeCompare(b.codename);
@@ -1459,6 +1669,7 @@ function onDetailChange(ev){
 function onDetailClick(ev){
   const slug = ui.open; if (!slug) return; const c = BY[slug]; const e = entry(slug);
   const img = ev.target.closest('.infog img'); if (img) return;
+  const gj = ev.target.closest('[data-gjump]'); if (gj) { const g = document.getElementById(gj.dataset.gjump); if (g) g.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
   const tb = ev.target.closest('[data-tab]'); if (tb) { setTab(tb.dataset.tab, true); return; }
   const g = ev.target.closest('[data-goto]'); if (g) { gotoChar(g.dataset.goto); return; }
   const lc = ev.target.closest('[data-lvcol]'); if (lc) { ui.lvcol = parseInt(lc.dataset.lvcol, 10); lsSave(); renderDetail(slug, true); return; }

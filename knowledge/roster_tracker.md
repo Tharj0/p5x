@@ -8,6 +8,13 @@ Sostituisce `mio_roster.md` (non più aggiornato) come fonte di verità su CHI p
 - **Wonder**: livello, Persona principali (testo), note, Wonder weapon possedute con refinement e quella equipaggiata, Persona di Wonder possedute (checklist delle 39 consigliate da lufel).
 - **Esporta/Importa**: riepilogo Markdown (copiabile in chat, include le Persona possedute), backup JSON (copia o download), import JSON, azzeramento.
 
+## Sezione «Guida lufel» interattiva (v1.8, 2026-11-16)
+Richiesta dell'utente: menù interattivo per passive e abilità uniche, stellina dell'Awareness, party con immagini e motivo di ogni membro.
+- **Menù interno** (riga scorrevole, fissa in alto): Kit · Awareness · Party · Rotazione · Review · Combination · Setup · Stats + link alla guida completa e a lufel.
+- **Kit**: riquadri per Skill 1–3, Highlight/Theurgy, Passive e Abilità uniche (Assist Skill, Stat Buff degli Elucidator, maschere di J&C…), con costo/elemento e la prima frase dell'effetto; al passaggio del mouse o al tocco si apre il popup con il testo completo (valori al livello scelto nella sezione Skill, termini cliccabili, link alla sezione). Le voci senza titolo (note di J&C e MONT·Frostgale) sono mostrate come nota.
+- **Stellina Awareness** (disegno originale SVG, non l'icona del gioco): 5 punte che si colorano di rosso da A1 ad A5, ad A6 stella completa con centro bianco e bordo oro. Presente nella guida (A0–A6 con popup), nella sezione Awareness, nel chip dell'intestazione e nel menù laterale (il tuo livello).
+- **Party consigliati**: per ogni party le card dei membri e uno schema con il personaggio al centro e un ramo per ogni membro: posizione (con descrizione del ruolo), elemento, posseduto, Shift Member e il motivo preso da lufel (spiegazione della coppia dalla guida del personaggio, dalla guida del membro o da quella di un altro membro del party, con la fonte indicata). Se lufel non spiega un membro lo dice e mostra solo il ruolo. Teammate consigliati fuori dagli esempi in uno schema a parte.
+
 ## Tema grafico (v1.7, 2026-11-16)
 Richiesta dell'utente: interfaccia con la palette di Persona 5. Tema originale rosso (#d6001c) / nero / bianco applicato a tracker e guide: titoli in maiuscolo corsivo pesante, schede, pulsanti e chip obliqui (clip-path), filtri attivi in bianco su nero, carte con ombra rossa sfalsata (posseduti) e trama a puntini sullo sfondo, scheda personaggio con barra rossa e immagine incorniciata, barra del browser rossa sul telefono (theme-color). Solo colori e forme generiche: nessun logo, font o elemento grafico preso dal gioco. Stili in `app/template.html` (blocco «Tema v1.7» in fondo al CSS) e `site/guide.css`.
 
