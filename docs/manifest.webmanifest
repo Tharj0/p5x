@@ -1,0 +1,16 @@
+{
+  "name": "P5X — Tracker personaggi e guide",
+  "short_name": "P5X",
+  "description": "Tracker del roster di Persona 5X: The Phantom X e guide lufel in italiano, sincronizzati tra i tuoi dispositivi.",
+  "lang": "it",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e0f14",
+  "theme_color": "#0e0f14",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

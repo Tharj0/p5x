@@ -1,0 +1,401 @@
+{
+ "read": "2026-11-16",
+ "source": "https://lufel.net/en/schedule/",
+ "groups": [
+  {
+   "v": "v0.0",
+   "d": "2025-06-25",
+   "note": "Global Launch",
+   "chars": [
+    "PANTHER",
+    "SKULL",
+    "MONA",
+    "RIN",
+    "RIDDLE",
+    "CATTLE",
+    "LEON",
+    "CLOSER",
+    "MONT",
+    "SOY",
+    "FLEURET",
+    "YUKI",
+    "KEY",
+    "MOKO",
+    "SEPIA",
+    "PUPPET",
+    "OKYANN"
+   ]
+  },
+  {
+   "v": "v1.0",
+   "d": "2025-06-25",
+   "note": "",
+   "chars": [
+    "JOKER"
+   ]
+  },
+  {
+   "v": "v1.1",
+   "d": "2025-07-10",
+   "note": "",
+   "chars": [
+    "BUI",
+    "MARIAN"
+   ]
+  },
+  {
+   "v": "v1.2",
+   "d": "2025-07-24",
+   "note": "",
+   "chars": [
+    "FOX"
+   ]
+  },
+  {
+   "v": "v1.3",
+   "d": "2025-08-07",
+   "note": "",
+   "chars": [
+    "QUEEN",
+    "VINO"
+   ]
+  },
+  {
+   "v": "v1.4",
+   "d": "2025-08-21",
+   "note": "",
+   "chars": [
+    "PHOEBE"
+   ]
+  },
+  {
+   "v": "v2.0",
+   "d": "2025-09-04",
+   "note": "",
+   "chars": [
+    "CHORD",
+    "WIND"
+   ]
+  },
+  {
+   "v": "v2.1",
+   "d": "2025-09-22",
+   "note": "",
+   "chars": [
+    "CLOSER·Tropical"
+   ]
+  },
+  {
+   "v": "v2.2",
+   "d": "2025-10-09",
+   "note": "",
+   "chars": [
+    "MOKO·Seaside"
+   ]
+  },
+  {
+   "v": "v2.3",
+   "d": "2025-10-23",
+   "note": "",
+   "chars": [
+    "MESSA"
+   ]
+  },
+  {
+   "v": "v2.4",
+   "d": "2025-11-06",
+   "note": "",
+   "chars": [
+    "ORACLE"
+   ]
+  },
+  {
+   "v": "v2.5",
+   "d": "2025-11-25",
+   "note": "",
+   "chars": [
+    "CHERISH"
+   ]
+  },
+  {
+   "v": "v2.6",
+   "d": "2025-12-06",
+   "note": "",
+   "chars": [
+    "NOIR"
+   ]
+  },
+  {
+   "v": "v2.7",
+   "d": "2025-12-25",
+   "note": "Worldwide Simultaneous Release",
+   "chars": [
+    "J&C"
+   ]
+  },
+  {
+   "v": "v3.0",
+   "d": "2026-01-08",
+   "note": "",
+   "chars": [
+    "MONT·Frostgale"
+   ]
+  },
+  {
+   "v": "v3.1",
+   "d": "2026-01-22",
+   "note": "",
+   "chars": [
+    "HOWLER"
+   ]
+  },
+  {
+   "v": "v3.2.1",
+   "d": "2026-02-05",
+   "note": "",
+   "chars": [
+    "WIND·Tempest"
+   ]
+  },
+  {
+   "v": "v3.2.2",
+   "d": "2026-02-13",
+   "note": "",
+   "chars": [
+    "MATOI"
+   ]
+  },
+  {
+   "v": "v3.3",
+   "d": "2026-03-04",
+   "note": "",
+   "chars": [
+    "RIN·Firecracker"
+   ]
+  },
+  {
+   "v": "v3.4",
+   "d": "2026-03-19",
+   "note": "",
+   "chars": [
+    "VIOLET"
+   ]
+  },
+  {
+   "v": "v3.5",
+   "d": "2026-04-02",
+   "note": "",
+   "chars": [
+    "TURBO"
+   ]
+  },
+  {
+   "v": "v3.6",
+   "d": "2026-04-16",
+   "note": "",
+   "chars": [
+    "CROW"
+   ]
+  },
+  {
+   "v": "v4.0",
+   "d": "2026-04-30",
+   "note": "",
+   "chars": [
+    "ANGE",
+    "LUCE"
+   ]
+  },
+  {
+   "v": "v4.1",
+   "d": "2026-05-21",
+   "note": "",
+   "chars": [
+    "MAKOTO"
+   ]
+  },
+  {
+   "v": "v4.2",
+   "d": "2026-06-04",
+   "note": "",
+   "chars": [
+    "YUKARI"
+   ]
+  },
+  {
+   "v": "v4.3",
+   "d": "2026-06-11",
+   "note": "",
+   "chars": [
+    "AKIHIKO"
+   ]
+  },
+  {
+   "v": "v4.4(5.2.1)",
+   "d": "2026-06-25",
+   "note": "Worldwide Simultaneous Release",
+   "chars": [
+    "MIKU"
+   ]
+  },
+  {
+   "v": "v4.5",
+   "d": "2026-07-16",
+   "note": "",
+   "chars": [
+    "MARIAN·Beachflower"
+   ]
+  },
+  {
+   "v": "v4.6",
+   "d": "2026-07-30",
+   "note": "",
+   "chars": [
+    "PUPPET·Wavecatcher"
+   ]
+  },
+  {
+   "v": "v4.7(4.2)",
+   "d": "2026-08-13",
+   "note": "",
+   "chars": [
+    "BERRY"
+   ]
+  },
+  {
+   "v": "v4.8(4.4)",
+   "d": "2026-08-27",
+   "note": "",
+   "chars": [
+    "BLITZ"
+   ]
+  },
+  {
+   "v": "v4.9(4.5)",
+   "d": "2026-09-09",
+   "note": "",
+   "chars": [
+    "BUI·Cosmic"
+   ]
+  },
+  {
+   "v": "v4.10(5.4.1)",
+   "d": "2026-09-24",
+   "note": "Worldwide Simultaneous Release",
+   "chars": [
+    "KOTONE"
+   ]
+  },
+  {
+   "v": "v4.11(4.6.1)",
+   "d": "2026-10-15",
+   "note": "",
+   "chars": [
+    "KIRIJO"
+   ]
+  },
+  {
+   "v": "v4.12(4.6.2)",
+   "d": "2026-10-29",
+   "note": "",
+   "chars": [
+    "FUUKA"
+   ]
+  },
+  {
+   "v": "v4.13(4.7.1)",
+   "d": "2026-11-12",
+   "note": "",
+   "chars": [
+    "LUCE·Tenebre",
+    "SOY·Gunslinger"
+   ]
+  },
+  {
+   "v": "v4.14(4.7.2)",
+   "d": "2026-11-26",
+   "note": "",
+   "chars": [
+    "JUNPEI"
+   ]
+  },
+  {
+   "v": "v4.15(4.8.1)",
+   "d": "2026-12-10",
+   "note": "",
+   "chars": [
+    "PINKY"
+   ]
+  },
+  {
+   "v": "v4.16(4.8.2)",
+   "d": "2026-12-24",
+   "note": "",
+   "chars": [
+    "KOROMARU"
+   ]
+  },
+  {
+   "v": "v5.0.1",
+   "d": "2027-01-07",
+   "note": "",
+   "chars": [
+    "CLOSER·Radiance",
+    "ANRI"
+   ]
+  },
+  {
+   "v": "v5.0.2",
+   "d": "2027-01-21",
+   "note": "",
+   "chars": [
+    "AIGIS"
+   ]
+  },
+  {
+   "v": "v5.1.1",
+   "d": "2027-02-04",
+   "note": "",
+   "chars": [
+    "JOKER·Starlight"
+   ]
+  },
+  {
+   "v": "v5.1.2",
+   "d": "2027-02-18",
+   "note": "",
+   "chars": [
+    "MONA·Starlight"
+   ]
+  },
+  {
+   "v": "v5.2.2",
+   "d": "2027-03-04",
+   "note": "",
+   "chars": [
+    "PANTHER·Starlight"
+   ]
+  },
+  {
+   "v": "v5.3.1",
+   "d": "2027-03-18",
+   "note": "",
+   "chars": [
+    "CHORD·Summer"
+   ]
+  },
+  {
+   "v": "v5.3.2",
+   "d": "2027-04-01",
+   "note": "",
+   "chars": [
+    "BERRY·Summer"
+   ]
+  }
+ ],
+ "tba": [
+  "Ken Amada",
+  "Shinjiro Aragaki",
+  "SKULL·Starlight (Ryuji Sakamoto·Starlight)"
+ ]
+}

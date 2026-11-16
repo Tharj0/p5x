@@ -1,0 +1,12 @@
+lufelnet/
+__pycache__/
+data/cache/terms_df.json
+
+# Infografiche Najox: solo su questo PC, mai nel repository pubblico
+app/img/*--*.webp
+# Versione locale dell'app (mostra le infografiche Najox): si rigenera con  python app/build.py
+app/index.html
+# Note personali del progetto
+memory/
+# Impostazioni locali di Claude Code
+.claude/settings.local.json

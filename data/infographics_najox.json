@@ -1,0 +1,648 @@
+{
+ "akihiko": [
+  {
+   "file": "img/akihiko--akihiko-build.webp",
+   "label": "Build / Guide",
+   "src": "Akihiko_Build.png",
+   "kb": 233
+  },
+  {
+   "file": "img/akihiko--akihiko-mi.webp",
+   "label": "Mindscape",
+   "src": "Akihiko_MI.png",
+   "kb": 170
+  }
+ ],
+ "ange": [
+  {
+   "file": "img/ange--ange-build.webp",
+   "label": "Build / Guide",
+   "src": "Ange_Build.png",
+   "kb": 318
+  },
+  {
+   "file": "img/ange--ange-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Ange_Mindscape.png",
+   "kb": 198
+  }
+ ],
+ "berry": [
+  {
+   "file": "img/berry--berry-build.webp",
+   "label": "Build / Guide",
+   "src": "Berry_Build.png",
+   "kb": 303
+  },
+  {
+   "file": "img/berry--berry-mi.webp",
+   "label": "Mindscape",
+   "src": "Berry_MI.png",
+   "kb": 192
+  }
+ ],
+ "bui": [
+  {
+   "file": "img/bui--yui-build.webp",
+   "label": "Build / Guide",
+   "src": "Yui_Build.png",
+   "kb": 344
+  }
+ ],
+ "cherish": [
+  {
+   "file": "img/cherish--cherish-guide.webp",
+   "label": "Build / Guide",
+   "src": "Cherish_Guide.png",
+   "kb": 334
+  },
+  {
+   "file": "img/cherish--cherish-mi.webp",
+   "label": "Mindscape",
+   "src": "Cherish_MI.png",
+   "kb": 184
+  }
+ ],
+ "chord": [
+  {
+   "file": "img/chord--chord-build.webp",
+   "label": "Build / Guide",
+   "src": "Chord_Build.png",
+   "kb": 308
+  },
+  {
+   "file": "img/chord--chord-mi.webp",
+   "label": "Mindscape",
+   "src": "Chord_MI.png",
+   "kb": 183
+  }
+ ],
+ "closer-tropical": [
+  {
+   "file": "img/closer-tropical--closers-build.webp",
+   "label": "Build / Guide",
+   "src": "CloserS_Build.png",
+   "kb": 404
+  },
+  {
+   "file": "img/closer-tropical--closers-mi.webp",
+   "label": "Mindscape",
+   "src": "CloserS_MI.png",
+   "kb": 182
+  }
+ ],
+ "bui-cosmic": [
+  {
+   "file": "img/bui-cosmic--buip-build.webp",
+   "label": "Build / Guide",
+   "src": "BuiP_Build.png",
+   "kb": 334
+  },
+  {
+   "file": "img/bui-cosmic--buip-build-2.webp",
+   "label": "Build / Guide 2",
+   "src": "BuiP_Build_2.png",
+   "kb": 315
+  },
+  {
+   "file": "img/bui-cosmic--buip-mindscape.webp",
+   "label": "Mindscape",
+   "src": "BuiP_Mindscape.png",
+   "kb": 183
+  }
+ ],
+ "crow": [
+  {
+   "file": "img/crow--crow-guide.webp",
+   "label": "Build / Guide",
+   "src": "Crow_Guide.png",
+   "kb": 380
+  },
+  {
+   "file": "img/crow--crow-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Crow_Mindscape.png",
+   "kb": 191
+  }
+ ],
+ "fox": [
+  {
+   "file": "img/fox--fox-build.webp",
+   "label": "Build / Guide",
+   "src": "Fox_Build.png",
+   "kb": 318
+  }
+ ],
+ "fuka": [
+  {
+   "file": "img/fuka--build1.webp",
+   "label": "Build / Guide 1",
+   "src": "Build1.png",
+   "kb": 222
+  },
+  {
+   "file": "img/fuka--build-2.webp",
+   "label": "Build / Guide 2",
+   "src": "Build_2.png",
+   "kb": 137
+  },
+  {
+   "file": "img/fuka--backup-1.webp",
+   "label": "Backup build 1",
+   "src": "Backup_1.png",
+   "kb": 238
+  },
+  {
+   "file": "img/fuka--backup-2.webp",
+   "label": "Backup build 2",
+   "src": "Backup_2.png",
+   "kb": 160
+  },
+  {
+   "file": "img/fuka--mi.webp",
+   "label": "Mindscape",
+   "src": "MI.png",
+   "kb": 171
+  }
+ ],
+ "howler": [
+  {
+   "file": "img/howler--build-guide.webp",
+   "label": "Build / Guide",
+   "src": "Build_Guide.png",
+   "kb": 414
+  },
+  {
+   "file": "img/howler--mindscape.webp",
+   "label": "Mindscape",
+   "src": "Mindscape.png",
+   "kb": 189
+  }
+ ],
+ "j-c": [
+  {
+   "file": "img/j-c--build-page.webp",
+   "label": "Build / Guide",
+   "src": "Build_Page.png",
+   "kb": 309
+  },
+  {
+   "file": "img/j-c--mindscape-page.webp",
+   "label": "Mindscape",
+   "src": "Mindscape_Page.png",
+   "kb": 187
+  }
+ ],
+ "joker": [
+  {
+   "file": "img/joker--joker-build.webp",
+   "label": "Build / Guide",
+   "src": "Joker_Build.png",
+   "kb": 271
+  },
+  {
+   "file": "img/joker--joker-mi.webp",
+   "label": "Mindscape",
+   "src": "Joker_MI.png",
+   "kb": 157
+  }
+ ],
+ "kotone": [
+  {
+   "file": "img/kotone--kotone-build.webp",
+   "label": "Build / Guide",
+   "src": "Kotone_Build.png",
+   "kb": 250
+  },
+  {
+   "file": "img/kotone--kotone-mi.webp",
+   "label": "Mindscape",
+   "src": "Kotone_MI.png",
+   "kb": 171
+  },
+  {
+   "file": "img/kotone--rotations-teams.webp",
+   "label": "Rotations & Teams",
+   "src": "Rotations__Teams.png",
+   "kb": 191
+  }
+ ],
+ "leon": [
+  {
+   "file": "img/leon--leon-build.webp",
+   "label": "Build / Guide",
+   "src": "Leon_Build.png",
+   "kb": 289
+  },
+  {
+   "file": "img/leon--leon-mi.webp",
+   "label": "Mindscape",
+   "src": "Leon_MI.png",
+   "kb": 179
+  }
+ ],
+ "luce": [
+  {
+   "file": "img/luce--luce-build.webp",
+   "label": "Build / Guide",
+   "src": "Luce_Build.png",
+   "kb": 338
+  },
+  {
+   "file": "img/luce--luce-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Luce_Mindscape.png",
+   "kb": 206
+  }
+ ],
+ "luce-notte": [
+  {
+   "file": "img/luce-notte--build1.webp",
+   "label": "Build / Guide 1",
+   "src": "Build1.png",
+   "kb": 322
+  },
+  {
+   "file": "img/luce-notte--build2.webp",
+   "label": "Build / Guide 2",
+   "src": "Build2.png",
+   "kb": 328
+  },
+  {
+   "file": "img/luce-notte--mi.webp",
+   "label": "Mindscape",
+   "src": "MI.png",
+   "kb": 212
+  }
+ ],
+ "makoto": [
+  {
+   "file": "img/makoto--makoto-yuki-build.webp",
+   "label": "Build / Guide",
+   "src": "Makoto_Yuki_Build.png",
+   "kb": 242
+  },
+  {
+   "file": "img/makoto--makoto-yuki-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Makoto_Yuki_Mindscape.png",
+   "kb": 168
+  }
+ ],
+ "marian-beachflower": [
+  {
+   "file": "img/marian-beachflower--marian-build.webp",
+   "label": "Build / Guide",
+   "src": "Marian_Build.png",
+   "kb": 320
+  },
+  {
+   "file": "img/marian-beachflower--marian-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Marian_Mindscape.png",
+   "kb": 185
+  }
+ ],
+ "matoi": [
+  {
+   "file": "img/matoi--matoi-build.webp",
+   "label": "Build / Guide",
+   "src": "Matoi_Build.png",
+   "kb": 306
+  },
+  {
+   "file": "img/matoi--matoi-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Matoi_Mindscape.png",
+   "kb": 189
+  }
+ ],
+ "messa": [
+  {
+   "file": "img/messa--messa-build.webp",
+   "label": "Build / Guide",
+   "src": "Messa_Build.png",
+   "kb": 349
+  },
+  {
+   "file": "img/messa--messa-mi.webp",
+   "label": "Mindscape",
+   "src": "Messa_MI.png",
+   "kb": 182
+  }
+ ],
+ "miku": [
+  {
+   "file": "img/miku--miku-glb-build.webp",
+   "label": "Build / Guide",
+   "src": "Miku_GLB_build.png",
+   "kb": 371
+  },
+  {
+   "file": "img/miku--miku-mi.webp",
+   "label": "Mindscape",
+   "src": "Miku_MI.png",
+   "kb": 192
+  }
+ ],
+ "kirijo": [
+  {
+   "file": "img/kirijo--mitsuru-build-1.webp",
+   "label": "Build / Guide 1",
+   "src": "Mitsuru_Build_1.png",
+   "kb": 238
+  },
+  {
+   "file": "img/kirijo--mitsuru-build-2.webp",
+   "label": "Build / Guide 2",
+   "src": "Mitsuru_Build_2.png",
+   "kb": 218
+  },
+  {
+   "file": "img/kirijo--mitsuru-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Mitsuru_Mindscape.png",
+   "kb": 172
+  }
+ ],
+ "moko-seaside": [
+  {
+   "file": "img/moko-seaside--mokos-build.webp",
+   "label": "Build / Guide",
+   "src": "MokoS_Build.png",
+   "kb": 359
+  },
+  {
+   "file": "img/moko-seaside--mokos-mi.webp",
+   "label": "Mindscape",
+   "src": "MokoS_MI.png",
+   "kb": 182
+  }
+ ],
+ "mona": [
+  {
+   "file": "img/mona--mona-build.webp",
+   "label": "Build / Guide",
+   "src": "Mona_Build.png",
+   "kb": 431
+  },
+  {
+   "file": "img/mona--mona-mi.webp",
+   "label": "Mindscape",
+   "src": "Mona_MI.png",
+   "kb": 160
+  }
+ ],
+ "mont": [
+  {
+   "file": "img/mont--mont-build.webp",
+   "label": "Build / Guide",
+   "src": "Mont_Build.png",
+   "kb": 327
+  },
+  {
+   "file": "img/mont--mont-mi.webp",
+   "label": "Mindscape",
+   "src": "Mont_MI.png",
+   "kb": 180
+  }
+ ],
+ "mont-frostgale": [
+  {
+   "file": "img/mont-frostgale--mont-guide.webp",
+   "label": "Build / Guide",
+   "src": "Mont_Guide.png",
+   "kb": 395
+  },
+  {
+   "file": "img/mont-frostgale--mont-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Mont_Mindscape.png",
+   "kb": 194
+  }
+ ],
+ "noir": [
+  {
+   "file": "img/noir--noir-guide.webp",
+   "label": "Build / Guide",
+   "src": "Noir_Guide.png",
+   "kb": 363
+  },
+  {
+   "file": "img/noir--noir-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Noir_Mindscape.png",
+   "kb": 175
+  }
+ ],
+ "navi": [
+  {
+   "file": "img/navi--oracle-build.webp",
+   "label": "Build / Guide",
+   "src": "Oracle_Build.png",
+   "kb": 598
+  },
+  {
+   "file": "img/navi--oracle-mi.webp",
+   "label": "Mindscape",
+   "src": "Oracle_MI.png",
+   "kb": 178
+  }
+ ],
+ "panther": [
+  {
+   "file": "img/panther--panther-build.webp",
+   "label": "Build / Guide",
+   "src": "Panther_Build.png",
+   "kb": 319
+  },
+  {
+   "file": "img/panther--panther-mi.webp",
+   "label": "Mindscape",
+   "src": "Panther_MI.png",
+   "kb": 158
+  }
+ ],
+ "phoebe": [
+  {
+   "file": "img/phoebe--phoebe-build.webp",
+   "label": "Build / Guide",
+   "src": "Phoebe_Build.png",
+   "kb": 350
+  },
+  {
+   "file": "img/phoebe--phoebe-mi.webp",
+   "label": "Mindscape",
+   "src": "Phoebe_MI.png",
+   "kb": 185
+  }
+ ],
+ "puppet-wavecatcher": [
+  {
+   "file": "img/puppet-wavecatcher--puppets-build.webp",
+   "label": "Build / Guide",
+   "src": "PuppetS_Build.png",
+   "kb": 316
+  },
+  {
+   "file": "img/puppet-wavecatcher--puppets-mi.webp",
+   "label": "Mindscape",
+   "src": "PuppetS_MI.png",
+   "kb": 190
+  }
+ ],
+ "queen": [
+  {
+   "file": "img/queen--queen-build.webp",
+   "label": "Build / Guide",
+   "src": "Queen_Build.png",
+   "kb": 289
+  },
+  {
+   "file": "img/queen--queen-mi.webp",
+   "label": "Mindscape",
+   "src": "Queen_MI.png",
+   "kb": 174
+  }
+ ],
+ "rin": [
+  {
+   "file": "img/rin--rin-build.webp",
+   "label": "Build / Guide",
+   "src": "Rin_Build.png",
+   "kb": 368
+  }
+ ],
+ "rin-firecracker": [
+  {
+   "file": "img/rin-firecracker--build-page.webp",
+   "label": "Build / Guide",
+   "src": "Build_Page.png",
+   "kb": 309
+  },
+  {
+   "file": "img/rin-firecracker--rin-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Rin_Mindscape.png",
+   "kb": 196
+  }
+ ],
+ "skull": [
+  {
+   "file": "img/skull--skull-build.webp",
+   "label": "Build / Guide",
+   "src": "Skull_Build.png",
+   "kb": 317
+  },
+  {
+   "file": "img/skull--skull-mi.webp",
+   "label": "Mindscape",
+   "src": "Skull_MI.png",
+   "kb": 175
+  }
+ ],
+ "soy-pioneer": [
+  {
+   "file": "img/soy-pioneer--build1.webp",
+   "label": "Build / Guide 1",
+   "src": "Build1.png",
+   "kb": 355
+  },
+  {
+   "file": "img/soy-pioneer--build2.webp",
+   "label": "Build / Guide 2",
+   "src": "Build2.png",
+   "kb": 273
+  },
+  {
+   "file": "img/soy-pioneer--mi.webp",
+   "label": "Mindscape",
+   "src": "MI.png",
+   "kb": 185
+  }
+ ],
+ "turbo": [
+  {
+   "file": "img/turbo--turbo-build.webp",
+   "label": "Build / Guide",
+   "src": "Turbo_Build.png",
+   "kb": 354
+  },
+  {
+   "file": "img/turbo--turbo-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Turbo_Mindscape.png",
+   "kb": 191
+  }
+ ],
+ "vino": [
+  {
+   "file": "img/vino--vino-build.webp",
+   "label": "Build / Guide",
+   "src": "Vino_Build.png",
+   "kb": 312
+  }
+ ],
+ "violet": [
+  {
+   "file": "img/violet--build-guide.webp",
+   "label": "Build / Guide",
+   "src": "Build_Guide.png",
+   "kb": 376
+  },
+  {
+   "file": "img/violet--violet-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Violet_Mindscape.png",
+   "kb": 168
+  }
+ ],
+ "wind": [
+  {
+   "file": "img/wind--wind-infographic-p5x-guide.webp",
+   "label": "Build / Guide",
+   "src": "Wind_Infographic_P5X_Guide.png",
+   "kb": 287
+  },
+  {
+   "file": "img/wind--wind-infographic-p5x-guide-breakdown.webp",
+   "label": "Guide breakdown",
+   "src": "Wind_Infographic_P5X_Guide_Breakdown.png",
+   "kb": 391
+  },
+  {
+   "file": "img/wind--wind-infographic-p5x-investment-guide.webp",
+   "label": "Investment guide",
+   "src": "Wind_Infographic_P5X_Investment_guide.png",
+   "kb": 320
+  }
+ ],
+ "wind-tempest": [
+  {
+   "file": "img/wind-tempest--build.webp",
+   "label": "Build / Guide",
+   "src": "Build.png",
+   "kb": 322
+  },
+  {
+   "file": "img/wind-tempest--mindscape.webp",
+   "label": "Mindscape",
+   "src": "Mindscape.png",
+   "kb": 188
+  }
+ ],
+ "yukari": [
+  {
+   "file": "img/yukari--yukari-build.webp",
+   "label": "Build / Guide",
+   "src": "Yukari_Build.png",
+   "kb": 265
+  },
+  {
+   "file": "img/yukari--yukari-mindscape.webp",
+   "label": "Mindscape",
+   "src": "Yukari_Mindscape.png",
+   "kb": 169
+  }
+ ]
+}

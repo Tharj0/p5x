@@ -1,0 +1,106 @@
+# Narumi Nashimoto — PINKY (dati lufel.net)
+Fonte: https://lufel.net/en/character/pinky/ · letto il 2026-11-14 con il browser integrato (spoiler attivi) · Stato Global: NON RILASCIATA (lufel: "Not Released"; il set Debauch è marcato "#NOT RELEASED IN GLOBAL SERVER#").
+Convenzione: nomi di skill, awareness, armi, Persona, set e stat lasciati in inglese come su lufel.net; condizioni ed effetti tradotti in italiano. Valori skill = LV10 / LV10+Minds 5 / LV13 / LV13+Minds 5. Valori armi = refinement R0/R1/R2/R3/R4/R5/R6.
+
+## Scheda
+| Campo | Valore |
+|---|---|
+| Nome | Narumi Nashimoto |
+| Codename | PINKY |
+| Persona | Asterope |
+| Rarità / tipo | 5★ · Limited |
+| Elemento | Psychokinesis (Psy) |
+| Posizione | Assassin |
+| Ruolo (lufel) | non indicato |
+| Tag (lufel) | Additional Turn |
+| Resistenza / Debolezza | Res: Psy · Wk: Nuclear |
+
+## Character Review (lufel)
+- Personaggio originale di P5X, DPS Psy single-target in grado di ottenere un turno aggiuntivo ogni 2 turni.
+- Tramite il supporto di WONDER, che ha 1 turno di cooldown, Narumi può ottenere un turno aggiuntivo: uno stile esplosivo in cui può scaricare tutte e tre le skill in sequenza 1-2-3 in soli 2 turni.
+- Per massimizzare la Skill 3 servono 10 stack di [Shiny Points]; il kit è progettato perché ciò avvenga naturalmente seguendo la rotazione corretta, senza setup extra.
+- Pur rendendo al massimo già ad Awareness 0, l'efficienza di Awareness 1 (turno extra a WONDER) e Awareness 2 (potenziamento drastico della Skill 3) rende eccezionale l'efficienza delle Awareness.
+- Poiché barra e cooldown dell'HIGHLIGHT avanzano indipendentemente dai turni extra, può usare l'HIGHLIGHT molto più spesso degli altri DPS, e i suoi moltiplicatori sono molto alti.
+- Ad Awareness 6 ottiene un ulteriore turno extra, abbinandosi perfettamente ad ANGE per le tattiche di reset del turno. In un party tutto A6 si possono fare fino a 9 azioni in un singolo turno.
+- Non avendo un bucket di moltiplicatore indipendente, abbinarla a Katayama, che può fornirne uno tramite Fuuka e il Down, è molto efficiente: si sfruttano bene entrambe le Elucidator.
+- Da Awareness 2 il tetto di [Shiny Points] sale a 16; per raggiungerlo la skill speciale del turno extra di WONDER [Attend My Handshake Event ❤︎] va usata prima della Skill 1.
+
+**Pro**
+- Può assicurarsi un turno aggiuntivo per varie tattiche.
+- Alto output di danno anche ad A0.
+- Nessun requisito obbligatorio di party.
+
+**Contro**
+- Nessun Pierce Rate indipendente.
+
+## Recommended Setup (lufel)
+> Nota lufel: le impostazioni consigliate sono basate su contenuti futuri; alcune funzioni potrebbero non essere ancora disponibili (Revelation, Mindscape, ecc.).
+
+- **Revelation** — Space: Purity (tooltip "Purity - Debauch": ottiene 1 stack di [Devotion] per ogni skill Persona diversa lanciata; ATK +10% per 2 turni, cumulabile fino a 3 volte; a 3 stack, Critical Effect proprio +12% aggiuntivo; la durata dei [Devotion] da skill diverse è calcolata indipendentemente) · Sun/Moon/Star/Sky: Debauch ×4 (2-Set: ATK +12% · 4-Set: DMG inflitto +12%, che sale al 24% durante un Extra Turn) — set non ancora uscito su Global
+- **Main Options** — Sun: HP · Moon: Damage Mult / Attack · Star: Crit Mult / Crit Rate · Sky: Attack
+- **Sub Options** — 1ª priorità: Crit Mult, Crit Rate · 2ª: Pierce Rate / Attack / Damage Mult · 3ª: "-"
+- **Recommended Stats** — non indicate da lufel ("-"); Battle Entry +: "-"
+- **Priorità skill** — 1º Skill 3 · 2º Skill 1 · 3º Skill 2 · 4º Highlight (tutte MAX)
+- **Mindscape (LV 5)** — Rank Strengthening 1: Damage Mult 16% · Rank Strengthening 2: Crit Mult 24% · Skill Enforce 1: Skill1 / HIGHLIGHT · Skill Enforce 2: Skill2 / Skill3
+- **Skill Rotation** — A0: 1 › 2+3 › 1 › 2+3 › 1 › 2+3 · A6: 1 › 2+3+3 › 1 › 2+3+3 › 1 › 2+3+3
+- **Notes (lufel)** — È possibile anche 1 › 2 › 3+3, ma bisogna rinunciare ad alcuni buff come gli effetti set delle Revelation.
+
+## Skills (LV10 / LV10+Minds 5 / LV13 / LV13+Minds 5)
+**Skill 1 — 100% Sugar ❤** (Psy · SP 21)
+Infligge danno Psy a 1 nemico pari al 292.8%/322.8%/310.8%/340.8% dell'Attack. Ottiene 3 [Shiny Points] ed entra in modalità [Idol Business] per 2 turni. [Idol Business]: Crit Rate +14.6%/16.1%/15.5%/17.0% e danno +29.3%/32.3%/31.1%/34.1%; all'inizio del turno ottiene 1 [Shiny Points].
+
+**Skill 2 — Cake BOOM!** (Psy · SP 23)
+Infligge danno Psy a tutti i nemici pari al 404.0%/445.4%/428.8%/470.2% dell'Attack, distribuendo il danno tra tutti i nemici. Dopo l'uso in modalità [Idol Business]: raddoppia gli [Shiny Points] di Narumi.
+
+**Skill 3 — LIVE of LOVE ♪** (Psy · SP 25)
+Infligge danno Psy a 1 nemico pari al 349.8%/385.6%/371.3%/407.1% dell'Attack. Quando [Naruru ♪ Naruru ♫] è attivo: infligge danno Psy bonus pari al 10.1%/11.1%/10.7%/11.7% dell'Attack per ogni stack di [Shiny Points]. Quando gli [Shiny Points] raggiungono 10, infligge danno Psy bonus pari al 100.5%/110.8%/106.7%/117.0% dell'Attack e ottiene inoltre +50% di danno all'attivazione di questa skill.
+
+**HIGHLIGHT** (cooldown 4 turni)
+Infligge danno Psy a 1 nemico pari al 535.9%/590.8%/568.9%/623.8% dell'Attack. Aumenta l'Attack di Narumi in base al 20% dell'Attack di Wonder (fino a 976/1076/1036/1136 di Attack) per 2 turni.
+
+**Passiva — Heat**: aumenta il danno del 36.0% nell'Extra Action [Spotlight Unleashed].
+
+**Passiva — Biggest Fan**: quando Narumi riceve una skill attiva di Wonder che la prende come bersaglio, aumenta permanentemente l'Attack del 21.0%; cumulabile fino a 2 volte.
+
+## Awareness
+- **A0 — The First Stage** (talento base): Narumi ha l'energia speciale [Shiny Points]; all'inizio della battaglia ne ha 1, fino a 10 stack, e può potenziare le skill in base agli [Shiny Points]. Quando Narumi è in campo, Wonder ottiene la skill speciale [Naruru ♪ Naruru ♫]: concede a Narumi 1 Extra Action [Spotlight Unleashed] alla fine della sua azione e le ripristina 15 SP. Alla fine dell'Extra Action [Spotlight Unleashed], rimuove [Naruru ♪ Naruru ♫] e tutti gli [Shiny Points]. Questa skill ha 1 turno di cooldown e un cooldown iniziale; il cooldown diminuisce dopo le azioni non-extra di Wonder.
+- **A1 — My Dearest Guest**: Narumi ottiene la skill speciale [Attend My Handshake Event ❤︎]: concede a Wonder 1 Extra Action alla fine della sua azione e gli ripristina 15 SP all'inizio dell'Extra Action; cooldown 1 turno, che diminuisce dopo le azioni non-extra di Narumi. Narumi può attivare tutti gli effetti buff dell'Extra Action [Spotlight Unleashed] su tutte le azioni. Danno critico (Crit Mult) +30% nell'Extra Action [Spotlight Unleashed].
+- **A2 — Please Watch Me Forever**: aumenta a 16 gli stack massimi di [Shiny Points]. Concede a Narumi 1 [Shiny Points] bonus quando Wonder usa una skill Persona. Potenzia [LIVE of LOVE ♪]: a 16 stack di [Shiny Points], gli effetti di ogni [Shiny Points] salgono a 1.5x.
+- **A3 — Exclusive Bond**: aumenta di 3 i livelli di skill di Cake BOOM! e LIVE of LOVE ♪.
+- **A4 — Rousing Support**: Highlight Enhanced: dopo l'Highlight, aumenta il danno critico di Narumi in base al 15% del danno critico di Wonder (fino al 30% di danno critico) per 2 turni.
+- **A5 — Absolute Center**: aumenta di 3 i livelli di skill di 100% Sugar ❤ e Thief Tactics.
+- **A6 — A Smile Just for You**: dopo l'Extra Action [Spotlight Unleashed], non rimuove [Naruru ♪ Naruru ♫] e gli [Shiny Points]; ottiene subito l'Extra Action [Promised Meeting] e ripristina 15 SP. L'Extra Action [Promised Meeting] conta come Extra Action [Spotlight Unleashed]; alla sua fine rimuove [Naruru ♪ Naruru ♫] e tutti gli [Shiny Points].
+
+## Stats
+- Base (LV1): HP 300 · ATK 105 · DEF 54 · Speed 95
+- Hidden Ability LV7: ATK % 29%
+- LV80 (HP / ATK / DEF): A0 3360 / 1180 / 613 · A1 3421 / 1202 / 625 · A2 3481 / 1222 / 636 · A3 3542 / 1244 / 646 · A4 3602 / 1265 / 657 · A5 3662 / 1286 / 669 · A6 3723 / 1307 / 680
+
+## Armi esclusive (valori R0/R1/R2/R3/R4/R5/R6)
+**5★ Sugar Encore** — HP 2220 · ATK 780 · DEF 405 — passiva *Strawberry Frosting's Kiss*
+- Aumenta il Crit Rate del 18.1%/18.1%/23.5%/23.5%/28.9%/28.9%/34.3%.
+- Quando Narumi ottiene [Naruru ♪ Naruru ♫], aumenta il danno critico (Crit Mult) del 32.8%/42.8%/42.8%/52.8%/52.8%/62.8%/62.8% per 2 turni.
+- Aumenta l'Attack del 42.5%/55.0%/55.0%/67.5%/67.5%/80.0%/80.0% nell'Extra Action [Spotlight Unleashed].
+
+**4★ Shining Rhythm** — HP 1776 · ATK 623 · DEF 324 — passiva *Lethal Allure*
+- Aumenta l'Attack del 12.0%/12.0%/16.0%/16.0%/20.0%/20.0%/24.0%.
+- Quando Narumi ottiene [Shiny Points], aumenta il danno dell'8.8%/10.2%/10.2%/11.6%/11.6%/13.0%/13.0% per 2 turni; cumulabile fino a 2 volte.
+
+## Attribute Mindscape (lufel: introdotto in KR V5.2, forse non ancora su Global)
+- Mindscape Synergy — **Consciousness Intercept** (consigliata): dopo aver usato una Persona su un nemico, applica al bersaglio 1 stack di "Thought Theft" per 2 turni, cumulabile fino a 3 volte. "Thought Theft": danno subito +1.5%/3.0%.
+- Mindscape Combat Skill — **Ideation Amplification** (consigliata): quando attacca un nemico con alterazione mentale o "Thought Theft", l'amplificazione finale del danno aumenta del 2.5%/5.0%.
+
+## Recommended Combination (lufel)
+> Nota lufel: alcune Persona e armi consigliate potrebbero non essere ancora uscite nella tua regione.
+- **Wonder Weapons**: Starry Compass
+- **Persona (ATK)**: Dominion · Shiva · Jikokuten
+- **Persona (CRITICAL)**: Dionysus
+
+## Recommended Parties (lufel)
+> Nota lufel: la maggior parte degli esempi di party è stata scritta attorno all'uscita KR/CN del personaggio; Thieves o Mindscape Core successivi potrebbero non essere considerati. Solo riferimento.
+- **Lineup** — ANGE: riavvolgendo i turni può riattivare i turni aggiuntivi quando gli stack sono stati accumulati. · KIRIJO: Mitsuru fornisce alta Defense Reduction e infligge danno aggiuntivo a ogni turno aggiuntivo di Narumi. · TURBO: fornisce alto Pierce Rate e vari buff; con Mayumi ad alta Awareness e Mitsuru a bassa Awareness, può rendere meglio di Mitsuru. · FUUKA: aumenta la frequenza degli ingressi del personaggio di backup tramite i turni aggiuntivi; con Narumi A1+, può attivare la Skill 2 due o più volte. · BLITZ: Kumi applica Down e riduce la Defense dei nemici; migliora il danno totale potenziando il Downed damage, un moltiplicatore separato che a Narumi manca.
+- **Party d'esempio** — PINKY / J&C / KIRIJO / ANGE · PINKY / J&C / TURBO / ANGE · PINKY / J&C / KIRIJO / FUUKA · PINKY / J&C / TURBO / FUUKA
+
+## Nomenclatura
+- lufel: "Narumi Nashimoto" (codename PINKY), slug URL `pinky`. Stati/risorse: [Shiny Points], [Idol Business], [Naruru ♪ Naruru ♫] (skill speciale di Wonder), [Spotlight Unleashed] (Extra Action), [Attend My Handshake Event ❤︎], [Promised Meeting].
+- Nelle descrizioni lufel "critical rate" = Crit Rate, "critical damage" = Crit Mult.

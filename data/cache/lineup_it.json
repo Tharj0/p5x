@@ -1,0 +1,1250 @@
+{
+ "aegis": [
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "può concedere un effetto Theurgy Damage Amp tramite item.",
+   "en": "Can grant a Theurgy Damage Amp effect through items.",
+   "A": null
+  },
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": "possono aumentare il danno tramite effetti di Skill Amplification.",
+   "en": "Can increase damage through Skill Amplification effects.",
+   "A": 1
+  }
+ ],
+ "akihiko": [
+  {
+   "code": "TURBO",
+   "kr": "마유미",
+   "it": "fornisce buff ad ATK e Damage Mult, insieme a un potente buff di Penetration.",
+   "en": "Provides ATK, Damage Mult. buffs, along with a powerful Penetration buff.",
+   "A": null
+  },
+  {
+   "code": "BLITZ",
+   "kr": "카타야마",
+   "it": "può ignorare le debolezze nemiche e ridurre molto il Down, amplificando ulteriormente l'effetto A2 di Akihiko Sanada che aumenta il danno ai nemici in Down.",
+   "en": "Can ignore enemy weaknesses and greatly reduce Down, further amplifying Akihiko Sanada’s A2 effect that increases damage against Downed enemies.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": "può potenziare la debolezza Elec di tutti i nemici, applicare Shock e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Elec weakness, inflict Shock, and increase the entire party's damage.",
+   "A": null
+  }
+ ],
+ "ange": [
+  {
+   "code": "NOIR",
+   "kr": "하루",
+   "it": "dopo che Haru ha accumulato i suoi potenziamenti, il rewind del turno può creare una finestra di fuoco in più.",
+   "en": "After Haru stacks her enhancements, turn rewind can create one more gunfire window.",
+   "A": null
+  },
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": "la barra Theurgy e gli stack speciali continuano a crescere durante il rewind, comprimendo il ciclo di danno di Makoto Yuki.",
+   "en": "Theurgy gauge and special stacks continue building during the rewind, compressing Makoto Yuki's damage cycle.",
+   "A": null
+  },
+  {
+   "code": "LUCE·Tenebre",
+   "kr": "쇼키·암야",
+   "it": "una volta accumulati gli stack della Skill 2, il rewind del turno permette a Dark Shoki di ripetere un'altra volta la sua finestra di danno principale.",
+   "en": "Once Skill 2 stacks are built up, turn rewind lets Dark Shoki repeat its main damage window one more time.",
+   "A": null
+  },
+  {
+   "code": "PINKY",
+   "kr": "나루미",
+   "it": "dopo il rewind del turno, Narumi può attivare un turno aggiuntivo in più.",
+   "en": "After the turn rewind, Narumi can trigger one more additional turn.",
+   "A": null
+  }
+ ],
+ "anri": [
+  {
+   "code": "CLOSER·Radiance",
+   "kr": "모토하·청광",
+   "it": "Aran può condurre e amplificare il danno tra due nemici, quindi nonostante sia un 4★ mostra un'efficienza altissima con Motoha.",
+   "en": "Aran can conduct and amplify damage between two enemies, so despite being a 4-star unit, she shows extremely high efficiency with Motoha.",
+   "A": null
+  }
+ ],
+ "berry-summer": [
+  {
+   "code": "PINKY",
+   "kr": "나루미",
+   "it": "come alleata Psy attiva [Illusion Seal] e può essere designata [Helmsman] per sfruttare l'attacco aggiuntivo.",
+   "en": "As a Psy ally, activates [Illusion Seal] and can be designated as the [Helmsman] to make use of the additional attack.",
+   "A": null
+  },
+  {
+   "code": "NOIR",
+   "kr": "하루",
+   "it": "come alleata Psy attiva [Illusion Seal] e può essere designata [Helmsman].",
+   "en": "As a Psy ally, activates [Illusion Seal] and can be designated as the [Helmsman] to make use of the additional attack.",
+   "A": null
+  },
+  {
+   "code": "CHORD·Summer",
+   "kr": "아야카·여름",
+   "it": "come alleata [Summer] attiva [Ocean's Seal] e può essere designata [Helmsman].",
+   "en": "As a [Summer] ally, activates [Ocean's Seal] and can be designated as the [Helmsman] to make use of the additional attack.",
+   "A": null
+  },
+  {
+   "code": "KIRIJO",
+   "kr": "미츠루",
+   "it": "[Ram: Miracle Ichi-Boat] conta come skill Persona di Ichigo Shikano·Summer e attiva un'altra volta l'attacco aggiuntivo di Mitsuru.",
+   "en": "[Ram: Miracle Ichi-Boat] counts as Ichigo Shikano·Summer's Persona skill, triggering Mitsuru's additional attack once more.",
+   "A": null
+  }
+ ],
+ "berry": [
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "Ichigo deve usare l'HIGHLIGHT il prima possibile per ottenere tutti gli effetti dell'A0, e Ayaka permette di usare l'HIGHLIGHT di Ichigo frequentemente.",
+   "en": "Ichigo needs to use HIGHLIGHT as soon as possible to get all the effects of A0, and Ayaka allows Ichigo's HIGHLIGHT to be used frequently.",
+   "A": null
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "può concedere un aumento del danno DOT in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket DOT damage boost through item use.",
+   "A": null
+  }
+ ],
+ "blitz": [
+  {
+   "code": "FUUKA",
+   "kr": "후카",
+   "it": "Katayama può usare Skill 1 + 3 per mandare in Down i nemici nelle finestre di danno chiave; la sua DEF reduction AoE, lo Shock e l'amplificazione del danno ai nemici in Down aumentano molto il danno totale.",
+   "en": "Katayama can use Skill 1 + 3 to Down enemies during key damage windows. Her AoE DEF reduction, Shock, and amplification of damage dealt to Downed enemies greatly increase total damage.",
+   "A": 6
+  }
+ ],
+ "bui-cosmic": [
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "può concedere un aumento del danno All-Out Attack in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket All-Out Attack damage boost through item use.",
+   "A": null
+  },
+  {
+   "code": "BLITZ",
+   "kr": "카타야마",
+   "it": "l'A6 di Cosmic Yui attacca alla fine di ogni turno e riduce il Down, allineandosi al ciclo di riduzione Down di Katayama.",
+   "en": "Cosmic Yui's A6 attacks at the end of each turn and reduces Down, aligning with Katayama’s Down reduction cycle.",
+   "A": 6
+  },
+  {
+   "code": "KIRIJO",
+   "kr": "미츠루",
+   "it": "fornisce alta riduzione DEF e danno aggiuntivo.",
+   "en": "Provides high DEF reduction and additional damage.",
+   "A": null
+  }
+ ],
+ "bui": [
+  {
+   "code": "CLOSER",
+   "kr": "모토하",
+   "it": "può infliggere Shock e aumentare l'Electric DMG.",
+   "en": "Can inflict Shock and increase Electric DMG.",
+   "A": null
+  },
+  {
+   "code": "TURBO",
+   "kr": "마유미",
+   "it": "usa il turno aggiuntivo di Mayumi per attivare più spesso gli attacchi Resonance e applicare vari buff.",
+   "en": "Uses Mayumi's additional turn to trigger Resonance attacks more frequently and apply various buffs.",
+   "A": null
+  },
+  {
+   "code": "MATOI",
+   "kr": "미오",
+   "it": "se Mio è ad A6 può infliggere danno due volte in un turno con le skill Persona, permettendo di attivare più spesso il Follow-up di YUI.",
+   "en": "If Mio is in A6, she can deal damage twice in one turn using Persona skills, allowing YUI's Follow-up to be triggered more frequently.",
+   "A": 6
+  }
+ ],
+ "cherish": [
+  {
+   "code": "FOX",
+   "kr": "유스케",
+   "it": "potenzia la Defense e gli scudi di FOX, aumentandone il danno.",
+   "en": "Enhances FOX's defense and shields, increasing damage.",
+   "A": null
+  }
+ ],
+ "chord-summer": [
+  {
+   "code": "MONA·Starlight",
+   "kr": "모르가나·댄싱 스타",
+   "it": "riduce molto la DEF totale di tutti i nemici, fornisce anche un bonus di danno Wind e attiva l'effetto sinergia dell'Attribute Mindscape.",
+   "en": "Greatly reduces all foes' total DEF while also providing a Wind damage bonus and activating Attribute Mindscape's synergy effect.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "fornisce CRIT Mult e ATK, e la sua skill di Attribute Mindscape offre una notevole amplificazione del danno Wind.",
+   "en": "Can provide CRIT Mult and ATK, while her Attribute Mindscape skill offers substantial Wind damage amplification.",
+   "A": null
+  },
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "ora può essere schierata insieme alla sua versione alternativa; quando la barra HL è carica al 250%, la Skill 3 attiva l'effetto corrispondente a quel livello di barra, con grande efficienza.",
+   "en": "She can now be fielded alongside her alternate version. When the HL gauge is charged to 250%, Skill 3 triggers the corresponding effect for that gauge level, making it highly efficient.",
+   "A": null
+  }
+ ],
+ "chord": [
+  {
+   "code": "JOKER",
+   "kr": "렌",
+   "it": "attiva l'HIGHLIGHT per ottenere 『Will of Rebellion』.",
+   "en": "Activates HIGHLIGHT to gain 『Will of Rebellion』.",
+   "A": null
+  },
+  {
+   "code": "QUEEN",
+   "kr": "마코토",
+   "it": "permette di usare spesso il potente HIGHLIGHT di QUEEN.",
+   "en": "Allows QUEEN's powerful HIGHLIGHT to be used frequently.",
+   "A": null
+  },
+  {
+   "code": "VIOLET",
+   "kr": "카스미",
+   "it": "permette a Kasumi di usare l'HIGHLIGHT più spesso, al timing potenziato del suo HIGHLIGHT.",
+   "en": "Enables Kasumi to use HIGHLIGHT more frequently, at the enhanced timing of her HIGHLIGHT.",
+   "A": null
+  },
+  {
+   "code": "BERRY",
+   "kr": "이치고",
+   "it": "Ichigo deve usare l'HIGHLIGHT il prima possibile per ottenere tutti gli effetti dell'A0, e Ayaka le permette di usarlo spesso.",
+   "en": "Ichigo needs to use HIGHLIGHT as soon as possible to get all the effects of A0, and Ayaka allows Ichigo's HIGHLIGHT to be used frequently.",
+   "A": null
+  }
+ ],
+ "closer-radiance": [
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "il danno di Motoha·Astra è fortemente incentrato sull'HIGHLIGHT, quindi Ayaka è un membro centrale del party; usare la Skill 3 non rimuove i suoi stack anche quando si usa l'HIGHLIGHT, e ha una passiva che amplifica molto il danno di Motoha.",
+   "en": "Motoha·Astra's damage is heavily centered around HIGHLIGHT, making Ayaka a core party member. Using Skill 3 does not remove her stacks even when HIGHLIGHT is used, and she also has a passive that greatly amplifies Motoha's damage.",
+   "A": null
+  },
+  {
+   "code": "ANRI",
+   "kr": "아란",
+   "it": "può condurre e amplificare il danno tra due nemici, quindi nonostante sia un 4★ mostra un'efficienza altissima con Motoha.",
+   "en": "She can conduct and amplify damage between two enemies, so despite being a 4-star unit, she shows extremely high efficiency with Motoha.",
+   "A": 6
+  },
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": "[Strategist] J&C aumentano molto il danno complessivo tramite skill amplification.",
+   "en": "[Strategist] J&C greatly increases overall damage through skill amplification.",
+   "A": 1
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "aumenta il danno complessivo di Motoha con una pozione di amplificazione del danno HIGHLIGHT.",
+   "en": "Increases Motoha's overall damage through a HIGHLIGHT damage amplification potion.",
+   "A": null
+  },
+  {
+   "code": "BLITZ",
+   "kr": "카타야마",
+   "it": "può alzare il danno complessivo di Motoha·Astra tramite DEF reduction AoE e supporto legato al Down.",
+   "en": "Can raise Motoha·Astra's overall damage through AoE DEF reduction and Down-related support.",
+   "A": null
+  },
+  {
+   "code": "FUUKA",
+   "kr": "후카",
+   "it": "permette di far entrare Koromaru come personaggio di scambio.",
+   "en": "Allows Koromaru to be brought in as the swap character.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": "tramite [Attribute Downgrade] rafforza la debolezza Electric del nemico e riduce la Defense.",
+   "en": "Through [Attribute Downgrade], he strengthens the enemy's Electric weakness and reduces Defense.",
+   "A": null
+  }
+ ],
+ "closer-tropical": [
+  {
+   "code": "MARIAN",
+   "kr": "미나미",
+   "it": "impedisce alla Skill 3 di entrare in cooldown tramite cure ed effetti Bless.",
+   "en": "Prevents Skill 3 from entering cooldown through Healing and Bless effects.",
+   "A": null
+  },
+  {
+   "code": "MOKO·Seaside",
+   "kr": "토모코·여름",
+   "it": "fornisce cure ripetute tramite effetti Bless e Fireworks, impedendo alla Skill 3 di entrare in cooldown.",
+   "en": "Provides repeated Healing through Bless effects and Fireworks, preventing Skill 3 from entering cooldown.",
+   "A": null
+  }
+ ],
+ "crow": [
+  {
+   "code": "JOKER",
+   "kr": "렌",
+   "it": null,
+   "en": "Can record and attack with Skill 3 to boost overall damage.",
+   "A": null
+  },
+  {
+   "code": "NOIR",
+   "kr": "하루",
+   "it": null,
+   "en": "Can record and attack with Skill 3 to boost overall damage.",
+   "A": null
+  },
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": null,
+   "en": "Can record and attack with Skill 3 to boost overall damage.",
+   "A": null
+  },
+  {
+   "code": "AKIHIKO",
+   "kr": "사나다",
+   "it": null,
+   "en": "Can record and attack with Skill 3 to boost overall damage.",
+   "A": null
+  }
+ ],
+ "fox": [
+  {
+   "code": "YUKI",
+   "kr": "유키미",
+   "it": "fornisce Shield e buff DEF in linea con la meccanica di danno di Yusuke.",
+   "en": "Provides Shield and DEF buffs that align well with Yusuke’s damage mechanism.",
+   "A": null
+  },
+  {
+   "code": "PUPPET",
+   "kr": "미유",
+   "it": "fornisce Shield e buff DEF in linea con la meccanica di danno di Yusuke.",
+   "en": "Provides Shield and DEF buffs that align well with Yusuke’s damage mechanism.",
+   "A": null
+  },
+  {
+   "code": "RIN",
+   "kr": "야오링",
+   "it": "applica una riduzione DEF AoE per aumentare il danno complessivo del team.",
+   "en": "Applies an AoE DEF reduction to increase overall team damage.",
+   "A": null
+  },
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "attiva l'HIGHLIGHT per portare il tasso di Counter al 100%.",
+   "en": "Activates HIGHLIGHT to raise Counter rate to 100%.",
+   "A": null
+  },
+  {
+   "code": "CHERISH",
+   "kr": "마사키",
+   "it": "fornisce forti Shield e buff DEF in sinergia con la meccanica di danno di Yusuke.",
+   "en": "Provides strong Shield and DEF buffs that synergize with Yusuke’s damage mechanism.",
+   "A": null
+  }
+ ],
+ "fuka": [
+  {
+   "code": "LEON",
+   "kr": "레오",
+   "it": null,
+   "en": "Because his core skills are simple and he can provide immediate buffs, he is the safest all-around option.",
+   "A": 6
+  },
+  {
+   "code": "LUCE",
+   "kr": "쇼키",
+   "it": null,
+   "en": "Because Skill 3 lasts for 4 turns, a single switch-in can provide buffs that stay active for a long time.",
+   "A": 6
+  },
+  {
+   "code": "MATOI",
+   "kr": "미오",
+   "it": null,
+   "en": "Mio can cover Fuuka's weakness of lacking DEF reduction and Pierce. If she is at A6, she can use both Skill 1 and Skill 3 immediately upon entering.",
+   "A": null
+  },
+  {
+   "code": "HOWLER",
+   "kr": "루우나",
+   "it": null,
+   "en": "Runa can cover Fuuka's weakness of lacking DEF reduction and Pierce. Her A6 effect lets her apply her strongest debuff on the first turn she enters.",
+   "A": 6
+  },
+  {
+   "code": "YUKARI",
+   "kr": "유카리",
+   "it": null,
+   "en": "At A1 or higher, she can use Theurgy immediately upon entering, grant a high amount of Pierce, and then either buff with Skill 2 or recharge Theurgy with Skill 3.",
+   "A": 1
+  },
+  {
+   "code": "BERRY",
+   "kr": "이치고",
+   "it": null,
+   "en": "Condition: Fuuka A6. Because Fuuka copies buffs onto her Shift Member, Ichigo can participate as an additional damage dealer by using the once-per-battle bonus skill activations unlocked at A6.",
+   "A": 6
+  },
+  {
+   "code": "BLITZ",
+   "kr": "카타야마",
+   "it": null,
+   "en": "Condition: Fuuka A6. Across 4 swap-ins, Katayama can use Skill 1 + 3 to Down enemies during key damage windows. Her AoE DEF reduction, Shock, and amplification of damage dealt to Downed enemies greatly increase total damage.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": null,
+   "en": "On Fire, Ice, and Elec teams, Koromaru is one of Fuuka's best Shift Member options. Aside from his passive, he can apply all of his debuffs as soon as he enters, reducing enemy DEF and changing their weaknesses.",
+   "A": null
+  }
+ ],
+ "howler": [
+  {
+   "code": "MONT·Frostgale",
+   "kr": "몽타뉴·백조",
+   "it": "la sinergia tra l'aumento del danno Resonance di Runa e la riduzione DEF single-target è massima.",
+   "en": "The synergy between Runa's Resonance damage increase and single-target DEF reduction effects is maximized.",
+   "A": null
+  },
+  {
+   "code": "BUI",
+   "kr": "YUI",
+   "it": "stessa sinergia (aumento del danno Resonance + riduzione DEF single-target).",
+   "en": "The synergy between Runa's Resonance damage increase and single-target DEF reduction effects is maximized.",
+   "A": null
+  },
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": "Runa applica una riduzione DEF AoE, applica Burn e aumenta il danno Fire subito dai nemici.",
+   "en": "Runa applies an AoE DEF reduction, inflicts Burn, and increases enemies’ Fire damage taken.",
+   "A": null
+  }
+ ],
+ "j-c": [
+  {
+   "code": "WONDER",
+   "kr": "원더",
+   "it": "J&C aumentano di 1/2 il livello delle skill di Wonder anche senza partecipare direttamente al combattimento.",
+   "en": "J&C can increase Wonder's Skill Level by 1/2 even if not directly participating in combat.",
+   "A": null
+  }
+ ],
+ "joker-starlight": [
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": "migliorano molto l'efficienza della Skill 3 di Starlight Ren tramite Skill Amplification.",
+   "en": "Greatly improves the efficiency of Starlight Ren's Skill 3 through Skill Amplification.",
+   "A": null
+  },
+  {
+   "code": "CROW",
+   "kr": "아케치",
+   "it": "Starlight Ren applica danno che scala con le stat di Akechi, mentre Akechi si rafforza sfruttando il danno applicato da Ren.",
+   "en": "Starlight Ren applies damage that scales with Akechi's stats, while Akechi is strengthened by leveraging the damage Ren applies.",
+   "A": 6
+  }
+ ],
+ "joker": [
+  {
+   "code": "LEON",
+   "kr": "레오",
+   "it": "fornisce alti buff ad ATK e CRIT Mult.",
+   "en": "Provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "RIN",
+   "kr": "야오링",
+   "it": "attiva la Curse Sonata e applica una riduzione DEF AoE per aumentare il danno del team.",
+   "en": "Activates Curse Sonata and applies an AoE DEF reduction to increase overall team damage.",
+   "A": null
+  },
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "attiva l'HIGHLIGHT per ottenere 『Will of Rebellion』.",
+   "en": "Activates HIGHLIGHT to gain 『Will of Rebellion』.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "Riko fornisce un forte buff al CRIT DMG; poiché la sua passiva richiede di mettere a segno 5 o più colpi entro 2 turni, un approccio è equipaggiare Ren con i set [Departure] + [Control] per aumentare il numero totale di colpi.",
+   "en": "Riko provides a strong CRIT DMG buff. Since Riko’s passive requires landing 5 or more hits within 2 turns to activate, one approach is to equip Ren with the [Departure] + [Control] sets to increase his total number of hits.",
+   "A": null
+  }
+ ],
+ "junpei": [
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": "il valore di Junpei Iori aumenta molto con un DPS Fire presente.",
+   "en": "Junpei Iori’s value increases significantly when a Fire attribute DPS is present.",
+   "A": null
+  },
+  {
+   "code": "KIRIJO",
+   "kr": "미츠루",
+   "it": "il buff di Junpei è sempre applicato a tutti gli alleati, e Mitsuru può eseguire attacchi Fire copiando l'attributo degli alleati.",
+   "en": "Junpei Iori’s buff is always conducted on all allies, and Mitsuru can perform Fire attribute attacks by copying the attribute of his allies.",
+   "A": null
+  },
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": "il valore di Junpei aumenta molto con un DPS Fire; inoltre Junpei può applicare Burn ai nemici con la Skill 3.",
+   "en": "Junpei Iori’s value increases significantly when a Fire attribute DPS is present. Additionally, Junpei Iori can inflict Burn on enemies by using Skill 3.",
+   "A": null
+  },
+  {
+   "code": "PANTHER",
+   "kr": "안",
+   "it": "stesso discorso: valore alto con DPS Fire, Burn tramite Skill 3.",
+   "en": "Junpei Iori’s value increases significantly when a Fire attribute DPS is present. Additionally, Junpei Iori can inflict Burn on enemies by using Skill 3.",
+   "A": null
+  }
+ ],
+ "key": [
+  {
+   "code": "PANTHER",
+   "kr": "안",
+   "it": "KEY può aumentare il danno Fire subito dai nemici.",
+   "en": "KEY can increase Fire damage taken by enemies.",
+   "A": null
+  }
+ ],
+ "kirijo": [
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": "potente DPS single-target, spesso usato insieme a Mitsuru nei boss che danno bonus di aumento del danno finale all'uso della Theurgy.",
+   "en": "A powerful single-target dealer, and is often used together in bosses that give the final damage increase bonus when using Theurgy.",
+   "A": null
+  },
+  {
+   "code": "FUUKA",
+   "kr": "후카",
+   "it": "la passiva Pre-Navigator di Mitsuru riduce di 4 azioni alleate il cooldown iniziale di Fuuka.",
+   "en": "Mitsuru's Responsibility passive reduces Fuuka's initial cooldown by 4 ally actions.",
+   "A": null
+  },
+  {
+   "code": "PINKY",
+   "kr": "나루미",
+   "it": "Mitsuru fornisce alta Defense Reduction e infligge danno aggiuntivo a ogni turno aggiuntivo di Narumi.",
+   "en": "Mitsuru provides high Defense Reduction and deals additional Damage on every Additional Turn of Narumi.",
+   "A": null
+  }
+ ],
+ "koromaru": [
+  {
+   "code": "FUUKA",
+   "kr": "후카",
+   "it": "anche entrando come Shift Member di Fuuka, Koromaru può usare tutti i suoi effetti tranne 1 passiva: Fuuka è una delle sue migliori opzioni.",
+   "en": "Even when Koromaru enters as Fuuka's Shift Member, he can use all of his effects except for 1 passive, making Fuuka one of his best options.",
+   "A": null
+  },
+  {
+   "code": "PUPPET·Wavecatcher",
+   "kr": "미유·여름",
+   "it": "Koromaru può potenziare la debolezza Ice di tutti i nemici e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Ice weakness and increase the entire party's damage.",
+   "A": null
+  },
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": "può potenziare la debolezza Fire di tutti i nemici, applicare Burn e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Fire weakness, inflict Burn, and increase the entire party's damage.",
+   "A": null
+  },
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": "può potenziare la debolezza Fire di tutti i nemici e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Fire weakness and increase the entire party's damage.",
+   "A": null
+  },
+  {
+   "code": "AKIHIKO",
+   "kr": "사나다",
+   "it": "può potenziare la debolezza Elec di tutti i nemici, applicare Shock e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Elec weakness, inflict Shock, and increase the entire party's damage.",
+   "A": null
+  }
+ ],
+ "kotone": [
+  {
+   "code": "JOKER·Starlight",
+   "kr": "렌·댄싱 스타",
+   "it": "usa il [Coordinated Damage] della Skill 3, che concede buff agli alleati sfruttando anche i valori dei buff copiati da Kotone.",
+   "en": "Uses Skill 3's [Coordinated Damage], which grants buffs to allies while also using the values of buffs copied by Kotone.",
+   "A": null
+  },
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": "Kotone può copiare e concedere il valore di Skill Effect Amplification che un alleato riceve da J&C.",
+   "en": "Kotone can copy and grant the Skill Effect Amplification value an ally receives from J&C.",
+   "A": null
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "concede agli alleati buff che Kotone può copiare.",
+   "en": "Grants buffs to allies that Kotone can copy.",
+   "A": null
+  },
+  {
+   "code": "TURBO",
+   "kr": "마유미",
+   "it": "concede agli alleati buff che Kotone può copiare.",
+   "en": "Grants buffs to allies that Kotone can copy.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "concede agli alleati buff che Kotone può copiare.",
+   "en": "Grants buffs to allies that Kotone can copy.",
+   "A": null
+  },
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "concede agli alleati buff che Kotone può copiare.",
+   "en": "Grants buffs to allies that Kotone can copy.",
+   "A": null
+  }
+ ],
+ "luce-notte": [
+  {
+   "code": "SOY·Gunslinger",
+   "kr": "슌·프론티어",
+   "it": "può sostituirsi alla riduzione di HP di Shoki, permettendo di aumentare notevolmente gli stack della Skill 2.",
+   "en": "Can substitute for Shoki’s HP reduction, allowing Skill 2 stacks to increase significantly.",
+   "A": null
+  },
+  {
+   "code": "ANGE",
+   "kr": "마나카",
+   "it": "riavvolgendo i turni, può infliggere danno un'altra volta quando gli stack della Skill 2 sono stati accumulati.",
+   "en": "By rewinding turns, he can deal damage one more time when the stacks of his Skill 2 have been accumulated.",
+   "A": null
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "oltre a vari buff ed effetti Bless, può anche ripristinare HP usando item.",
+   "en": "In addition to various buffs and Bless effects, she can also restore HP by using items.",
+   "A": null
+  }
+ ],
+ "makoto": [
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "Riko fornisce alti buff di ATK e CRIT Mult; il set di skill base di Makoto è composto da più colpi, quindi la passiva di Riko si massimizza.",
+   "en": "Riko provides high ATK and CRIT Mult buffs. Makoto’s basic Skill Set is composed of multiple hits, so Riko’s passive effect can be maximized.",
+   "A": null
+  },
+  {
+   "code": "YUKARI",
+   "kr": "유카리",
+   "it": "aiuta a recuperare energia Theurgy, permettendo più attivazioni di Theurgy e ulteriori Special Stack.",
+   "en": "Helps recover Theurgy energy, enabling more Theurgy activations and gaining additional Special Stacks.",
+   "A": null
+  },
+  {
+   "code": "ANGE",
+   "kr": "마나카",
+   "it": "riavvolgendo i turni può infliggere danno un'altra volta quando gli stack sono accumulati; durante il rewind si aggiunge anche barra Theurgy, quindi la Theurgy si può riattivare.",
+   "en": "By rewinding turns, he can deal damage one more time when the stacks have been accumulated. During the turn rewind, Theurgy gauges are also added, so Theurgy can be activated again.",
+   "A": null
+  },
+  {
+   "code": "KIRIJO",
+   "kr": "미츠루",
+   "it": "fornisce alta riduzione DEF e danno aggiuntivo.",
+   "en": "Provides high DEF reduction and additional damage.",
+   "A": null
+  },
+  {
+   "code": "JUNPEI",
+   "kr": "준페이",
+   "it": "il buff di Junpei Iori aumenta molto danno Fire e danno critico.",
+   "en": "Junpei Iori’s buff increases Fire damage and critical damage significantly.",
+   "A": null
+  }
+ ],
+ "marian-beachflower": [
+  {
+   "code": "LUCE·Tenebre",
+   "kr": "쇼키·암야",
+   "it": "oltre a vari buff ed effetti Bless, può anche ripristinare HP usando item.",
+   "en": "In addition to various buffs and Bless effects, she can also restore HP by using items.",
+   "A": null
+  },
+  {
+   "code": "BUI·Cosmic",
+   "kr": "YUI·스텔라",
+   "it": "può concedere un aumento del danno All-Out Attack in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket All-Out Attack damage boost through item use.",
+   "A": null
+  },
+  {
+   "code": "PUPPET·Wavecatcher",
+   "kr": "미유·여름",
+   "it": "può concedere un aumento del danno Resonance in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket Resonance damage boost through item use.",
+   "A": null
+  },
+  {
+   "code": "BERRY",
+   "kr": "이치고",
+   "it": "può concedere un aumento del danno DOT in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket DOT damage boost through item use.",
+   "A": null
+  }
+ ],
+ "matoi": [
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": "Mio potenzia gli effetti TECHNICAL e condivide la meccanica che richiede nemici con Burn.",
+   "en": "Mio enhances TECHNICAL effects and shares the mechanism that requires Burned enemies.",
+   "A": null
+  },
+  {
+   "code": "BUI",
+   "kr": "YUI",
+   "it": "se Mio è ad A6, può infliggere danno due volte in un turno con skill Persona, permettendo di attivare più spesso il Follow-up di YUI.",
+   "en": "If Mio is in A6, she can deal damage twice in one turn using Persona skills, allowing YUI's Follow-up to be triggered more frequently.",
+   "A": 6
+  }
+ ],
+ "messa": [
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "può accumulare Bleed usando l'Highlight per attivare 5 stack.",
+   "en": "Can stack Bleed by using Highlight to activate 5 stacks.",
+   "A": null
+  },
+  {
+   "code": "MOKO·Seaside",
+   "kr": "토모코·여름",
+   "it": "aumenta Ailment Accuracy e Attack, fornendo anche Healing Effect.",
+   "en": "Increases Ailment Accuracy and Attack, while also providing Healing Effect.",
+   "A": null
+  }
+ ],
+ "mona-starlight": [
+  {
+   "code": "JOKER·Starlight",
+   "kr": "렌·댄싱 스타",
+   "it": "aumenta il Crit Rate di Morgana·Starlight e può ripristinare ulteriori Rhapsodic Beat.",
+   "en": "Increases Morgana·Starlight's Critical Rate and can additionally restore Rhapsodic Beat.",
+   "A": null
+  },
+  {
+   "code": "MONT·Frostgale",
+   "kr": "몽타뉴·백조",
+   "it": "come DPS Wind può sfruttare appieno i buff di Morgana·Starlight.",
+   "en": "As a Wind damage dealer, she can fully utilize Morgana·Starlight's buffs.",
+   "A": null
+  }
+ ],
+ "mont-frostgale": [
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "ottiene stack che superano il limite di quantità tramite l'HL.",
+   "en": "Obtains stacks that can break the quantity limit through HL.",
+   "A": null
+  },
+  {
+   "code": "HOWLER",
+   "kr": "루우나",
+   "it": "potenzia la Resonance concessa dalla Skill 3 di Montagne riducendo la DEF nemica.",
+   "en": "Enhances the Resonance granted by Montagne’s Skill 3 while reducing enemy DEF.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "infligge danno Wind con la Skill 1, e le skill multi-colpo di Montagne rendono facile attivare la passiva di Riko.",
+   "en": "Deals Wind damage with Skill 1, and Montagne’s multi-hit skills make it easy to trigger Riko’s passive buff.",
+   "A": null
+  }
+ ],
+ "noir": [
+  {
+   "code": "MOKO·Seaside",
+   "kr": "토모코·여름",
+   "it": "aumenta l'Ailment Accuracy di Haru applicando un debuff ad area.",
+   "en": "Increases Haru’s Ailment Accuracy while applying a wide-area debuff.",
+   "A": null
+  },
+  {
+   "code": "ORACLE",
+   "kr": "후타바",
+   "it": "applica un potente debuff ogni 3 turni, in linea con il ciclo di skill di Haru.",
+   "en": "Applies a powerful debuff every 3 turns, matching Haru’s skill cycle.",
+   "A": null
+  },
+  {
+   "code": "ANGE",
+   "kr": "마나카",
+   "it": "può scatenare un Gun Shot aggiuntivo quando gli stack di potenziamento sono stati accumulati tramite il rewind del turno.",
+   "en": "Can unleash an additional Gun Shot when Enhancement stacks have been accumulated through turn rewind.",
+   "A": null
+  }
+ ],
+ "okyann": [
+  {
+   "code": "PANTHER",
+   "kr": "안",
+   "it": "Ann con R0 può ricevere il buff [Outdated Slang] di Okyann quando l'arma applica Burn.",
+   "en": "Ann with R0, can receive Okyann's [Outdated Slang] buff when the weapon inflicts Burn.",
+   "A": null
+  },
+  {
+   "code": "SEPIA",
+   "kr": "토시야",
+   "it": "fornisce un buff di Ailment Accuracy, aumentando la probabilità di infliggere effetti Curse.",
+   "en": "Provides an Ailment Accuracy buff, increasing the chance to inflict Curse effects.",
+   "A": null
+  }
+ ],
+ "panther-starlight": [
+  {
+   "code": "ANGE",
+   "kr": "마나카",
+   "it": "sia gli stack sia gli SP necessari per la Skill 3 vengono ripristinati quando il turno torna indietro, permettendo attacchi potenti ripetuti che spendono tutti gli SP.",
+   "en": "Both the stacks and SP needed for Skill 3 are restored when the turn cycles back, allowing repeated powerful attacks that spend all SP.",
+   "A": null
+  },
+  {
+   "code": "JUNPEI",
+   "kr": "준페이",
+   "it": "fornisce forti buff al danno Fire e debuff ai nemici.",
+   "en": "Junpei provides strong buffs for Fire damage and debuffs against enemies.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": "potenzia la debolezza Fire dei nemici e aumenta il danno che subiscono.",
+   "en": "Koromaru strengthens enemies' Fire weakness and increases the damage they take.",
+   "A": null
+  }
+ ],
+ "panther": [
+  {
+   "code": "KEY",
+   "kr": "키요시",
+   "it": "applica Burn ai nemici e aumenta il danno Fire subito.",
+   "en": "Inflicts Burn on enemies and increases Fire damage taken.",
+   "A": null
+  },
+  {
+   "code": "HOWLER",
+   "kr": "루우나",
+   "it": "applica una riduzione DEF AoE, infligge Burn e aumenta il danno Fire subito dai nemici.",
+   "en": "Applies an AoE DEF reduction, inflicts Burn, and increases enemies’ Fire damage taken.",
+   "A": null
+  },
+  {
+   "code": "MATOI",
+   "kr": "미오",
+   "it": "applica una riduzione DEF AoE e aumenta il danno Fire subito dai nemici con Burn.",
+   "en": "Applies an AoE DEF reduction and increases Fire damage taken by Burned enemies.",
+   "A": null
+  }
+ ],
+ "pinky": [
+  {
+   "code": "ANGE",
+   "kr": "마나카",
+   "it": "riavvolgendo i turni può riattivare i turni aggiuntivi quando gli stack sono stati accumulati.",
+   "en": "By rewinding turns, she can activate additional turns again when the stacks have been accumulated.",
+   "A": null
+  },
+  {
+   "code": "KIRIJO",
+   "kr": "미츠루",
+   "it": "Mitsuru fornisce alta Defense Reduction e infligge danno aggiuntivo a ogni turno aggiuntivo di Narumi.",
+   "en": "Mitsuru provides high Defense Reduction and deals additional Damage on every Additional Turn of Narumi.",
+   "A": null
+  },
+  {
+   "code": "TURBO",
+   "kr": "마유미",
+   "it": "fornisce alto Pierce Rate e vari buff; con Mayumi ad alta Awareness e Mitsuru a bassa Awareness, può rendere meglio di Mitsuru.",
+   "en": "Provides high Pierce Rate and various Buffs. If Mayumi's Awareness is high and Mitsuru's Awareness is low, she can show better performance than Mitsuru.",
+   "A": null
+  },
+  {
+   "code": "FUUKA",
+   "kr": "후카",
+   "it": "aumenta la frequenza degli ingressi del personaggio di backup tramite i turni aggiuntivi; con Narumi A1+, può attivare la Skill 2 due o più volte.",
+   "en": "Increases the frequency of backup character switch-ins through Additional Turns. If Narumi is Awareness 1 or higher, she can activate Skill 2 twice or more.",
+   "A": null
+  },
+  {
+   "code": "BLITZ",
+   "kr": "카타야마",
+   "it": "Kumi applica Down e riduce la Defense dei nemici; migliora il danno totale potenziando il Downed damage, un moltiplicatore separato che a Narumi manca.",
+   "en": "Kumi inflicts Down and reduces Defense on enemies. She improves total Damage by enhancing Downed damage, a separate multiplier that Narumi lacks.",
+   "A": null
+  }
+ ],
+ "puppet-wavecatcher": [
+  {
+   "code": "TURBO",
+   "kr": "마유미",
+   "it": "usa il turno aggiuntivo di Mayumi per attivare più follow-up, e il buff di penetrazione dura 1 turno in più, per un danno stabile.",
+   "en": "Use Mayumi's additional turn to trigger follow-up attacks more and the penetration buff lasts for 1 turn longer, allowing for stable damage output.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "alti buff di CRIT DMG, e la capacità di recupero SP di Riko permette a Miyu di recuperare SP e attivare più follow-up.",
+   "en": "High CRIT DMG buffs, as well as Riko's SP recovery ability allows Miyu to recover SP, allowing follow-up attacks to be triggered more.",
+   "A": null
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "può concedere un aumento del danno Resonance in un bucket indipendente tramite l'uso di item.",
+   "en": "Can grant an independent bucket Resonance damage boost through item use.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": "può potenziare la debolezza Ice di tutti i nemici e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Ice weakness and increase the entire party's damage.",
+   "A": null
+  }
+ ],
+ "puppet": [
+  {
+   "code": "FOX",
+   "kr": "유스케",
+   "it": "fornisce Shield e buff DEF in linea con la meccanica di danno di Yusuke.",
+   "en": "Provides Shield and DEF buffs that align well with Yusuke’s damage mechanism.",
+   "A": null
+  }
+ ],
+ "queen": [
+  {
+   "code": "VINO",
+   "kr": "치즈코",
+   "it": "può ridurre la DEF e infliggere le alterazioni elementali essenziali.",
+   "en": "Can reduce DEF and inflict essential elemental ailments.",
+   "A": null
+  },
+  {
+   "code": "LEON",
+   "kr": "레오",
+   "it": "può attivare Sonata con lo stesso attributo Nuclear e fornire buff a Critical DMG e ATK.",
+   "en": "Can activate Sonata with the same Nuclear attribute and provide Critical DMG and ATK buffs.",
+   "A": null
+  },
+  {
+   "code": "PHOEBE",
+   "kr": "유우미",
+   "it": "può creare facilmente Cocktail Nuclear infliggendo danno Nuclear ai nemici insieme a VINO.",
+   "en": "Can easily create Nuclear cocktails by inflicting Nuclear damage to enemies together with VINO.",
+   "A": null
+  },
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "permette di usare spesso il potente HIGHLIGHT.",
+   "en": "Allows powerful HIGHLIGHT to be used frequently.",
+   "A": null
+  }
+ ],
+ "rin-firecracker": [
+  {
+   "code": "MATOI",
+   "kr": "미오",
+   "it": "potenzia gli effetti TECHNICAL, riduce la DEF di tutti i nemici e condivide la meccanica che richiede nemici con Burn.",
+   "en": "Enhances TECHNICAL effects and reduces DEF of all enemies, and shares the mechanism that requires Burned enemies.",
+   "A": null
+  },
+  {
+   "code": "HOWLER",
+   "kr": "루우나",
+   "it": "applica una riduzione DEF AoE, applica Burn e aumenta il danno Fire subito dai nemici.",
+   "en": "Applies an AoE DEF reduction, inflicts Burn, and increases enemies’ Fire damage taken.",
+   "A": null
+  },
+  {
+   "code": "JUNPEI",
+   "kr": "준페이",
+   "it": "il suo valore aumenta molto con un DPS Fire; inoltre può applicare Burn ai nemici con la Skill 3.",
+   "en": "Junpei Iori’s value increases significantly when a Fire attribute DPS is present. Additionally, Junpei Iori can inflict Burn on enemies by using Skill 3.",
+   "A": null
+  },
+  {
+   "code": "KOROMARU",
+   "kr": "코로마루",
+   "it": "può potenziare la debolezza Fire di tutti i nemici, applicare Burn e aumentare il danno di tutto il party.",
+   "en": "Koromaru can enhance all enemies' Fire weakness, inflict Burn, and increase the entire party's damage.",
+   "A": null
+  }
+ ],
+ "sepia": [
+  {
+   "code": "OKYANN",
+   "kr": "카요",
+   "it": "fornisce un buff di Ailment Accuracy, aumentando la probabilità di infliggere effetti Curse.",
+   "en": "Provides an Ailment Accuracy buff, increasing the chance to inflict Curse effects.",
+   "A": null
+  },
+  {
+   "code": "MOKO·Seaside",
+   "kr": "토모코·여름",
+   "it": "fornisce un buff di Ailment Accuracy, aumentando la probabilità di infliggere effetti Curse.",
+   "en": "Provides an Ailment Accuracy buff, increasing the chance to inflict Curse effects.",
+   "A": null
+  },
+  {
+   "code": "MARIAN·Beachflower",
+   "kr": "미나미·여름",
+   "it": "può concedere un bonus al danno DOT di \"bucket\" indipendente tramite l'uso di oggetti.",
+   "en": "Can grant an independent bucket DOT damage boost through item use.",
+   "A": null
+  }
+ ],
+ "skull": [
+  {
+   "code": "LEON",
+   "kr": "레오",
+   "it": "fornisce alti buff ad ATK e CRIT Mult e, abbassando gli HP di Ryuji mentre gli concede uno Shield, amplifica ulteriormente il suo danno che scala con gli HP bassi.",
+   "en": "Provides high ATK and CRIT Mult buffs, and by lowering Ryuji’s HP while granting a Shield, further amplifies his damage that scales with lower HP.",
+   "A": null
+  }
+ ],
+ "soy-pioneer": [
+  {
+   "code": "LUCE·Tenebre",
+   "kr": "쇼키·암야",
+   "it": "il consumo di HP della Skill 2 di Shoki permette a Shun di farsene carico e di aumentare notevolmente gli stack di potenziamento della Skill 3.",
+   "en": "The HP consumption from Shoki's Skill 2 allows Shun to bear the burden and increase the Skill 3 enhancement stack significantly.",
+   "A": null
+  }
+ ],
+ "turbo": [
+  {
+   "code": "JOKER",
+   "kr": "렌",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  },
+  {
+   "code": "NOIR",
+   "kr": "하루",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  },
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  },
+  {
+   "code": "AKIHIKO",
+   "kr": "사나다",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  },
+  {
+   "code": "PUPPET·Wavecatcher",
+   "kr": "미유·여름",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  },
+  {
+   "code": "BUI·Cosmic",
+   "kr": "YUI·스텔라",
+   "it": null,
+   "en": "Provides high Penetration, ATK, and Damage Mult. buffs, enabling flexible tactics through additional turns.",
+   "A": null
+  }
+ ],
+ "violet": [
+  {
+   "code": "CHORD",
+   "kr": "아야카",
+   "it": "permette a Kasumi di usare più spesso l'HIGHLIGHT, la sua fonte di danno principale.",
+   "en": "Enables Kasumi to use HIGHLIGHT more frequently, which is her core damage source.",
+   "A": null
+  },
+  {
+   "code": "WIND·Tempest",
+   "kr": "리코·매화",
+   "it": "l'HIGHLIGHT di Kasumi può andare a critico e Riko fornisce un forte buff di CRIT DMG; poiché la passiva di Riko richiede 5 o più colpi in 2 turni, un approccio è equipaggiare Kasumi con i set [Departure] + [Control] per aumentare il numero totale di colpi. Ad Awareness 6, entrambe le attivazioni automatiche della Skill 1 concesse dalla Skill 3 contano per attivare l'effetto della Skill 2 di Kasumi.",
+   "en": "Kasumi’s HIGHLIGHT can trigger CRITs, and Riko provides a strong CRIT DMG buff. Since Riko’s passive requires landing 5 or more hits within 2 turns to activate, one approach is to equip Kasumi with the [Departure] + [Control] sets to increase her total number of hits.\nAt Awareness 6, both of the automatic Skill 1 activations granted by Skill 3 are each counted toward triggering Kasumi’s Skill 2 effect.",
+   "A": null
+  },
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": "l'attivazione automatica della Skill 3 di [Strategist] J&C da Awareness 1 vale anche per l'attivazione automatica della Skill 1 di Kasumi dalla Skill 2, permettendo di usare la Skill 1 due volte in una volta.",
+   "en": "[Strategist] J&C’s automatic Skill 3 activation from Awareness 1 also applies to Kasumi’s automatic Skill 1 activation from Skill 2, allowing Skill 1 to be used twice at once.",
+   "A": 1
+  }
+ ],
+ "wind-tempest": [
+  {
+   "code": "JOKER",
+   "kr": "렌",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "QUEEN",
+   "kr": "마코토",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "MONT·Frostgale",
+   "kr": "몽타뉴·백조",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "VIOLET",
+   "kr": "카스미",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "RIN·Firecracker",
+   "kr": "야오링·사자무",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "AKIHIKO",
+   "kr": "사나다",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "BERRY",
+   "kr": "이치고",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "PUPPET·Wavecatcher",
+   "kr": "미유·여름",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "BUI·Cosmic",
+   "kr": "YUI·스텔라",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  },
+  {
+   "code": "J&C",
+   "kr": "J&C",
+   "it": null,
+   "en": "Riko provides high ATK and CRIT Mult buffs.",
+   "A": null
+  }
+ ],
+ "yukari": [
+  {
+   "code": "MAKOTO",
+   "kr": "유키 마코토",
+   "it": "aiuta i membri S.E.E.S. a recuperare energia Theurgy, permettendo più attivazioni di Theurgy e ulteriori Special Stack.",
+   "en": "Helps S.E.E.S. members recover Theurgy energy, enabling more Theurgy activations and gaining additional Special Stacks.",
+   "A": null
+  },
+  {
+   "code": "AKIHIKO",
+   "kr": "사나다",
+   "it": "aiuta i membri S.E.E.S. a recuperare energia Theurgy, permettendo più attivazioni di Theurgy per danni potenti.",
+   "en": "Helps S.E.E.S. members recover Theurgy energy, enabling more Theurgy activations to deal powerful damage.",
+   "A": null
+  }
+ ],
+ "yuki": [
+  {
+   "code": "FOX",
+   "kr": "유스케",
+   "it": "fornisce Shield e buff DEF in linea con la meccanica di danno di Yusuke.",
+   "en": "Provides Shield and DEF buffs that align well with Yusuke’s damage mechanism.",
+   "A": null
+  }
+ ]
+}

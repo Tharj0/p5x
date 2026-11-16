@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roster P5X — Tracker personaggi</title>
+<!--__HEAD__-->
+<style>
+:root{
+  --bg:#0e0f14; --bg2:#15171f; --bg3:#1c1f2a; --line:#2a2e3d; --line2:#3a3f52;
+  --txt:#e8e9f0; --muted:#9a9fb3; --dim:#6b7088;
+  --red:#e3142f; --red2:#ff3b52; --gold:#f2c14e; --ok:#3ddc84; --warn:#ffb347;
+  --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.45);
+  --el-Physical:#b8bcc9; --el-Gun:#c9c56b; --el-Fire:#ff6a3d; --el-Ice:#6fd3ff; --el-Electric:#ffd84d;
+  --el-Wind:#5ee07a; --el-Psychokinesis:#ff6fd8; --el-Nuclear:#4fe3d1; --el-Bless:#ffd98a; --el-Curse:#b57bff;
+  --el-Almighty:#ffffff; --el-Buff:#8c93b0; --el-WindIce:#7fe0d0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--red2)}
+.app{max-width:1280px;margin:0 auto;padding:16px 16px 80px}
+header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:10px 0 16px;border-bottom:1px solid var(--line)}
+h1{font-size:22px;margin:0;letter-spacing:.3px}
+h1 small{display:block;font-size:12px;color:var(--muted);font-weight:400;margin-top:2px}
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.status .dot{width:9px;height:9px;border-radius:50%;background:var(--dim)}
+.status.ok .dot{background:var(--ok)} .status.local .dot{background:var(--warn)} .status.busy .dot{background:var(--gold);animation:pulse 1s infinite} .status.err .dot{background:var(--red2)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.tabs{display:flex;gap:6px;margin:14px 0 10px;flex-wrap:wrap}
+.tab{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;cursor:pointer;color:var(--muted)}
+.tab.active{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+.toolbar input[type=search]{flex:1;min-width:200px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--txt)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;color:var(--muted);user-select:none}
+.chip.on{border-color:var(--red2);color:#fff;background:#2a1118}
+.chip.el.on{color:#fff}
+.btn{background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:8px 13px;cursor:pointer;color:var(--txt);font-size:14px}
+.btn:hover{border-color:var(--red2)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.btn.small{padding:5px 9px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.summary{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
+.stat{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--txt);font-size:16px;margin-right:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:8px 10px 8px 8px;cursor:pointer;position:relative;transition:border-color .15s,transform .15s;display:flex;gap:10px}
+.card .thumb{width:72px;height:121px;object-fit:cover;border-radius:8px;flex:none;background:var(--bg3)}
+.card.notowned .thumb{filter:grayscale(.9)}
+.card .cbody{flex:1;min-width:0;display:flex;flex-direction:column}
+.card:hover{border-color:var(--line2);transform:translateY(-1px)}
+.card.owned{border-left:4px solid var(--el)}
+.card.notowned{opacity:.62}
+.card .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card .code{font-weight:700;font-size:15px;letter-spacing:.3px}
+.card .name{color:var(--muted);font-size:12.5px}
+.card .meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.badge{font-size:11px;padding:2px 7px;border-radius:6px;background:var(--bg3);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.badge.el{color:#000;background:var(--el);border-color:transparent;font-weight:600}
+.badge.nr{color:var(--warn);border-color:var(--warn)}
+.badge.gold{color:var(--gold);border-color:var(--gold)}
+.card .quick{margin-top:auto;padding-top:9px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.toggle{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.toggle input{width:16px;height:16px;accent-color:var(--red)}
+.stars{color:var(--gold);font-size:12px;letter-spacing:-1px}
+/* drawer v2 */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:40}
+.overlay.open{display:block}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(1140px,100%);background:var(--bg);border-left:1px solid var(--line);box-shadow:var(--shadow);transform:translateX(100%);transition:transform .2s ease,visibility 0s linear .2s;z-index:50;display:flex;flex-direction:column;outline:none;visibility:hidden}
+.drawer.open{transform:translateX(0);visibility:visible;transition:transform .2s ease,visibility 0s}
+.dtop{display:flex;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--bg2);flex:none}
+.dtop .btn.small{min-width:38px;height:38px;padding:0 10px;white-space:nowrap}
+.dtop select{flex:1;min-width:0;max-width:270px;height:38px;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:0 8px;color:var(--txt)}
+.dsearch{flex:1;display:flex;align-items:center;gap:6px;min-width:0}
+.dsearch input{flex:1;min-width:0;height:38px;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;padding:0 10px;color:var(--txt)}
+.dsearch input.nohit{border-color:var(--red2)}
+#dHits{font-size:12px;color:var(--muted);white-space:nowrap}
+#dSearchBtn{display:none}
+.dmain{flex:1;min-height:0;display:grid;grid-template-columns:248px minmax(0,1fr)}
+.dside{overflow:auto;min-height:0;border-right:1px solid var(--line);background:var(--bg2);padding:14px 12px 20px;overscroll-behavior:contain}
+.hero{text-align:center;--el:var(--muted)}
+.hero .dimg{width:128px;height:214px;object-fit:cover;border-radius:10px;background:var(--bg3);display:block;margin:0 auto 10px;box-shadow:0 0 0 2px var(--el)}
+.hero.no .dimg{filter:grayscale(.85);box-shadow:0 0 0 1px var(--line2)}
+.hero h2{margin:0;font-size:19px;letter-spacing:.3px}
+.hero h2 .nm{display:block;color:var(--muted);font-size:13px;font-weight:400;letter-spacing:0}
+.hero .sub{color:var(--muted);font-size:12.5px;margin-top:6px;line-height:1.6}
+.hchips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:9px}
+.hchip{background:var(--bg3);border:1px solid var(--line2);border-radius:999px;padding:5px 10px;font-size:12.5px;color:var(--txt);cursor:pointer;white-space:nowrap;min-height:30px}
+.hchip:hover{border-color:var(--red2)}
+.hchip.own{color:var(--muted)}
+.hchip.own.on{background:#12301f;border-color:var(--ok);color:var(--ok);font-weight:600}
+.dtabs{display:flex;flex-direction:column;gap:3px;margin-top:14px}
+.dtab{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 11px;border-radius:9px;border:1px solid transparent;background:none;color:var(--muted);cursor:pointer;text-align:left;font-size:14px;min-height:40px}
+.dtab:hover{color:var(--txt);background:var(--bg3)}
+.dtab[aria-selected="true"]{background:#2a1118;border-color:var(--red2);color:#fff;font-weight:600}
+.dtab .r{display:flex;gap:6px;align-items:center}
+.dtab .cnt{font-size:11px;background:var(--gold);color:#000;border-radius:999px;padding:0 6px;font-weight:700}
+.dtab .kb{font-size:10.5px;color:var(--dim);border:1px solid var(--line2);border-radius:4px;padding:0 4px;font-weight:400}
+.keys{margin-top:14px;font-size:11.5px;color:var(--dim);line-height:1.7}
+.keys kbd{border:1px solid var(--line2);border-radius:4px;padding:0 4px;font-family:inherit}
+.dbody{overflow:auto;min-height:0;padding:14px 18px 70px;position:relative;overscroll-behavior:contain;overflow-wrap:anywhere}
+#view-wonder{overflow-wrap:anywhere}
+.pane{display:none}
+.pane.on{display:block;animation:fadein .16s ease}
+.drawer.all .pane{display:block;animation:none}
+.pane>.ph{display:none;margin:20px 0 10px;font-size:17px;padding-bottom:6px;border-bottom:2px solid var(--red)}
+.drawer.all .pane>.ph{display:block}
+.drawer.all .pane:first-child>.ph{margin-top:0}
+@keyframes fadein{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.sec{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin-bottom:12px}
+.sec h3{margin:0 0 10px;font-size:14px;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sec h3 .hint{font-size:12px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--dim)}
+.frow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:12px;color:var(--muted)}
+.f input,.f select,.f textarea{background:var(--bg3);border:1px solid var(--line2);border-radius:9px;padding:8px 10px;color:var(--txt);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--red2)}
+.f textarea{min-height:70px;resize:vertical}
+.f .lufel{font-size:11.5px;color:var(--dim)}
+.f .lufel b{color:var(--gold);font-weight:600}
+.wrow{display:grid;grid-template-columns:1.4fr .8fr .9fr .7fr;gap:8px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.wrow:first-of-type{border-top:0}
+.wrow .wname{font-weight:600} .wrow .wname small{display:block;color:var(--dim);font-weight:400;font-size:11.5px}
+.ref{display:flex;gap:3px}
+.ref button{width:26px;height:26px;border-radius:6px;border:1px solid var(--line2);background:var(--bg3);color:var(--muted);cursor:pointer;font-size:12px;padding:0}
+.ref button.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+.note{font-size:12.5px;color:var(--muted);background:var(--bg3);border-radius:9px;padding:8px 10px;margin-top:8px;line-height:1.4}
+.note b{color:var(--txt)}
+.effect{font-size:12.5px;color:var(--muted);margin-top:6px}
+.effect b{color:var(--gold)}
+details.ref-lufel{margin-top:10px}
+details.ref-lufel summary{cursor:pointer;color:var(--muted);font-size:13px}
+.rb{margin:8px 0 0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.rb b{color:var(--txt)}
+.rb ul{margin:4px 0 0 18px;padding:0}
+.rb .pre{white-space:pre-wrap}
+.infog-grid{display:grid;gap:10px;margin-top:8px}
+.infog figure{margin:0;background:var(--bg3);border:1px solid var(--line);border-radius:10px;padding:6px}
+.infog img{width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;background:#000}
+.infog figcaption{font-size:12px;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);display:none;z-index:80;overflow:auto}
+.lightbox.open{display:block}
+.lightbox .lbbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;background:rgba(0,0,0,.6);color:var(--muted);font-size:13px;z-index:1}
+.lightbox .lbimg{display:block;margin:0 auto;max-width:calc(100vw - 20px);max-height:calc(100vh - 70px);width:auto;height:auto;cursor:zoom-in}
+.lightbox.zoom .lbimg{max-width:none;max-height:none;width:2400px;cursor:zoom-out}
+details.ref-lufel .note{margin-top:8px;white-space:pre-wrap}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:4px 10px;font-size:12.5px;margin-top:6px}
+.kv div:nth-child(odd){color:var(--dim)}
+.dialog{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:60;background:rgba(0,0,0,.6)}
+.dialog.open{display:flex}
+.dialog .box{background:var(--bg2);border:1px solid var(--line2);border-radius:var(--radius);padding:18px;max-width:560px;width:calc(100% - 32px);box-shadow:var(--shadow)}
+.dialog textarea{width:100%;min-height:200px;background:var(--bg3);border:1px solid var(--line2);border-radius:9px;color:var(--txt);padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.dialog .acts{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#222634;border:1px solid var(--line2);color:var(--txt);padding:10px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:70;opacity:0;pointer-events:none;transition:opacity .2s;font-size:14px;max-width:90vw}
+.toast.show{opacity:1}
+.empty{color:var(--muted);padding:30px;text-align:center;border:1px dashed var(--line2);border-radius:var(--radius)}
+.wonder .wrow{grid-template-columns:1.6fr .7fr .9fr .7fr}
+.team h4{margin:16px 0 4px;font-size:13.5px;color:var(--txt)}
+.team h4.first{margin-top:2px}
+.team .hint2{font-size:12px;color:var(--dim);margin-bottom:4px}
+.mate{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.mate img.mt{width:44px;height:74px;object-fit:cover;border-radius:6px;flex:none;cursor:pointer;background:var(--bg3)}
+.mate .mb{flex:1;min-width:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.lnk{color:var(--txt);cursor:pointer;font-weight:700}
+.lnk:hover{color:var(--red2)}
+.party{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;padding:8px 0;border-top:1px solid var(--line)}
+.pm{width:56px;text-align:center;font-size:10px;color:var(--muted);cursor:pointer;line-height:1.25}
+.pm .pl{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm img,.pm .wph{width:56px;height:90px;object-fit:cover;border-radius:6px;display:block;margin-bottom:3px;background:var(--bg3)}
+.pm .wph{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10px;color:var(--muted);border:1px dashed var(--line2);cursor:default}
+.pm.self img{outline:2px solid var(--red);outline-offset:1px}
+.pm.no img{filter:grayscale(1);opacity:.5}
+.pm.shift{margin-left:10px;position:relative}
+.pm.shift::before{content:'+';position:absolute;left:-10px;top:36px;color:var(--dim);font-weight:700}
+.pcount{font-size:11.5px;color:var(--dim);align-self:center;margin-left:8px}
+.wp{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
+.wp .ic{width:58px;height:80px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--bg3);border-radius:8px;overflow:hidden;padding:3px}
+.pgroup .wp .ic{background:var(--bg2)}
+.wp .ic img{max-width:100%;max-height:100%;object-fit:contain}
+.wp .wb{flex:1;min-width:0;font-size:12.5px;color:var(--muted);line-height:1.45}
+.wp .wb .t{color:var(--txt);font-weight:600;font-size:13px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.wp .wb details summary{cursor:pointer;color:var(--dim);font-size:12px;margin-top:3px}
+.wp .ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0}
+.star{color:var(--gold)}
+.pgroup{margin-top:10px;padding:8px 12px 4px;background:var(--bg3);border-radius:10px}
+.pgroup .gh{font-weight:700;color:var(--txt);font-size:13px}
+.pgroup .gd{font-size:12px;color:var(--dim)}
+.pgroup .note{background:var(--bg2)}
+.pgroup .wp:first-of-type{border-top:0}
+.badge.ok{color:var(--ok);border-color:var(--ok)}
+.chiplist{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.chiplist .lnk{font-weight:600;font-size:11.5px;padding:2px 7px;border-radius:6px;background:var(--bg3);border:1px solid var(--line)}
+.chiplist .lnk.own{border-color:var(--ok)}
+.sr{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg button{min-width:42px;height:38px;padding:0 10px;border-radius:9px;border:1px solid var(--line2);background:var(--bg3);color:var(--muted);cursor:pointer;font-weight:600;font-size:13.5px}
+.seg button:hover{border-color:var(--red2)}
+.seg button.in{background:#2a1118;border-color:#7a2434;color:#ffc9d1}
+.seg button.on{background:var(--red);border-color:var(--red);color:#fff}
+.ovgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;align-items:start;margin-bottom:12px}
+.ovgrid .sec{margin-bottom:0}
+.ck{display:flex;gap:9px;padding:8px 2px;border:0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45;cursor:pointer;color:var(--muted);background:none;width:100%;text-align:left}
+.ck:first-of-type{border-top:0}
+.ck:hover b{color:var(--red2)}
+.ck .i{flex:none;width:22px;text-align:center}
+.ck b{color:var(--txt)}
+.cksum{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.kv2{display:grid;grid-template-columns:150px minmax(0,1fr);gap:7px 12px;font-size:13.5px;line-height:1.5;color:#c6c9d6}
+.kv2 .k{color:var(--dim)}
+.klnk{background:none;border:0;padding:0;color:var(--red2);cursor:pointer;font-size:inherit;text-align:left}
+.klnk:hover{text-decoration:underline}
+.lvbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 4px;font-size:13px;color:var(--muted);position:sticky;top:-14px;background:var(--bg2);padding:8px 0;z-index:2}
+button.chip{font:inherit;font-size:13px}
+.skc{border:1px solid var(--line);border-radius:11px;padding:11px 13px;margin-top:8px;background:var(--bg3)}
+.skc h4{margin:0 0 5px;font-size:14.5px;display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap;color:var(--txt)}
+.mylv{font-size:12px;color:var(--muted);font-weight:400;display:flex;align-items:center;gap:6px}
+.lvsel{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;padding:6px 8px;color:var(--txt);font-size:13px;min-height:34px}
+.relline{font-size:12px;color:var(--gold);margin-top:3px}
+.skc.pas h4{color:var(--muted)}
+.tx{font-size:13.5px;line-height:1.6;color:#c6c9d6}
+.von{color:var(--gold);font-weight:700}
+.voff{color:var(--dim)}
+.vg.vc .voff{display:none}
+.awrow{display:flex;gap:11px;padding:10px 11px;border-radius:11px;border:1px solid var(--line);margin-top:7px;background:var(--bg3)}
+.awrow.on{border-color:#6b5a2a}
+.awrow.off .tx{color:var(--dim)}
+.awrow .lv{flex:none;width:44px;height:44px;border-radius:10px;font-weight:700;background:var(--bg2);border:1px solid var(--line2);color:var(--muted);cursor:pointer}
+.awrow .lv:hover{border-color:var(--gold)}
+.awrow.on .lv{background:var(--gold);color:#000;border-color:var(--gold)}
+.bst{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+.bst th,.bst td{padding:5px 6px;border-bottom:1px solid var(--line);text-align:right;color:var(--muted)}
+.bst th{color:var(--dim);font-weight:500}
+.bst th:first-child,.bst td:first-child{text-align:left}
+.bst tr.on td{color:var(--gold);font-weight:700}
+.wcard{border:1px solid var(--line);border-radius:11px;padding:11px 13px;margin-top:8px;background:var(--bg3)}
+.wcard.eq{border-color:var(--gold)}
+.wcard .wh{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;justify-content:space-between}
+.wcard .wh b{font-size:14.5px}
+.wcard .wh small{color:var(--dim);font-size:12px}
+.wcard .ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:9px 0}
+.wcard .ctl input[type=text],.wcard .ctl input:not([type]){flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--line2);border-radius:9px;padding:8px 10px}
+.wcard ul{margin:6px 0 0 18px;padding:0}
+.wcard li{margin-top:4px}
+.fillbtn{background:none;border:1px dashed var(--line2);color:var(--gold);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;margin:4px 4px 0 0}
+.fillbtn:hover{border-color:var(--gold)}
+mark{background:var(--gold);color:#000;border-radius:3px;padding:0 1px}
+.term{border-bottom:1px dotted var(--gold);cursor:help;border-radius:2px}
+.term:hover,.term:focus-visible,.term[aria-describedby]{background:rgba(242,193,78,.18);outline:none}
+#tip{position:fixed;z-index:80;display:none;left:8px;top:8px;width:min(450px,calc(100vw - 16px));max-height:70vh;overflow:auto;background:#0f1220;border:1px solid var(--gold);border-radius:12px;box-shadow:0 14px 44px rgba(0,0,0,.65);padding:10px 12px 8px;font-size:13px;line-height:1.55;color:#d5d8e4;overflow-wrap:anywhere;overscroll-behavior:contain}
+#tip.open{display:block}
+.tt-h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.tt-h b{font-size:15px;color:var(--gold)}
+.tt-back{background:none;border:0;color:var(--red2);cursor:pointer;font-size:12px;padding:0 8px 0 0}
+.tt-x{display:none;background:var(--bg3);border:1px solid var(--line2);color:var(--txt);border-radius:8px;min-width:32px;height:32px;cursor:pointer;flex:none}
+#tip.pinned .tt-x{display:block}
+.tt-k{margin-top:6px;font-size:11.5px;color:var(--dim)}
+.tt-src{display:block;margin-top:9px;font-size:11.5px;color:var(--red2);text-transform:uppercase;letter-spacing:.3px;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.tt-src:hover{text-decoration:underline}
+.tt-b{margin-top:2px}
+.tt-f{margin-top:9px;padding-top:6px;border-top:1px solid var(--line);font-size:11px;color:var(--dim)}
+.termhint{font-size:12px;color:var(--dim);margin:0 0 6px}
+.termdemo{border-bottom:1px dotted var(--gold)}
+.pre{white-space:pre-wrap}
+.ghead{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;padding:6px 2px;border-bottom:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.ghead:first-child{margin-top:0}
+.ghead b{color:var(--txt);font-size:15px}
+.relstrip{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px;font-size:13px;color:var(--muted)}
+.relstrip .grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:6px 10px}
+.relstrip .grp b{color:var(--txt)}
+.relstrip .lnk{font-weight:600;font-size:12.5px;padding:2px 8px;border-radius:6px;background:var(--bg3);border:1px solid var(--line)}
+.relstrip .lnk.own{border-color:var(--ok)}
+.ref button{width:34px;height:34px;border-radius:8px}
+.ref{gap:4px;flex-wrap:wrap}
+.rb{font-size:13.5px;line-height:1.55}
+.note,.effect,.mate .mb,.wp .wb{font-size:13px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.drawer:focus-visible{outline:none}
+.sec h3{flex-wrap:wrap;overflow-wrap:normal}
+.sec h3 .hint{overflow-wrap:anywhere}
+@media (max-width:900px){
+  .drawer{width:100%;border-left:0}
+  .dmain{display:flex;flex-direction:column}
+  .dside{overflow:visible;border-right:0;border-bottom:1px solid var(--line);padding:8px 10px 0;flex:none}
+  .hero{display:flex;gap:10px;align-items:center;text-align:left}
+  .hero .dimg{width:42px;height:70px;margin:0;border-radius:6px;flex:none}
+  .hero .hi{min-width:0;flex:1}
+  .hero h2{font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hero h2 .nm{display:inline;font-size:12.5px}
+  .hero .sub{display:none}
+  .hchips{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;margin-top:5px;scrollbar-width:none;padding-bottom:2px}
+  .hchips::-webkit-scrollbar,.dtabs::-webkit-scrollbar{display:none}
+  .dtabs{flex-direction:row;overflow-x:auto;margin-top:8px;gap:5px;padding-bottom:8px;scrollbar-width:none}
+  .dtab{white-space:nowrap;flex:none;padding:6px 13px;border-color:var(--line);border-radius:999px;min-height:36px;font-size:13.5px}
+  .dtab .kb,.keys{display:none}
+  .dbody{padding:12px 12px 90px;flex:1}
+  .dtop select{max-width:none}
+  .dtop{flex-wrap:wrap}
+  #dSearchBtn{display:inline-block}
+  .dsearch{display:none;order:9;flex-basis:100%}
+  .dtop.showsearch .dsearch{display:flex}
+  #dMode .lbl{display:none}
+  #tip{left:0!important;right:0;top:auto!important;bottom:0;width:100%;max-height:60vh!important;border-radius:16px 16px 0 0;border-left:0;border-right:0;border-bottom:0;padding:12px 14px 22px;font-size:14px}
+  #tip .tt-x{display:block}
+  .lvbar{top:-12px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .lvbar::-webkit-scrollbar{display:none}
+  .lvbar .lb{display:none}
+  .lvbar .chip{flex:none}
+  .kv2{grid-template-columns:1fr;gap:2px 0}
+  .kv2 .k{margin-top:8px;font-size:12px;text-transform:uppercase;letter-spacing:.3px}
+  .bst{font-size:12px}
+  .bst th,.bst td{padding:5px 3px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+footer{margin-top:30px;color:var(--dim);font-size:12px;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:640px){
+  .wrow,.wonder .wrow{grid-template-columns:1fr 1fr;row-gap:6px}
+  .kv{grid-template-columns:1fr}
+}
+/* ---- intestazione: guide + stato sincronizzazione ---- */
+.topr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toplink{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--txt);text-decoration:none;background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.toplink:hover{border-color:var(--red2)}
+button.status{cursor:pointer;font:inherit;font-size:13px;max-width:min(520px,100%);text-align:left}
+button.status:hover{border-color:var(--red2)}
+#statusText{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.syncban{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;background:#1d1a12;border:1px solid #4a3d1a;color:var(--txt);border-radius:12px;padding:9px 12px;margin:12px 0 0;font-size:13.5px}
+.syncban[hidden]{display:none}
+/* ---- pannello sincronizzazione ---- */
+.sync .sstate{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin-bottom:10px}
+.sync .sstate b{font-weight:600}
+.sync .pill{display:inline-flex;align-items:center;gap:6px}
+.sync .pill .dot{width:9px;height:9px;border-radius:50%;background:var(--dim)}
+.sync .pill.ok .dot{background:var(--ok)} .sync .pill.local .dot{background:var(--warn)} .sync .pill.busy .dot{background:var(--gold)} .sync .pill.err .dot{background:var(--red2)}
+.sync .tokstate{font-size:12px;color:var(--dim);margin-top:2px}
+.sync .chk{list-style:none;padding:0;margin:8px 0 0;font-size:13px}
+.sync .chk li{padding:2px 0}
+.sync details{margin-top:10px;background:var(--bg3);border-radius:9px;padding:8px 10px;font-size:13px}
+.sync details summary{cursor:pointer;color:var(--txt)}
+.sync details ol{margin:8px 0 2px;padding-left:20px;line-height:1.5}
+.sync code{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:0 4px;font-size:12px}
+.conf{display:grid;gap:6px;margin-top:8px}
+.conf .ci{background:var(--bg3);border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;justify-content:space-between}
+.conf .ci .cv{color:var(--muted)}
+.conf .ci .cv b{color:var(--txt);font-weight:600}
+.conf .ci .lost{color:var(--warn)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Roster P5X — Tracker personaggi<small>Dati di riferimento da lufel.net (68 personaggi con skill, Awareness, armi e setup consigliati; 53 set Revelation; 18 Wonder weapon) + ordine di uscita dal Release Schedule, immagini, team consigliati e Persona/Wonder weapon consigliate per Wonder (lufel)<!--NAJOX--> + infografiche di Najox P5X per 44 personaggi<!--/NAJOX-->. Tutto ciò che inserisci viene salvato in questo browser e, se colleghi GitHub, sincronizzato tra i tuoi dispositivi.</small></h1>
+    <div class="topr">
+      <a class="toplink" id="guideLink" href="#" title="Le guide lufel di tutti i personaggi, in italiano">📖 Guide</a>
+      <button type="button" class="status local" id="status" title="Stato del salvataggio — tocca per le impostazioni di sincronizzazione"><span class="dot"></span><span id="statusText">Avvio…</span></button>
+    </div>
+  </header>
+  <div class="syncban" id="syncBan" hidden><span>💾 I dati sono salvati solo in questo browser. Collega il tuo repository GitHub per averli uguali su PC e telefono.</span><span><button type="button" class="btn small primary" id="syncBanGo">Collega GitHub</button> <button type="button" class="btn small" id="syncBanX" aria-label="Nascondi questo avviso">Non ora</button></span></div>
+
+  <div class="tabs">
+    <button class="tab active" data-view="roster">Personaggi</button>
+    <button class="tab" data-view="wonder">Wonder</button>
+    <button class="tab" data-view="tools">Sync e backup</button>
+  </div>
+
+  <section id="view-roster">
+    <div class="summary" id="summary"></div>
+    <div class="relstrip" id="relStrip"></div>
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Cerca per nome, codename, Persona, elemento…">
+      <div class="chips" id="ownFilter">
+        <span class="chip on" data-own="all">Tutti</span>
+        <span class="chip" data-own="yes">Posseduti</span>
+        <span class="chip" data-own="no">Non posseduti</span>
+      </div>
+      <select id="sort" class="btn small">
+        <option value="code">Ordina: codename</option>
+        <option value="owned">Ordina: posseduti prima</option>
+        <option value="element">Ordina: elemento</option>
+        <option value="rarity">Ordina: rarità</option>
+        <option value="position">Ordina: posizione</option>
+        <option value="rel_desc">Ordina: uscita (più recenti prima)</option>
+        <option value="rel_asc">Ordina: uscita (dal lancio)</option>
+      </select>
+    </div>
+    <div class="toolbar">
+      <div class="chips" id="elFilter"></div>
+    </div>
+    <div class="toolbar">
+      <div class="chips" id="posFilter"></div>
+      <div class="chips" id="rarFilter">
+        <span class="chip" data-rar="5">5★</span><span class="chip" data-rar="4">4★</span>
+      </div>
+      <div class="chips" id="relFilter" title="Dal Release Schedule di lufel.net (server GLB/JP)"><span class="chip on" data-rel="all">Uscita: tutti</span><span class="chip" data-rel="out">Già usciti</span><span class="chip" data-rel="current">Banner attuale</span><span class="chip" data-rel="soon">In arrivo</span></div>
+<!--NAJOX-->      <label class="toggle chip" id="onlyInfog"><input type="checkbox" id="onlyInfogcb"> Solo con infografica Najox</label>
+<!--/NAJOX-->
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="view-wonder" style="display:none" class="wonder">
+    <div class="sec">
+      <h3>Wonder <span class="hint">Il protagonista: livello, Wonder weapon possedute e refinement (lufel: Wonder Daggers)</span></h3>
+      <div class="frow">
+        <div class="f"><label>Livello Wonder</label><input type="number" min="1" max="100" data-w="level" placeholder="es. 80"></div>
+        <div class="f"><label>Persona principali usate (testo libero)</label><input type="text" data-w="personas" placeholder="es. Ex Machina + Dionysus, Norn…"></div>
+      </div>
+      <div class="f" style="margin-top:10px"><label>Note Wonder</label><textarea data-w="notes" placeholder="Build, arma equipaggiata di solito, ecc."></textarea></div>
+    </div>
+    <div class="sec">
+      <h3>Wonder weapon <span class="hint">Spunta quelle possedute e imposta il refinement (R0–R6). Fonte: lufel.net/en/wonder-weapon/ e Recommended Parties · ★ = evidenziata su lufel per Wonder</span></h3>
+      <div id="wonderWeapons"></div>
+    </div>
+    <div class="sec">
+      <h3>Persona di Wonder <span class="hint" id="persCount"></span></h3>
+      <p class="note" style="margin-top:0">Le 39 Persona che lufel consiglia per Wonder nei team dei personaggi, ordinate per numero di personaggi che le consigliano. Spunta quelle che possiedi: lo stato compare anche nella sezione «Team e Wonder» di ogni personaggio. Ruolo, talento e unique skill tradotti da lufel.</p>
+      <div class="toolbar"><div class="chips" id="persFilter"><span class="chip on" data-pf="all">Tutte</span><span class="chip" data-pf="own">Possedute</span><span class="chip" data-pf="miss">Mancanti</span><span class="chip" data-pf="team">Consigliate per i miei personaggi</span></div></div>
+      <div id="wonderPersonas"></div>
+    </div>
+  </section>
+
+  <section id="view-tools" style="display:none">
+    <div class="sec sync" id="syncSec">
+      <h3>Sincronizzazione GitHub <span class="hint">stessi dati su PC e telefono · repository privato</span></h3>
+      <div class="sstate" id="syncState"></div>
+      <div class="frow">
+        <div class="f"><label for="ghRepo">Repository dati (proprietario/nome)</label><input type="text" id="ghRepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Tharj0/p5x-dati"></div>
+        <div class="f"><label for="ghToken">Token personale (fine-grained)</label><input type="password" id="ghToken" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_…"><span class="tokstate" id="ghTokState"></span></div>
+        <div class="f"><label for="ghDevice">Nome di questo dispositivo</label><input type="text" id="ghDevice" autocomplete="off" maxlength="40" placeholder="es. PC, Telefono"></div>
+      </div>
+      <div class="toolbar">
+        <button type="button" class="btn primary" id="ghSave">Salva e collega</button>
+        <button type="button" class="btn" id="ghTest">Verifica token</button>
+        <button type="button" class="btn" id="ghNow">Sincronizza ora</button>
+        <button type="button" class="btn" id="ghForget">Rimuovi il token da questo dispositivo</button>
+      </div>
+      <ul class="chk" id="ghCheck" hidden></ul>
+      <p class="note">Il token resta <b>solo in questo browser</b> (localStorage di questo sito): non viene mai scritto nel repository del sito né inviato altrove che a <code>api.github.com</code>. Va inserito una volta su ogni dispositivo/browser. Ogni salvataggio diventa un commit nel repository dati (<code>roster.json</code> e <code>wonder.json</code>), quindi la cronologia di GitHub conserva tutte le versioni precedenti.</p>
+      <details>
+        <summary>Come creare il token (una volta sola)</summary>
+        <ol>
+          <li>Su GitHub apri <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings › Developer settings › Personal access tokens › Fine-grained tokens › Generate new token</a>.</li>
+          <li>Nome a piacere (es. <code>p5x-tracker</code>), scadenza a scelta, <b>Resource owner</b>: il tuo account.</li>
+          <li><b>Repository access</b>: <i>Only select repositories</i> → scegli solo il repository dati (es. <code>p5x-dati</code>).</li>
+          <li><b>Permissions › Repository permissions › Contents</b>: <i>Read and write</i>. Nient'altro (Metadata: Read-only si aggiunge da solo).</li>
+          <li><b>Generate token</b>, copia il codice (<code>github_pat_…</code>) e incollalo qui sopra, poi «Salva e collega». Ripeti l'incolla sugli altri dispositivi.</li>
+        </ol>
+      </details>
+      <div id="conflictBox"></div>
+    </div>
+    <div class="sec">
+      <h3>Riepilogo in Markdown <span class="hint">Da incollare in chat o nel progetto: sostituisce mio_roster.md</span></h3>
+      <p class="note">Genera una tabella con tutti i personaggi posseduti (livello, Awareness, Mindscape, armi con refinement, Revelation, stat) più l'elenco dei non posseduti e la sezione Wonder.</p>
+      <div class="toolbar"><button class="btn primary" id="btnMd">Mostra / copia riepilogo Markdown</button></div>
+    </div>
+    <div class="sec">
+      <h3>Backup JSON <span class="hint">Copia completa di tutti i dati inseriti</span></h3>
+      <div class="toolbar">
+        <button class="btn" id="btnJson">Mostra / copia JSON</button>
+        <button class="btn" id="btnDownload">Scarica file JSON</button>
+        <label class="btn" for="fileImport">Importa da file JSON…</label>
+        <input type="file" id="fileImport" accept="application/json,.json" style="display:none">
+      </div>
+      <p class="note">L'importazione sovrascrive i dati dei personaggi presenti nel file (gli altri restano invariati) e, se GitHub è collegato, li sincronizza anche sugli altri dispositivi. Ti verrà chiesta conferma.</p>
+    </div>
+    <div class="sec">
+      <h3>Dove sono salvati i dati</h3>
+      <p class="note" id="storageInfo">In attesa…</p>
+      <div class="toolbar"><button class="btn" id="btnReset">Azzera tutti i dati…</button></div>
+    </div>
+  </section>
+
+  <footer>Nomi di skill, Awareness, armi, set e stat in inglese come su lufel.net. Riferimenti lufel letti il 14–15 novembre 2026. Ordine e date di uscita dal Release Schedule di lufel.net (server GLB/JP) letto il 16 novembre 2026: le date con ≈ sono stime di lufel, non confermate. Immagini di personaggi, Persona e Wonder weapon da lufel.net (asset di gioco © ATLUS/SEGA/Perfect World Games). Questo tracker non è affiliato a lufel.net né a SEGA/ATLUS/Perfect World.</footer>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Scheda personaggio" tabindex="-1">
+  <div class="dtop">
+    <button type="button" class="btn small" id="dPrev" aria-label="Personaggio precedente">◀</button>
+    <select id="dJump" aria-label="Vai a un altro personaggio"></select>
+    <button type="button" class="btn small" id="dNext" aria-label="Personaggio successivo">▶</button>
+    <button type="button" class="btn small" id="dBack" style="display:none"></button>
+    <span class="dsearch"><input type="search" id="dSearch" placeholder="Cerca in questa scheda… (es. Burn, Crit Rate)" aria-label="Cerca nel testo della scheda"><span id="dHits" role="status" aria-live="polite"></span></span>
+    <button type="button" class="btn small" id="dSearchBtn" aria-label="Cerca nella scheda">🔍</button>
+    <button type="button" class="btn small" id="dMode" title="Passa da «a schede» a «tutto in una pagina»"></button>
+    <button type="button" class="btn small" id="dClose" aria-label="Chiudi la scheda">✕</button>
+  </div>
+  <div class="dmain">
+    <div class="dside">
+      <div class="hero" id="dHero"></div>
+      <div class="dtabs" id="dTabs" role="tablist" aria-label="Sezioni della scheda"></div>
+      <div class="keys">Tastiera: <kbd>←</kbd> <kbd>→</kbd> cambia personaggio · <kbd>1</kbd>–<kbd>0</kbd> sezione · <kbd>/</kbd> cerca · <kbd>Esc</kbd> chiudi</div>
+    </div>
+    <div class="dbody" id="dBody"></div>
+  </div>
+</aside>
+
+<div class="dialog" id="dialog">
+  <div class="box">
+    <h3 id="dlgTitle" style="margin:0 0 8px"></h3>
+    <p id="dlgText" class="note" style="margin:0 0 10px"></p>
+    <textarea id="dlgArea" style="display:none" readonly></textarea>
+    <div class="acts" id="dlgActs"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<div id="tip" role="tooltip" aria-live="polite"></div>
+<div class="lightbox" id="lightbox"><div class="lbbar"><span id="lbCap"></span><span><a id="lbOpen" href="#" target="_blank" rel="noopener" style="margin-right:12px">apri in una scheda ↗</a><button class="btn small" id="lbClose">Chiudi ✕</button></span></div><img class="lbimg" id="lbImg" alt=""></div>
+
+<script id="chars-data" type="application/json">__CHARS__</script>
+<script id="rev-data" type="application/json">__REV__</script>
+<script id="wonder-data" type="application/json">__WONDER__</script>
+<script>
+/*__GHSYNC__*/
+</script>
+<script>
+(function(){
+'use strict';
+const SITE = __SITE__;   // impostazioni di build: versione pubblica (GitHub Pages) o locale
+const CHARS = JSON.parse(document.getElementById('chars-data').textContent);
+const REV = JSON.parse(document.getElementById('rev-data').textContent);
+const BY = Object.fromEntries(CHARS.map(c => [c.slug, c]));
+const SPACE_SETS = Object.keys(REV.universe_sets);
+const SMSS_SETS = Object.keys(REV.smss_sets);
+const WONDER_WEAPONS = REV.wonder_weapons;
+const WON = JSON.parse(document.getElementById('wonder-data').textContent);
+const REVERSE = {}, PARTY_IN = {};
+CHARS.forEach(c => { const t = c.team || {}; (t.friends || []).forEach(f => { if (f.slug) (REVERSE[f.slug] = REVERSE[f.slug] || []).push({ from: c.slug, it: f.it, A: f.A }); });
+  (t.parties || []).forEach(p => p.forEach(m => { if (m !== c.slug && BY[m]) { PARTY_IN[m] = PARTY_IN[m] || []; if (PARTY_IN[m].indexOf(c.slug) < 0) PARTY_IN[m].push(c.slug); } })); });
+const LS_KEY = 'p5x_roster_tracker_v1';
+const MAIN_OPTS = {
+  Space: ['Attack', 'Defense'],
+  Sun: ['HP'],
+  Moon: ['Attack', 'Attack %', 'HP', 'HP %', 'Defense', 'Defense %', 'Damage Mult', 'Healing Effect', 'Ailment Accuracy'],
+  Star: ['Crit Rate', 'Crit Mult', 'Attack %', 'HP %', 'Defense %', 'Ailment Accuracy'],
+  Sky: ['Attack %', 'HP %', 'Defense %', 'Speed', 'SP Recovery', 'Damage Mult']
+};
+const RS_OPTS = ['Attack 20%', 'HP 20%', 'Defense 30%', 'Crit Rate 12%', 'Crit Mult 24%', 'Damage Mult 16%', 'Pierce Rate 7.5%', 'Ailment Accuracy 24%', 'Ailment Accuracy 28%', 'Effect Resi 24%', 'SP Recovery 125%', 'Healing Effect 14%', 'Shield Effect 14%', 'Damage Reduction 16%'];
+const STAT_FIELDS = [['hp', 'HP'], ['atk', 'ATK'], ['def', 'DEF'], ['spd', 'Speed'], ['cr', 'Crit Rate %'], ['cm', 'Crit Mult %'], ['dm', 'Damage Mult %'], ['pr', 'Pierce Rate %'], ['aa', 'Ailment Accuracy %'], ['he', 'Healing Effect %'], ['er', 'Effect Resi %'], ['sp', 'SP Recovery %'], ['score', 'Total Score (gioco)'], ['rating', 'Rating (gioco)']];
+const EL_KEY = e => e.startsWith('Wind/Ice') ? 'WindIce' : (e.split(' ')[0]);
+
+// ---------- release schedule (lufel.net/en/schedule, server GLB/JP) ----------
+const TODAY = (() => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); })();
+const REL_DATES = Array.from(new Set(CHARS.map(c => c.rel.d))).sort();
+const CUR_DATE = REL_DATES.filter(d => d <= TODAY).pop() || null;
+const NEXT_DATE = REL_DATES.find(d => d > TODAY) || null;
+const MESI = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+const REL_NAME = { out: 'Uscito', current: 'Banner attuale', next: 'Prossima uscita', future: 'In arrivo' };
+function fmtDate(iso){ const p = iso.split('-').map(Number); return p[2] + ' ' + MESI[p[1] - 1] + ' ' + p[0]; }
+function daysTo(iso){ return Math.round((new Date(iso + 'T00:00:00') - new Date(TODAY + 'T00:00:00')) / 86400000); }
+function isOut(c){ return c.rel.d <= TODAY; }
+function relState(c){ if (c.rel.d > TODAY) return c.rel.d === NEXT_DATE ? 'next' : 'future'; return c.rel.d === CUR_DATE && daysTo(c.rel.d) > -60 ? 'current' : 'out'; }
+function relEst(c){ return c.rel.st === 'upcoming' || c.rel.st === 'future'; }   // data stimata da lufel al momento della lettura
+function inDays(n){ return n > 0 ? 'tra ' + n + (n === 1 ? ' giorno' : ' giorni') : ''; }
+function relText(c){ const n = daysTo(c.rel.d); return REL_NAME[relState(c)] + ' · ' + c.rel.v + ' · ' + (relEst(c) ? '≈ ' : '') + fmtDate(c.rel.d) + (n > 0 ? ' (' + inDays(n) + ')' : ''); }
+function relBadge(c){
+  const s = relState(c); const tip = relText(c) + (relEst(c) ? ' — data stimata da lufel, non confermata' : '');
+  if (s === 'out') return '<span class="badge" title="' + esc(tip) + '">' + esc(c.rel.v.split('(')[0]) + '</span>';
+  if (s === 'current') return '<span class="badge ok" title="' + esc(tip) + '">Banner attuale</span>';
+  return '<span class="badge nr" title="' + esc(tip) + '">' + (relEst(c) ? '≈ ' : '') + fmtDate(c.rel.d) + '</span>';
+}
+function relSection(c){ const s = relState(c); if (s === 'next' || s === 'future') return ['soon', 'In arrivo', 'date stimate da lufel (≈), non confermate']; if (s === 'current') return ['cur', 'Banner attuale', '']; const y = c.rel.d.slice(0, 4); return ['y' + y, 'Usciti nel ' + y, '']; }
+function relLine(c){ const d = daysTo(c.rel.d); return esc(c.rel.v) + ' · ' + (relEst(c) ? '≈ ' : '') + fmtDate(c.rel.d) + (d > 0 ? ' · ' + inDays(d) : '') + (c.rel.note ? ' · ' + esc(c.rel.note) : ''); }
+function renderRelStrip(){
+  const el = document.getElementById('relStrip'); if (!el) return;
+  const cur = CHARS.filter(c => relState(c) === 'current').sort((a, b) => a.rel.o - b.rel.o), nxt = CHARS.filter(c => relState(c) === 'next').sort((a, b) => a.rel.o - b.rel.o);
+  const grp = (lab, arr) => arr.length ? '<div class="grp"><span><b>' + lab + '</b> · ' + esc(arr[0].rel.v) + ' · ' + (relEst(arr[0]) ? '≈ ' : '') + fmtDate(arr[0].rel.d) + (daysTo(arr[0].rel.d) > 0 ? ' · ' + inDays(daysTo(arr[0].rel.d)) : '') + '</span>' + arr.map(c => '<span class="lnk' + (isOwned(c.slug) ? ' own' : '') + '" data-goto="' + c.slug + '" role="button" tabindex="0">' + esc(c.codename) + '</span>').join('') + '</div>' : '';
+  el.innerHTML = grp('Banner attuale', cur) + grp('Prossima uscita', nxt);
+}
+
+
+// ---------- state ----------
+const state = { roster: {}, wonder: null, extra: {} };   // extra = voci di personaggi assenti da questa versione dei dati (da un dispositivo più aggiornato): conservate
+const ui = { rel: 'all', tab: 'ov', dmode: 'tabs', lvcol: 0, dq: '', hist: [], pf: 'all', view: 'roster', search: '', own: 'all', els: new Set(), poss: new Set(), rars: new Set(), hideNR: false, infog: false, sort: 'code', open: null };
+let lsOK = true, deferredRender = false, syncSt = null;   // syncSt = stato della sincronizzazione GitHub (base dell'ultimo merge), salvato insieme ai dati
+
+function blankEntry(c){
+  const w = {}; c.weapons.forEach(x => w[x.name] = { owned: false, ref: 0 });
+  return { owned: false, level: null, awareness: 0, minds: 0, core: false, syn: '', combat: '',
+    msel: { rs1: '', rs2: '', se1: '', se2: '' },
+    skills: { s1: null, s2: null, s3: null, ult: null }, weapons: w, equipped: '', equipped_other: '',
+    rev: { space: '', sun: '', moon: '', star: '', sky: '', main: { space: '', moon: '', star: '', sky: '' } },
+    stats: {}, notes: '', updatedAt: '', _schema: 1 };
+}
+function blankWonder(){ const w = {}; WONDER_WEAPONS.forEach(x => w[x.name] = { owned: false, ref: 0 }); return { level: null, personas: '', notes: '', weapons: w, equipped: '', pers: {}, updatedAt: '', _schema: 1 }; }
+function entry(slug){ if (!state.roster[slug]) state.roster[slug] = blankEntry(BY[slug]); return state.roster[slug]; }
+function wonder(){ if (!state.wonder) state.wonder = blankWonder(); return state.wonder; }
+function mergeEntry(slug, data){
+  const base = blankEntry(BY[slug]); const d = data || {};
+  const out = Object.assign({}, base, d);
+  out.skills = Object.assign({}, base.skills, d.skills || {});
+  out.weapons = Object.assign({}, base.weapons, d.weapons || {});
+  out.rev = Object.assign({}, base.rev, d.rev || {}); out.rev.main = Object.assign({}, base.rev.main, (d.rev && d.rev.main) || {});
+  out.msel = Object.assign({}, base.msel, d.msel || {});
+  out.stats = Object.assign({}, d.stats || {});
+  return out;
+}
+function mergeWonder(data){ const b = blankWonder(); const d = data || {}; const o = Object.assign({}, b, d); o.weapons = Object.assign({}, b.weapons, d.weapons || {}); o.pers = Object.assign({}, d.pers || {}); return o; }
+
+// ---------- local storage ----------
+// Un'unica scrittura contiene dati locali + base della sincronizzazione: restano sempre coerenti tra loro.
+function applyStored(j, withUi){
+  state.roster = {}; state.extra = {}; state.wonder = null; syncSt = null;
+  if (j && j.roster) Object.keys(j.roster).forEach(s => { if (BY[s]) state.roster[s] = mergeEntry(s, j.roster[s]); });
+  if (j && j.extra) Object.keys(j.extra).forEach(s => { if (!BY[s]) state.extra[s] = j.extra[s]; });
+  if (j && j.wonder) state.wonder = mergeWonder(j.wonder);
+  if (j && j.sync) syncSt = j.sync;
+  if (withUi && j && j.ui) Object.assign(ui, { own: j.ui.own || 'all', sort: j.ui.sort || 'code', rel: j.ui.rel || (j.ui.hideNR ? 'out' : 'all'), dmode: j.ui.dmode === 'all' ? 'all' : 'tabs', lvcol: typeof j.ui.lvcol === 'number' ? j.ui.lvcol : 0 });
+}
+function lsLoad(){ try { const raw = localStorage.getItem(LS_KEY); if (!raw) return; applyStored(JSON.parse(raw), true); } catch (e) { lsOK = false; } }
+function lsSave(){ clearTimeout(lsSaveT); lsSaveT = 0; try { localStorage.setItem(LS_KEY, JSON.stringify({ roster: state.roster, extra: state.extra, wonder: state.wonder, sync: syncSt, ui: { own: ui.own, sort: ui.sort, rel: ui.rel, dmode: ui.dmode, lvcol: ui.lvcol }, savedAt: new Date().toISOString() })); } catch (e) { lsOK = false; } }
+let lsSaveT = 0;
+function lsSaveSoon(){ clearTimeout(lsSaveT); lsSaveT = setTimeout(lsSave, 300); }
+
+// ---------- sincronizzazione GitHub (repository dati privato, vedi app/src/ghsync.js) ----------
+const CFG_KEY = 'p5x_github_sync_v1', CONF_KEY = 'p5x_sync_conflicts_v1', BAN_KEY = 'p5x_sync_banner_off';
+const DEFAULT_REPO = 'Tharj0/p5x-dati';
+function guessDevice(){ const u = navigator.userAgent || ''; return /iPhone/.test(u) ? 'iPhone' : /iPad/.test(u) ? 'iPad' : /Android/.test(u) ? (/Mobile/.test(u) ? 'Telefono Android' : 'Tablet Android') : /Windows/.test(u) ? 'PC Windows' : /Macintosh/.test(u) ? 'Mac' : /Linux/.test(u) ? 'PC Linux' : 'browser'; }
+function loadCfg(){ let c = {}; try { c = JSON.parse(localStorage.getItem(CFG_KEY) || '{}') || {}; } catch (e) { /* impostazioni illeggibili: si riparte */ } return { repo: c.repo || DEFAULT_REPO, token: c.token || '', device: c.device || '', dir: c.dir || '' }; }
+let ghCfg = loadCfg();
+function saveCfg(){ try { localStorage.setItem(CFG_KEY, JSON.stringify(ghCfg)); } catch (e) { toast('Impossibile salvare le impostazioni in questo browser'); } }
+// documenti scambiati con il motore: { slug: voce } (solo voci modificate almeno una volta) e { main: wonder }
+function localDoc(kind){
+  if (kind === 'wonder') return state.wonder && state.wonder.updatedAt ? { main: state.wonder } : {};
+  const out = Object.assign({}, state.extra);
+  Object.keys(state.roster).forEach(s => { const e = state.roster[s]; if (e && e.updatedAt) out[s] = e; });
+  return out;
+}
+function setLocalDoc(kind, doc){
+  if (kind === 'wonder') state.wonder = doc.main ? mergeWonder(doc.main) : null;
+  else {
+    const r = {}, x = {};
+    Object.keys(state.roster).forEach(s => { const e = state.roster[s]; if (e && !e.updatedAt && !doc[s]) r[s] = e; });   // voci solo aperte, mai modificate
+    Object.keys(doc).forEach(s => { if (BY[s]) r[s] = mergeEntry(s, doc[s]); else x[s] = doc[s]; });   // personaggi sconosciuti: conservati così come sono
+    state.roster = r; state.extra = x;
+  }
+  lsSave(); renderAllSoft();
+}
+function normDoc(kind, doc){
+  if (kind === 'wonder') return doc.main ? { main: mergeWonder(doc.main) } : {};
+  const out = {}; Object.keys(doc).forEach(s => { const v = doc[s]; if (v && typeof v === 'object') out[s] = BY[s] ? mergeEntry(s, v) : v; }); return out;
+}
+const SYNC = window.P5XSync ? window.P5XSync.createEngine({
+  getConfig: () => (ghCfg.token ? { repo: ghCfg.repo, token: ghCfg.token, dir: ghCfg.dir, device: ghCfg.device || guessDevice() } : null),
+  getLocal: localDoc, setLocal: setLocalDoc, normalize: normDoc,
+  blank: (kind, id) => (kind === 'wonder' ? blankWonder() : BY[id] ? blankEntry(BY[id]) : {}),
+  loadState: () => syncSt, saveState: st => { syncSt = st; lsSave(); },
+  onStatus: s => renderStatus(s), onConflicts: (kind, list) => addConflicts(kind, list),
+  isOffline: () => navigator.onLine === false
+}) : null;
+
+function setStatus(cls, text){ const s = document.getElementById('status'); s.className = 'status ' + cls; document.getElementById('statusText').textContent = text; s.title = text + ' — tocca per le impostazioni di sincronizzazione'; }
+function hhmm(iso){ try { return new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
+function whenText(iso){ if (!iso) return 'mai'; const d = new Date(iso); return (d.toDateString() === new Date().toDateString() ? 'oggi alle ' : d.toLocaleDateString('it-IT') + ' alle ') + hhmm(iso); }
+function bannerOff(){ try { return localStorage.getItem(BAN_KEY) === '1'; } catch (e) { return false; } }
+let lastStatus = null;
+function renderStatus(s){
+  if (s) lastStatus = s; else s = lastStatus = SYNC ? SYNC.status() : null;
+  const n = s ? s.pending : 0, att = n + (n === 1 ? ' modifica' : ' modifiche') + ' da inviare';
+  if (!SYNC) setStatus('err', 'Sincronizzazione non disponibile: dati solo in questo browser');
+  else if (s.phase === 'nocfg') setStatus('local', lsOK ? 'Salvato solo in questo browser · collega GitHub' : 'Attenzione: il salvataggio in questo browser è bloccato');
+  else if (s.phase === 'busy') setStatus('busy', 'Sincronizzazione con GitHub…');
+  else if (s.phase === 'offline') setStatus('local', 'Offline · ' + (n ? att + ': partono appena torna la rete' : 'tutto salvato in questo browser'));
+  else if (s.phase === 'error') setStatus('err', 'Sync non riuscita: ' + ((s.error && s.error.msg) || 'errore') + (n ? ' · ' + att : ''));
+  else if (n) setStatus('busy', 'Salvato qui · ' + att + '…');
+  else if (s.lastSync) setStatus('ok', 'Sincronizzato con GitHub · ' + hhmm(s.lastSync));
+  else setStatus('busy', 'Collegamento a GitHub…');
+  document.getElementById('syncBan').hidden = !(s && s.phase === 'nocfg') || bannerOff();
+  if (ui.view === 'tools') renderSync();
+}
+function maskTok(t){ return t.length > 16 ? t.slice(0, 11) + '…' + t.slice(-4) : '•••'; }
+function renderSync(){
+  const s = lastStatus || (SYNC && SYNC.status()); if (!s) return;
+  const cls = s.phase === 'nocfg' || s.phase === 'offline' ? 'local' : s.phase === 'error' ? 'err' : s.phase === 'busy' || s.pending || !s.lastSync ? 'busy' : 'ok';
+  const what = s.phase === 'nocfg' ? 'Non collegato: i dati restano solo in questo browser' : s.phase === 'error' ? 'Errore: ' + esc((s.error && s.error.msg) || '') : s.phase === 'offline' ? 'Offline: le modifiche partono appena torna la rete' : s.phase === 'busy' ? 'Sincronizzazione in corso…' : s.lastSync ? 'Collegato a <b>' + esc(ghCfg.repo) + '</b>' : 'Collegamento in corso…';
+  document.getElementById('syncState').innerHTML = '<span class="pill ' + cls + '"><span class="dot"></span>' + what + '</span>' + (ghCfg.token ? '<span>Ultima sincronizzazione: <b>' + esc(whenText(s.lastSync)) + '</b></span><span>Modifiche da inviare: <b>' + s.pending + '</b></span>' : '');
+  document.getElementById('ghTokState').textContent = ghCfg.token ? 'Token salvato su questo dispositivo: ' + maskTok(ghCfg.token) + ' — incollane uno nuovo solo per sostituirlo.' : 'Nessun token salvato su questo dispositivo.';
+  renderConflicts();
+}
+function fillSyncForm(){
+  document.getElementById('ghRepo').value = ghCfg.repo; const dv = document.getElementById('ghDevice'); dv.value = ghCfg.device || ''; dv.placeholder = 'es. ' + guessDevice();
+  document.getElementById('ghToken').value = ''; renderSync();
+}
+function storageInfo(){
+  const el = document.getElementById('storageInfo');
+  el.innerHTML = ghCfg.token
+    ? '<b>Sincronizzati con GitHub:</b> i dati sono nel repository privato <code>' + esc(ghCfg.repo) + '</code> (file <code>roster.json</code> e <code>wonder.json</code>, un commit per ogni salvataggio) e in una copia in questo browser, che permette di usare il tracker anche offline. Claude Code può leggerli con <code>gh</code> per le valutazioni build.'
+    : '<b>Solo questo browser:</b> i dati sono salvati nel localStorage di questo browser' + (lsOK ? '' : ' — attenzione: il salvataggio locale sembra bloccato') + '. Collega GitHub (in alto) per averli uguali su tutti i dispositivi, oppure usa il backup JSON.';
+}
+async function runCheck(thenSync){
+  const box = document.getElementById('ghCheck'); box.hidden = false; box.innerHTML = '<li>⏳ Verifica del token in corso…</li>';
+  try {
+    const r = await SYNC.check();
+    box.innerHTML = [
+      '✅ Repository <b>' + esc(r.repo) + '</b> raggiungibile' + (r.private ? ' (privato)' : ' — ⚠️ <b>è pubblico</b>: i tuoi dati sarebbero visibili a tutti, rendilo privato su GitHub'),
+      '✅ Lettura consentita' + (r.files.roster || r.files.wonder ? '' : ' (il repository non contiene ancora i file: verranno creati al primo salvataggio)'),
+      r.write === true ? '✅ Scrittura consentita' : r.write === false ? '❌ Scrittura NON consentita: nel token imposta <b>Contents → Read and write</b>' : 'ℹ️ Scrittura: verrà verificata al primo salvataggio'
+    ].map(x => '<li>' + x + '</li>').join('');
+    if (thenSync) { toast('Token salvato: sincronizzo…'); await SYNC.sync('connect'); if (SYNC.status().phase === 'ok') toast('Sincronizzazione completata'); }
+  } catch (e) {
+    box.innerHTML = '<li>❌ ' + esc(capFirst(e.message || String(e))) + '</li>' +
+      (e.code === 'auth' ? '<li>Controlla di aver copiato tutto il token (inizia con <code>github_pat_</code>) e che non sia scaduto o revocato.</li>' : e.code === 'notfound' ? '<li>Nel token, alla voce <i>Repository access</i>, deve essere selezionato proprio questo repository; controlla anche di averne scritto bene il nome.</li>' : e.code === 'network' ? '<li>Sembra che manchi la connessione: riprova quando sei online.</li>' : '');
+    if (thenSync) SYNC.sync('verifica');   // aggiorna l'indicatore di stato con l'errore
+  }
+}
+
+// ---------- registro conflitti ----------
+const FIELD_LBL = { owned: 'Posseduto', level: 'Livello', awareness: 'Awareness', minds: 'Mindscape (Minds)', core: 'Mindscape Core', syn: 'Attribute Mindscape (Synergy)', combat: 'Attribute Mindscape (Combat Skill)', equipped: 'Arma equipaggiata', equipped_other: 'Altra arma', notes: 'Note', personas: 'Persona principali', msel: 'Mindscape', skills: 'Skill', s1: 'Skill 1', s2: 'Skill 2', s3: 'Skill 3', ult: 'Highlight', rs1: 'RS1', rs2: 'RS2', se1: 'SE1', se2: 'SE2', rev: 'Revelation', main: 'stat principale', space: 'Space', sun: 'Sun', moon: 'Moon', star: 'Star', sky: 'Sky' };
+function loadConf(){ try { return JSON.parse(localStorage.getItem(CONF_KEY) || '[]') || []; } catch (e) { return []; } }
+function saveConf(l){ try { localStorage.setItem(CONF_KEY, JSON.stringify(l.slice(0, 80))); } catch (e) { /* registro non salvabile */ } }
+function addConflicts(kind, list){
+  const at = new Date().toISOString(), log = loadConf();
+  list.slice().reverse().forEach(c => log.unshift({ at, kind, id: c.id, path: c.path || [], deleted: !!c.deleted, kept: c.kept, local: c.deleted ? undefined : c.local, remote: c.deleted ? undefined : c.remote }));
+  saveConf(log);
+  toast('⚠️ ' + (list.length === 1 ? 'Un campo modificato' : list.length + ' campi modificati') + ' su due dispositivi: tenuta la modifica più recente (dettagli in «Sync e backup»)');
+  if (ui.view === 'tools') renderConflicts();
+}
+function confWhat(c){
+  const who = c.kind === 'wonder' ? 'Wonder' : BY[c.id] ? BY[c.id].codename : c.id, p = c.path || [];
+  const stl = Object.fromEntries(STAT_FIELDS);
+  const f = p[0] === 'stats' && p[1] ? 'Stat ' + (stl[p[1]] || p[1]) : p[0] === 'weapons' && p[1] ? p[1] + (p[2] === 'ref' ? ' · refinement' : p[2] === 'owned' ? ' · posseduta' : '') : p[0] === 'pers' && p[1] ? 'Persona ' + p[1] + ' posseduta' : p.map(k => FIELD_LBL[k] || k).join(' › ');
+  return [who, f];
+}
+function confVal(v){ if (v === undefined || v === null || v === '') return '(vuoto)'; if (v === true) return 'sì'; if (v === false) return 'no'; const s = typeof v === 'string' ? v : JSON.stringify(v); return s.length > 90 ? s.slice(0, 88) + '…' : s; }
+function renderConflicts(){
+  const box = document.getElementById('conflictBox'); const log = loadConf();
+  if (!log.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<h3 style="margin-top:14px">Registro conflitti <span class="hint">stesso campo cambiato su due dispositivi prima che si sincronizzassero</span></h3><div class="conf">' + log.map((c, i) => {
+    const wf = confWhat(c);
+    if (c.deleted) return '<div class="ci"><span><b>' + esc(wf[0]) + '</b> · <span class="cv">' + esc(whenText(c.at)) + '</span></span><span class="cv">Azzerato su un dispositivo ma modificato sull’altro: <b>tenuti i dati modificati</b></span></div>';
+    const keptV = c.kept === 'local' ? c.local : c.remote, lostV = c.kept === 'local' ? c.remote : c.local;
+    return '<div class="ci"><span><b>' + esc(wf[0]) + '</b> · ' + esc(wf[1]) + ' · <span class="cv">' + esc(whenText(c.at)) + '</span></span><span class="cv">tenuto <b>' + esc(confVal(keptV)) + '</b> (' + (c.kept === 'local' ? 'questo dispositivo' : 'altro dispositivo') + ') · scartato <span class="lost">' + esc(confVal(lostV)) + '</span> <button type="button" class="btn small" data-confrest="' + i + '">Ripristina lo scartato</button></span></div>';
+  }).join('') + '</div><div class="toolbar"><button type="button" class="btn small" id="confClear">Svuota il registro</button></div>';
+}
+function setPathArr(o, path, v){ for (let i = 0; i < path.length - 1; i++) { if (o[path[i]] == null || typeof o[path[i]] !== 'object') o[path[i]] = {}; o = o[path[i]]; } const k = path[path.length - 1]; if (v === undefined) delete o[k]; else o[k] = v; }
+
+function scheduleSave(slug){ // slug o '__wonder': salva subito in questo browser, poi sincronizza dopo una breve pausa
+  const doc = slug === '__wonder' ? wonder() : entry(slug);
+  doc.updatedAt = new Date().toISOString();
+  lsSaveSoon();
+  if (SYNC) SYNC.schedule(3000);
+}
+function initSync(){
+  if (SYNC) SYNC.reload(); else renderStatus();
+  if (!SYNC) return;
+  if (ghCfg.token) SYNC.sync('avvio');
+  window.addEventListener('online', () => SYNC.sync('online'));
+  window.addEventListener('offline', () => SYNC.sync('offline'));
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') SYNC.sync('ritorno'); else { lsSave(); if (ghCfg.token && SYNC.pending()) SYNC.sync('uscita'); } });
+  window.addEventListener('pagehide', () => lsSave());
+  setInterval(() => { if (document.visibilityState === 'visible' && ghCfg.token && !SYNC.running) SYNC.sync('controllo'); }, 60000);
+  // altre schede dello stesso sito aperte in questo browser
+  window.addEventListener('storage', ev => {
+    if (ev.key === LS_KEY && ev.newValue) { try { applyStored(JSON.parse(ev.newValue), false); SYNC.reload(); renderAllSoft(); } catch (e) { /* ignora */ } }
+    else if (ev.key === CFG_KEY) { ghCfg = loadCfg(); renderStatus(); }
+  });
+}
+
+// ---------- helpers ----------
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2600); }
+function stars(n){ return '★'.repeat(n); }
+function elColor(c){ return 'var(--el-' + EL_KEY(c.element) + ')'; }
+function setPath(obj, path, val){ const ks = path.split('.'); let o = obj; for (let i = 0; i < ks.length - 1; i++) { if (o[ks[i]] == null || typeof o[ks[i]] !== 'object') o[ks[i]] = {}; o = o[ks[i]]; } o[ks[ks.length - 1]] = val; }
+function getPath(obj, path){ return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
+function optList(values, cur, extra){ let h = ''; values.forEach(v => { h += '<option value="' + esc(v) + '"' + (v === cur ? ' selected' : '') + '>' + esc(v) + '</option>'; }); return h; }
+function mainSelect(slot, cur, lufel){
+  const opts = MAIN_OPTS[slot]; const isOther = cur && !opts.includes(cur);
+  return '<option value="">—</option>' + optList(opts, cur) + '<option value="__other__"' + (isOther ? ' selected' : '') + '>Altro…</option>' + (lufel ? '' : '');
+}
+function setSelect(list, cur, recommended, withEffects){
+  let h = '<option value="">—</option>';
+  const rec = recommended || [];
+  const ordered = rec.filter(r => list.includes(r)).concat(list.filter(x => !rec.includes(x)));
+  ordered.forEach(v => {
+    const meta = withEffects === 'space' ? REV.universe_sets[v] : REV.smss_sets[v];
+    const nr = meta && meta.released === false ? ' (non rilasciato)' : '';
+    const star = rec.includes(v) ? '★ ' : '';
+    h += '<option value="' + esc(v) + '"' + (v === cur ? ' selected' : '') + '>' + star + esc(v) + nr + '</option>';
+  });
+  return h;
+}
+
+// ---------- rendering: roster grid ----------
+function filteredChars(){
+  const q = ui.search.trim().toLowerCase();
+  let arr = CHARS.filter(c => {
+    const e = state.roster[c.slug];
+    const owned = !!(e && e.owned);
+    if (ui.own === 'yes' && !owned) return false;
+    if (ui.own === 'no' && owned) return false;
+    if (ui.els.size && !ui.els.has(EL_KEY(c.element))) return false;
+    if (ui.poss.size && !ui.poss.has(c.position)) return false;
+    if (ui.rars.size && !ui.rars.has(String(c.rarity))) return false;
+    if (ui.rel === 'out' && !isOut(c)) return false;
+    if (ui.rel === 'current' && relState(c) !== 'current') return false;
+    if (ui.rel === 'soon' && isOut(c)) return false;
+    if (ui.infog && !(c.infographics && c.infographics.length)) return false;
+    if (q) { const hay = (c.name + ' ' + c.codename + ' ' + c.persona + ' ' + c.element + ' ' + c.position + ' ' + c.tags).toLowerCase(); if (!hay.includes(q)) return false; }
+    return true;
+  });
+  const cmp = {
+    code: (a, b) => a.codename.localeCompare(b.codename),
+    owned: (a, b) => (!!(state.roster[b.slug] || {}).owned) - (!!(state.roster[a.slug] || {}).owned) || a.codename.localeCompare(b.codename),
+    element: (a, b) => a.element.localeCompare(b.element) || a.codename.localeCompare(b.codename),
+    rarity: (a, b) => b.rarity - a.rarity || a.codename.localeCompare(b.codename),
+    position: (a, b) => a.position.localeCompare(b.position) || a.codename.localeCompare(b.codename),
+    rel_desc: (a, b) => b.rel.o - a.rel.o,
+    rel_asc: (a, b) => a.rel.o - b.rel.o
+  }[ui.sort] || ((a, b) => 0);
+  return arr.sort(cmp);
+}
+function cardHTML(c){
+  const e = state.roster[c.slug]; const owned = !!(e && e.owned);
+  const w5 = c.weapons.find(w => w.rarity === '5★'); const w4 = c.weapons.find(w => w.rarity === '4★');
+  const wInfo = e && owned ? [w5, w4].filter(Boolean).filter(w => e.weapons[w.name] && e.weapons[w.name].owned).map(w => w.rarity + ' R' + (e.weapons[w.name].ref || 0)).join(' · ') : '';
+  const quick = owned ? ('Lv ' + (e.level || '?') + ' · A' + (e.awareness || 0) + ' · Minds ' + (e.minds || 0) + (c.core && e.core ? ' · Core' : '') + (wInfo ? ' · ' + wInfo : '')) : 'Non posseduto';
+  return '<div class="card ' + (owned ? 'owned' : 'notowned') + '" data-slug="' + c.slug + '" style="--el:' + elColor(c) + '">' +
+    '<img class="thumb" src="' + c.img + '" alt="" loading="lazy" width="72" height="121"><div class="cbody">' +
+    '<div class="row1"><div><div class="code">' + esc(c.codename) + '</div><div class="name">' + esc(c.name) + ' · ' + esc(c.persona) + '</div>' + (ui.sort.indexOf('rel') === 0 ? '<div class="relline">' + relLine(c) + '</div>' : '') + '</div><div class="stars">' + stars(c.rarity) + '</div></div>' +
+    '<div class="meta"><span class="badge el">' + esc(c.element) + '</span><span class="badge">' + esc(c.position) + '</span><span class="badge">' + esc(c.type) + '</span>' + (c.core ? '<span class="badge gold">Core</span>' : '') + (ui.sort.indexOf('rel') === 0 ? '' : relBadge(c)) + /*NAJOX*/(c.infographics && c.infographics.length ? '<span class="badge" title="Infografiche Najox P5X disponibili">📊 Najox</span>' : '')/*NAJOX-ELSE*/''/*/NAJOX*/ + '</div>' +
+    '<div class="quick"><span>' + esc(quick) + '</span><label class="toggle" title="Posseduto"><input type="checkbox" class="ownbox" data-slug="' + c.slug + '"' + (owned ? ' checked' : '') + '> posseduto</label></div></div></div>';
+}
+function renderGrid(){
+  const arr = filteredChars(); const g = document.getElementById('grid');
+  if (!arr.length) { g.innerHTML = '<div class="empty">Nessun personaggio corrisponde ai filtri.</div>'; return; }
+  if (ui.sort === 'rel_desc' || ui.sort === 'rel_asc') { let last = null, h = ''; arr.forEach(c => { const sec = relSection(c); if (sec[0] !== last) { last = sec[0]; const n = arr.filter(x => relSection(x)[0] === sec[0]).length; h += '<div class="ghead"><b>' + sec[1] + '</b><span>' + n + (n === 1 ? ' personaggio' : ' personaggi') + '</span>' + (sec[2] ? '<span>' + sec[2] + '</span>' : '') + '</div>'; } h += cardHTML(c); }); g.innerHTML = h; }
+  else g.innerHTML = arr.map(cardHTML).join('');
+}
+function refreshCard(slug){ const el = document.querySelector('.card[data-slug="' + slug + '"]'); if (!el) return; const tmp = document.createElement('div'); tmp.innerHTML = cardHTML(BY[slug]); el.replaceWith(tmp.firstElementChild); }
+function renderSummary(){
+  const owned = CHARS.filter(c => (state.roster[c.slug] || {}).owned);
+  const o5 = owned.filter(c => c.rarity === 5).length, o4 = owned.length - o5;
+  const a6 = owned.filter(c => (state.roster[c.slug].awareness | 0) >= 6).length;
+  const w5 = owned.filter(c => { const e = state.roster[c.slug]; return c.weapons.some(w => w.rarity === '5★' && e.weapons[w.name] && e.weapons[w.name].owned); }).length;
+  const core = owned.filter(c => c.core && state.roster[c.slug].core).length;
+  document.getElementById('summary').innerHTML =
+    '<div class="stat"><b>' + owned.length + '</b>/ ' + CHARS.length + ' posseduti</div>' +
+    '<div class="stat"><b>' + o5 + '</b>5★ · <b>' + o4 + '</b>4★</div>' +
+    '<div class="stat"><b>' + a6 + '</b>ad A6</div>' +
+    '<div class="stat"><b>' + w5 + '</b>con arma 5★ esclusiva</div>' +
+    '<div class="stat"><b>' + core + '</b>Mindscape Core attivi</div>';
+  renderRelStrip();
+}
+function renderFilters(){
+  const els = [...new Set(CHARS.map(c => EL_KEY(c.element)))].sort();
+  document.getElementById('elFilter').innerHTML = els.map(k => '<span class="chip el' + (ui.els.has(k) ? ' on' : '') + '" data-el="' + k + '" style="' + (ui.els.has(k) ? 'background:var(--el-' + k + ');color:#000;border-color:transparent' : '') + '">' + (k === 'WindIce' ? 'Wind/Ice' : k === 'Buff' ? 'Buff (Elucidator)' : k) + '</span>').join('');
+  const poss = [...new Set(CHARS.map(c => c.position))].sort();
+  document.getElementById('posFilter').innerHTML = poss.map(p => '<span class="chip' + (ui.poss.has(p) ? ' on' : '') + '" data-pos="' + esc(p) + '">' + esc(p) + '</span>').join('');
+  document.querySelectorAll('#rarFilter .chip').forEach(ch => ch.classList.toggle('on', ui.rars.has(ch.dataset.rar)));
+  document.querySelectorAll('#ownFilter .chip').forEach(ch => ch.classList.toggle('on', ch.dataset.own === ui.own));
+  document.querySelectorAll('#relFilter .chip').forEach(ch => ch.classList.toggle('on', ch.dataset.rel === ui.rel));
+  document.getElementById('sort').value = ui.sort;
+}
+function renderAllSoft(){
+  renderSummary();
+  if (ui.view === 'roster') renderGrid();
+  if (ui.view === 'wonder') renderWonder();
+  if (ui.open) { const d = document.getElementById('drawer'); const a = document.activeElement; if (a && d.contains(a) && a.matches('input, select, textarea')) deferredRender = true; else renderDetail(ui.open, true); }
+}
+
+
+// ---------- team e wonder (lufel) ----------
+function isOwned(slug){ return !!(state.roster[slug] || {}).owned; }
+function capFirst(s){ s = String(s || ''); return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function ownBadge(slug){ return isOwned(slug) ? '<span class="badge ok">posseduto</span>' : '<span class="badge">non posseduto</span>'; }
+function aBadge(A){ return A != null && A !== '' ? ' <span class="badge gold" title="Livello di Awareness indicato da lufel per questa sinergia (vedi spiegazione)">A' + esc(A) + '</span>' : ''; }
+function charChips(slugs){ return '<div class="chiplist">' + slugs.filter(s => BY[s]).sort((a, b) => BY[a].codename.localeCompare(BY[b].codename)).map(s => '<span class="lnk' + (isOwned(s) ? ' own' : '') + '" data-goto="' + s + '" title="' + esc(BY[s].name) + (isOwned(s) ? ' · posseduto' : '') + '">' + esc(BY[s].codename) + '</span>').join('') + '</div>'; }
+function partyMember(s, self, shift){
+  if (s === 'wonder') return '<div class="pm' + (shift ? ' shift' : '') + '"><div class="wph">WONDER</div><span class="pl">WONDER</span></div>';
+  const m = BY[s]; if (!m) return '<div class="pm"><div class="wph">?</div>' + esc(s) + '</div>';
+  const cls = 'pm' + (s === self ? ' self' : (isOwned(s) ? '' : ' no')) + (shift ? ' shift' : '');
+  return '<div class="' + cls + '" data-goto="' + s + '" title="' + esc(m.codename + ' — ' + m.name) + (shift ? ' (Shift Member)' : '') + (s !== self && !isOwned(s) ? ' · non posseduto' : '') + '"><img src="' + m.img + '" alt="" loading="lazy"><span class="pl">' + esc(m.codename) + '</span>' + (shift ? '<br><span class="badge" style="font-size:9.5px;padding:0 4px">Shift</span>' : '') + '</div>';
+}
+function weaponSource(W){ return (W.source && W.source !== '—' ? esc(W.source) : 'non indicata su lufel') + (W.release && W.release !== '—' && W.release !== W.source ? ' (uscita con ' + esc(W.release) + ')' : ''); }
+function wweaponRow(name, star, ctx){
+  const W = WON.weapons[name]; if (!W) return ''; const wo = wonder(); const ow = wo.weapons[name] || { owned: false, ref: 0 };
+  let ctl;
+  if (ctx === 'tab') ctl = '<div class="ctl"><label class="toggle"><input type="checkbox" data-wwpn="' + esc(name) + '"' + (ow.owned ? ' checked' : '') + '> posseduta</label><div class="ref" data-wwpn="' + esc(name) + '">' + [0, 1, 2, 3, 4, 5, 6].map(r => '<button type="button" data-ref="' + r + '" class="' + (r === (ow.ref | 0) ? 'on' : '') + '">R' + r + '</button>').join('') + '</div><label class="toggle"><input type="radio" name="wequipped" value="' + esc(name) + '"' + (wo.equipped === name ? ' checked' : '') + '> equipaggiata</label></div>';
+  else ctl = '<div class="ctl"><label class="toggle"><input type="checkbox" data-wwown="' + esc(name) + '"' + (ow.owned ? ' checked' : '') + '> posseduta</label>' + (ow.owned ? '<span class="badge ok">R' + (ow.ref | 0) + '</span>' : '') + '<span class="hint" style="font-size:11.5px;color:var(--dim)">refinement nella scheda Wonder</span></div>';
+  const used = ctx === 'tab' ? (W.used_by.length ? '<div>Consigliata da lufel per ' + W.used_by.length + ' personaggi:' + charChips(W.used_by) + '</div>' : '<div>lufel non la consiglia per nessun personaggio specifico.</div>') : '';
+  return '<div class="wp"><div class="ic"><img src="' + W.img + '" alt="" loading="lazy"></div><div class="wb"><div class="t">' + (star ? '<span class="star" title="Evidenziata su lufel">★</span>' : '') + esc(name) + ' <span class="badge">' + esc(W.element) + '</span></div><div>Fonte: ' + weaponSource(W) + '</div>' + ctl + used + '<details' + (ctx === 'tab' ? '' : ' open') + '><summary>Effetto (lufel, valori R0 → R6' + (ow.owned ? ' · evidenziato il tuo R' + (ow.ref | 0) : '') + ')</summary><div class="rb">' + hl(W.effect, 7, ow.owned ? (ow.ref | 0) : -1, false) + '</div></details></div></div>';
+}
+function personaRow(name, star, ctx){
+  const P = WON.personas[name]; if (!P) return ''; const own = !!(wonder().pers || {})[name];
+  const attr = ctx === 'tab' ? 'data-wpers' : 'data-persown';
+  const used = ctx === 'tab' ? '<div>Consigliata per ' + P.used_by.length + ' personaggi:' + charChips(P.used_by) + '</div>' : '';
+  return '<div class="wp" data-pname="' + esc(name) + '"><div class="ic"><img src="' + P.img + '" alt="" loading="lazy"></div><div class="wb"><div class="t">' + (star ? '<span class="star" title="Evidenziata su lufel">★</span>' : '') + esc(name) + ' <span class="badge">' + esc(P.element) + '</span>' + (P.tier ? '<span class="badge" title="Tier della Persona su lufel">Tier ' + esc(P.tier) + '</span>' : '') + '<label class="toggle" style="font-weight:400"><input type="checkbox" ' + attr + '="' + esc(name) + '"' + (own ? ' checked' : '') + '> posseduta</label></div><div>' + esc(P.role) + '</div>' + used + '<details><summary>Talento «' + esc(P.talent_name || '—') + '» e unique skill «' + esc(P.unique_name || '—') + '»</summary><div class="rb"><b>' + esc(P.talent_name || 'Talento') + '</b> (talento, livello massimo): ' + esc(P.talent) + '</div><div class="rb"><b>' + esc(P.unique_name || 'Unique skill') + '</b> (unique skill, valori come su lufel): ' + esc(P.unique) + '</div></details></div></div>';
+}
+function teamSection(c){
+  const t = c.team || { friends: [], parties: [], weapons: [], personas: [] };
+  let h = '<div class="sec team" id="sec-team"><h3>Team e Wonder <span class="hint">Fonte: lufel.net (Recommended Parties) · spiegazioni tradotte · ★ = evidenziato su lufel</span></h3>';
+  const any = t.friends.length || t.parties.length || t.weapons.length || t.personas.length;
+  const rv = REVERSE[c.slug] || [], pi = PARTY_IN[c.slug] || [];
+  if (!any) h += '<div class="note">Su lufel la sezione «Recommended Parties» di <b>' + esc(c.codename) + '</b> è vuota: nessun teammate, esempio di party, Persona o Wonder weapon consigliati. ' + (rv.length || pi.length ? 'Qui sotto trovi in quali team di altri personaggi compare.' : 'Non compare nemmeno nei team consigliati degli altri personaggi.') + '</div>';
+  // teammates
+  if (t.friends.length) {
+    h += '<h4 class="first">Teammates consigliati (' + t.friends.length + ')</h4><div class="hint2">Perché funzionano insieme, secondo lufel. Clic sul nome o sull’immagine per aprire il personaggio. Il badge «A6» (o simile) è il livello di Awareness che lufel associa a quella sinergia: la spiegazione dice di chi.</div>';
+    h += t.friends.map(f => { const m = f.slug && BY[f.slug];
+      return '<div class="mate">' + (m ? '<img class="mt" src="' + m.img + '" alt="" loading="lazy" data-goto="' + m.slug + '">' : '') + '<div class="mb"><span class="lnk"' + (m ? ' data-goto="' + m.slug + '"' : '') + '>' + esc(f.code) + '</span>' + (m ? ' · ' + esc(m.name) + ' · ' + esc(m.position) + ' · ' + esc(m.element) + ' ' + ownBadge(m.slug) : '') + aBadge(f.A) + '<div>' + esc(capFirst(f.it)) + '</div></div></div>'; }).join('');
+  }
+  // party examples
+  if (t.parties.length) {
+    h += '<h4' + (t.friends.length ? '' : ' class="first"') + '>Esempi di party lufel (' + t.parties.length + ')</h4><div class="hint2">Bordo rosso = ' + esc(c.codename) + ' · in grigio i personaggi che non possiedi · il 5° membro (con FUUKA nel party) è lo Shift Member.</div>';
+    t.parties.forEach(p => { const n = p.filter(s => s === c.slug || s === 'wonder' || isOwned(s)).length;
+      h += '<div class="party">' + p.map((s, i) => partyMember(s, c.slug, i >= 4)).join('') + '<span class="pcount">' + (n === p.length ? '✅ hai tutto il team' : 'ne hai ' + n + '/' + p.length) + '</span></div>'; });
+  }
+  // wonder weapons
+  if (t.weapons.length) {
+    h += '<h4>Wonder weapon consigliate (' + t.weapons.length + ')</h4><div class="hint2">L’arma che equipaggia Wonder quando gioca con ' + esc(c.codename) + '. In ordine come su lufel.</div>';
+    h += t.weapons.map(w => wweaponRow(w.name, w.star, 'drawer')).join('');
+  }
+  // wonder personas
+  if (t.personas.length) {
+    h += '<h4>Persona di Wonder consigliate</h4><div class="hint2">Raggruppate per funzione come su lufel. Spunta quelle che possiedi (vale per tutti i personaggi).</div>';
+    t.personas.forEach(g => { h += '<div class="pgroup"><div class="gh">' + esc(g.label) + '</div>' + (g.desc ? '<div class="gd">' + esc(g.desc) + '</div>' : '') + (g.note ? '<div class="note"><b>Nota lufel:</b> ' + esc(g.note) + '</div>' : '') + g.list.map(p => personaRow(p.name, p.star, 'drawer')).join('') + '</div>'; });
+  }
+  if (any && (!t.weapons.length || !t.personas.length)) h += '<div class="note">' + (!t.weapons.length && !t.personas.length ? 'lufel non indica Wonder weapon né Persona di Wonder specifiche per ' : (!t.weapons.length ? 'lufel non indica Wonder weapon specifiche per ' : 'lufel non indica Persona di Wonder specifiche per ')) + esc(c.codename) + '.</div>';
+  // reverse
+  if (rv.length || pi.length) {
+    h += '<h4>Dove compare ' + esc(c.codename) + ' nei team degli altri</h4>';
+    if (rv.length) h += '<div class="hint2">Indicato come teammate consigliato da ' + rv.length + ' personaggi:</div>' + rv.map(r => { const m = BY[r.from]; return '<div class="mate"><img class="mt" src="' + m.img + '" alt="" loading="lazy" data-goto="' + m.slug + '"><div class="mb"><span class="lnk" data-goto="' + m.slug + '">' + esc(m.codename) + '</span> · ' + esc(m.name) + ' ' + ownBadge(m.slug) + aBadge(r.A) + '<div>' + esc(capFirst(r.it)) + '</div></div></div>'; }).join('');
+    if (pi.length) h += '<div class="hint2" style="margin-top:8px">Presente negli esempi di party di ' + pi.length + ' personaggi (bordo verde = posseduti):</div>' + charChips(pi);
+  }
+  return h + '</div>';
+}
+
+// ---------- detail drawer ----------
+function refDetails(title, items, open){ if (!items || !items.length) return ''; return '<details class="ref-lufel"' + (open ? ' open' : '') + '><summary>' + title + '</summary>' + items.map(it => '<div class="rb">' + (it.t ? '<b>' + esc(it.t) + '</b>' : '') + '<div>' + esc(it.b).replace(/\n/g, '<br>') + '</div></div>').join('') + '</details>'; }
+function weaponDetails(ws){ if (!ws || !ws.length) return ''; return '<details class="ref-lufel"><summary>Effetti delle armi esclusive (lufel, valori R0/R1/R2/R3/R4/R5/R6)</summary>' + ws.map(w => '<div class="rb"><b>' + esc(w.t) + '</b> <span>' + esc(w.b.replace(/\*/g, '')) + '</span><ul>' + w.e.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul></div>').join('') + '</details>'; }
+function preBlock(title, txt){ if (!txt) return ''; return '<details class="ref-lufel"><summary>' + title + '</summary><div class="rb pre">' + esc(txt) + '</div></details>'; }
+function fld(label, inner, lufel){ return '<div class="f"><label>' + label + '</label>' + inner + (lufel ? '<div class="lufel">' + lufel + '</div>' : '') + '</div>'; }
+function spaceEffects(c, e){
+  const sp = e.rev.space; if (!sp || !REV.universe_sets[sp]) return '';
+  const eff = REV.universe_sets[sp].effects; const used = [e.rev.sun, e.rev.moon, e.rev.star, e.rev.sky].filter(Boolean);
+  const counts = {}; used.forEach(s => counts[s] = (counts[s] || 0) + 1);
+  let h = '';
+  Object.keys(eff).forEach(set => { const n = counts[set] || 0; h += '<div class="effect">' + (n >= 2 ? '✅ ' : '▫️ ') + '<b>' + esc(sp) + ' - ' + esc(set) + '</b>' + (n ? ' (hai ' + n + ' carta/e ' + esc(set) + ')' : '') + ': ' + esc(eff[set]) + '</div>'; });
+  return h;
+}
+function smssEffects(e){
+  const used = [e.rev.sun, e.rev.moon, e.rev.star, e.rev.sky].filter(Boolean); const counts = {}; used.forEach(s => counts[s] = (counts[s] || 0) + 1);
+  let h = '';
+  Object.keys(counts).forEach(set => { const m = REV.smss_sets[set]; if (!m) return; const n = counts[set]; h += '<div class="effect"><b>' + esc(set) + ' ×' + n + '</b>: ' + (n >= 2 ? '2-Set attivo — ' + esc(m.set2) : '2-Set non attivo (serve 2 carte)') + (n >= 4 ? ' · 4-Set attivo — ' + esc(m.set4) : (n >= 2 ? ' · 4-Set: ' + esc(m.set4) + ' (richiede 4 carte)' : '')) + '</div>'; });
+  return h;
+}
+// ---------- termini con descrizione (hover / tocco) ----------
+const TERM_CACHE = {};
+const ALNUM = /[A-Za-zÀ-ÿ0-9]/;
+function termInfo(c){
+  if (TERM_CACHE[c.slug]) return TERM_CACHE[c.slug];
+  const list = (c.terms || []).slice().sort((a, b) => b[0].length - a[0].length); const map = {}; list.forEach(t => { map[t[0]] = t; });
+  const re = list.length ? new RegExp('(\\[)?(' + list.map(t => t[0].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(\\])?', 'g') : null;
+  const items = [];
+  c.ref.skills.forEach((it, i) => items.push({ key: 'sk:' + i, tab: 'sk', title: it.t || 'Skill', body: it.b, n: 4 }));
+  c.ref.awareness.forEach((it, i) => items.push({ key: 'aw:' + i, tab: 'aw', title: 'Awareness ' + it.t, body: it.b, n: 0 }));
+  c.ref.weapons.forEach((w, i) => items.push({ key: 'wp:' + i, tab: 'wp', title: 'Arma ' + w.t.split(' · ')[0], body: w.e.join('\n'), n: 7 }));
+  c.ref.attr.forEach((it, i) => items.push({ key: 'at:' + i, tab: 'ms', title: 'Attribute Mindscape', body: it.b, n: 0 }));
+  c.ref.core.forEach((it, i) => items.push({ key: 'co:' + i, tab: 'ms', title: 'Mindscape Core' + (it.t ? ' — ' + it.t : ''), body: it.b, n: 0 }));
+  return (TERM_CACHE[c.slug] = { list: list, map: map, re: re, items: items });
+}
+// testo → HTML con valori evidenziati (hl) e termini sottolineati; self = chiave dell'elemento che si sta leggendo
+function rich(c, txt, n, idx, compact, self){
+  const T = termInfo(c); txt = String(txt == null ? '' : txt); if (!T.re) return hl(txt, n, idx, compact);
+  let out = '', last = 0, m; T.re.lastIndex = 0;
+  while ((m = T.re.exec(txt))) {
+    const s = m.index, e = s + m[0].length; const t = T.map[m[2]]; if (!t) continue;
+    const okB = !!m[1] || s === 0 || !ALNUM.test(txt[s - 1]); const okA = !!m[3] || e >= txt.length || !ALNUM.test(txt[e]);
+    if (!okB || !okA || (t[1] === 'n' && t[2] === self)) continue;
+    out += hl(txt.slice(last, s), n, idx, compact) + '<span class="term" tabindex="0" role="button" data-term="' + esc(m[2]) + '">' + esc(m[0]) + '</span>'; last = e;
+  }
+  return out + hl(txt.slice(last), n, idx, compact);
+}
+function splitSent(txt){
+  const out = []; String(txt).split('\n').forEach(line => { let st = 0;
+    for (let i = 0; i < line.length - 2; i++) { const ch = line[i]; if ((ch === '.' || ch === '!' || ch === '?') && line[i + 1] === ' ' && /[A-ZÀ-Ý\[(«“"]/.test(line[i + 2])) { out.push(line.slice(st, i + 1)); st = i + 2; } }
+    if (st < line.length) out.push(line.slice(st)); });
+  return out.map(s => s.trim()).filter(Boolean);
+}
+function maskLonger(T, name, s){ T.list.forEach(t => { if (t[0] !== name && t[0].length > name.length && t[0].indexOf(name) >= 0) s = s.split(t[0]).join(new Array(t[0].length + 1).join('\u0001')); }); return s; }
+function termAt(T, name, s){   // posizione della prima occorrenza "vera" del termine nella frase, -1 se assente
+  const m = maskLonger(T, name, s); let i = m.indexOf(name);
+  while (i >= 0) { const b = i === 0 ? '' : m[i - 1], a = i + name.length >= m.length ? '' : m[i + name.length]; if ((b === '' || b === '[' || !ALNUM.test(b)) && (a === '' || a === ']' || !ALNUM.test(a))) return i; i = m.indexOf(name, i + 1); }
+  return -1;
+}
+function isDef(name, s, i){ const rest = s.slice(i + name.length).replace(/^\]/, ''); return /^\s*(\([^)]*\))?\s*:/.test(rest); }
+function termPassages(c, name){
+  const T = termInfo(c); const out = []; const seen = {};
+  T.items.forEach(it => { splitSent(it.body).forEach(sen => { let i = termAt(T, name, sen); if (i < 0) return;
+    let text = sen; if (sen.indexOf(' · ') >= 0 && sen.length > 200) { const segs = sen.split(' · ').filter(g => termAt(T, name, g) >= 0); if (segs.length) { text = segs.join(' · '); i = termAt(T, name, text); } }
+    if (seen[text]) return; seen[text] = true; out.push({ it: it, text: text, def: isDef(name, text, i) }); }); });
+  return out.filter(p => p.def).concat(out.filter(p => !p.def));
+}
+function tipText(c, it, text){ return rich(c, text, it.n, it.n === 4 ? ui.lvcol : -1, it.n === 4, null); }
+let tipFor = null, tipPinned = false, tipTimer = 0, tipStack = [], tipName = null, tipMute = 0;
+function termTipHTML(c, name){
+  const T = termInfo(c); const t = T.map[name]; if (!t) return '';
+  const back = tipStack.length ? '<button type="button" class="tt-back" data-tipback="1">‹ ' + esc(tipStack[tipStack.length - 1]) + '</button>' : '';
+  let h = '<div class="tt-h"><span>' + back + '<b>' + esc(name) + '</b></span><button type="button" class="tt-x" data-tipclose="1" aria-label="Chiudi la descrizione">✕</button></div>';
+  if (t[1] === 'n') { const it = T.items.filter(x => x.key === t[2])[0]; if (!it) return '';
+    h += '<button type="button" class="tt-src" data-tab="' + it.tab + '">' + esc(it.title) + ' ›</button><div class="tt-b">' + tipText(c, it, it.body) + '</div>'; }
+  else { const pas = termPassages(c, name); if (!pas.length) return ''; const defs = pas.filter(p => p.def);
+    h += '<div class="tt-k">' + (defs.length ? 'Stato / meccanica di ' + esc(c.codename) : 'Stato / meccanica di ' + esc(c.codename) + ' · lufel non ne dà una definizione separata: ecco dove ne parla') + '</div>';
+    const groups = []; pas.forEach(p => { const g = groups[groups.length - 1]; if (g && g.it === p.it && g.def === p.def) g.texts.push(p.text); else groups.push({ it: p.it, def: p.def, texts: [p.text] }); });
+    groups.slice(0, 7).forEach(g => { h += '<button type="button" class="tt-src" data-tab="' + g.it.tab + '">' + esc(g.it.title) + (g.def ? ' · definizione' : '') + ' ›</button><div class="tt-b">' + g.texts.map(x => tipText(c, g.it, x)).join(' ') + '</div>'; });
+    if (groups.length > 7) h += '<div class="tt-k">… citato anche in altri ' + (groups.length - 7) + ' punti: usa la ricerca nella scheda per vederli tutti.</div>';
+    if (!defs.length) { const rel = []; pas.forEach(p => { T.list.forEach(o => { if (o[1] !== 's' || o[0] === name || rel.indexOf(o[0]) >= 0 || termAt(T, o[0], p.text) < 0) return; if (termPassages(c, o[0]).some(q => q.def)) rel.push(o[0]); }); });
+      if (rel.length) h += '<div class="tt-k">Termini collegati con definizione:</div>' + rel.slice(0, 3).map(o => { const d = termPassages(c, o).filter(q => q.def)[0]; return '<div class="tt-b"><span class="term" tabindex="0" role="button" data-term="' + esc(o) + '">' + esc(o) + '</span> — ' + tipText(c, d.it, d.text) + '</div>'; }).join(''); } }
+  return h + '<div class="tt-f">Testo di lufel.net (scheda di ' + esc(c.codename) + ') · i termini sottolineati qui dentro si possono aprire</div>';
+}
+function placeTip(el){
+  const tip = document.getElementById('tip'); tip.style.maxHeight = ''; tip.style.left = ''; tip.style.top = '';
+  if (window.matchMedia('(max-width: 900px)').matches || !el || !document.body.contains(el)) return;   // su telefono è un pannello in basso (CSS)
+  const r = el.getBoundingClientRect(); const W = window.innerWidth, H = window.innerHeight; const tw = tip.offsetWidth, th = tip.offsetHeight;
+  const below = H - r.bottom - 14, above = r.top - 14; let top;
+  if (th <= below || below >= above) { top = r.bottom + 6; tip.style.maxHeight = Math.max(140, below) + 'px'; } else { tip.style.maxHeight = above + 'px'; top = r.top - 6 - Math.min(th, above); }
+  tip.style.left = Math.max(8, Math.min(r.left, W - tw - 8)) + 'px'; tip.style.top = Math.max(8, top) + 'px';
+}
+function renderTip(name){ const c = BY[ui.open]; const tip = document.getElementById('tip'); const html = c ? termTipHTML(c, name) : ''; if (!html) return false; tipName = name; tip.innerHTML = html; tip.scrollTop = 0; tip.classList.add('open'); tip.classList.toggle('pinned', tipPinned); placeTip(tipFor); return true; }
+function showTip(el, pin){ if (!ui.open) return; clearTimeout(tipTimer); if (tipFor && tipFor !== el) tipFor.removeAttribute('aria-describedby'); tipFor = el; tipPinned = !!pin; tipStack = []; if (renderTip(el.dataset.term)) el.setAttribute('aria-describedby', 'tip'); else hideTip(); }
+function hideTip(){ clearTimeout(tipTimer); tipMute = Date.now(); if (tipFor) tipFor.removeAttribute('aria-describedby'); tipFor = null; tipPinned = false; tipStack = []; tipName = null; const tip = document.getElementById('tip'); if (tip) tip.classList.remove('open', 'pinned'); }
+
+// ---------- scheda personaggio (v2) ----------
+const TABS = [['ov', 'Panoramica'], ['sk', 'Skill'], ['aw', 'Awareness'], ['ms', 'Mindscape'], ['wp', 'Armi'], ['rv', 'Revelation'], ['tm', 'Team e Wonder'], ['st', 'Stat e note'], ['gd', 'Guida lufel'], ['ig', 'Infografiche']];
+function tabsFor(c){ return TABS.filter(t => t[0] !== 'ig' || (c.infographics && c.infographics.length)); }
+const VAL_RE = /(^|[^\w.,\/])([+\-−]?\d+(?:[.,]\d+)?%?(?:\/[+\-−]?\d+(?:[.,]\d+)?%?)+)(?![\w\/])/g;
+// Evidenzia, nei gruppi di n valori separati da "/", quello in posizione idx (compact: mostra solo quello)
+function hl(txt, n, idx, compact){
+  return esc(txt).replace(VAL_RE, (m, pre, grp) => { const parts = grp.split('/'); if (parts.length !== n || idx < 0 || idx >= n) return pre + parts.join('/<wbr>');
+    return pre + '<span class="vg' + (compact ? ' vc' : '') + '" title="' + grp + '">' + parts.map((p, i) => i === idx ? '<b class="von">' + p + '</b>' : '<span class="voff">' + p + '</span>').join('<span class="voff">/</span><wbr>') + '</span>'; }).replace(/\n/g, '<br>');
+}
+function seg(path, opts, cur, type, fill){
+  return '<div class="seg" role="group">' + opts.map(o => '<button type="button" data-set="' + path + '" data-val="' + o[0] + '" data-type="' + type + '" data-fk="' + path + ':' + o[0] + '" class="' + (o[0] === cur ? 'on' : (fill && o[0] < cur ? 'in' : '')) + '" aria-pressed="' + (o[0] === cur) + '">' + esc(o[1]) + '</button>').join('') + '</div>';
+}
+function refItems(items, c, kind){ return (items || []).map((it, i) => '<div class="rb">' + (it.t ? '<b>' + esc(it.t) + '</b> ' : '') + (c ? rich(c, it.b, 0, -1, false, kind + ':' + i) : esc(it.b).replace(/\n/g, '<br>')) + '</div>').join(''); }
+function kvRow(k, v, tab){ return v ? '<div class="k">' + (tab ? '<button type="button" class="klnk" data-tab="' + tab + '">' + k + ' ›</button>' : k) + '</div><div>' + v + '</div>' : ''; }
+function splitOpts(s){ return String(s || '').split(/\s*\/\s*|\s*,\s*/).map(x => x.trim()).filter(x => x && !/^"?-"?$/.test(x) && !/non indicat/i.test(x)); }
+function normStat(s){ return String(s || '').toLowerCase().replace(/%/g, '').replace(/\s+/g, ' ').trim(); }
+function lvLabels(c){ const m = c.rarity === 5 ? '13' : '12'; return ['LV10', 'LV10 + Minds 5', 'LV' + m, 'LV' + m + ' + Minds 5']; }
+
+// Confronto tra i dati inseriti e i consigli lufel (solo confronti esatti: nomi dei set, stat principali, arma)
+function checklist(c, e){
+  const out = []; const add = (s, t, d, tab) => out.push({ s: s, t: t, d: d, tab: tab });
+  const a = e.awareness | 0;
+  if (e.level) add('info', 'Livello ' + e.level, c.core ? 'LV100 sbloccabile con il Mindscape Core (lufel).' : 'Cap LV80: nessun Mindscape Core su lufel.', 'ov'); else add('todo', 'Livello non inserito', '', 'ov');
+  add('info', 'Awareness A' + a + ' — ' + c.awareness['a' + a], a < 6 ? 'Prossima: A' + (a + 1) + ' — ' + c.awareness['a' + (a + 1)] : 'Awareness al massimo.', 'aw');
+  const keys = ['s1', 's2', 's3'].concat(c.has_hl ? ['ult'] : []); const labs = { s1: 'S1', s2: 'S2', s3: 'S3', ult: c.ult_label === 'Theurgy' ? 'Theurgy' : 'HL' };
+  add(keys.some(k => e.skills[k] == null) ? 'todo' : 'info', 'Skill: ' + keys.map(k => labs[k] + ' ' + (e.skills[k] == null ? '—' : 'Lv ' + e.skills[k])).join(' · '), 'Priorità lufel: ' + (c.skill_prio || '—'), 'sk');
+  const w5 = c.weapons.find(w => w.rarity === '5★'); const w5txt = w5 ? 'Arma esclusiva 5★: ' + w5.name + '.' : '';
+  if (e.equipped === '__other__') add('warn', 'Arma: ' + (e.equipped_other || 'altra arma (non esclusiva)'), w5txt, 'wp');
+  else if (e.equipped) { const w = c.weapons.find(x => x.name === e.equipped); const r = (e.weapons[e.equipped] || {}).ref | 0;
+    if (w && w.rarity === '5★') add('ok', 'Arma: 5★ ' + w.name + ' R' + r, 'È l\u2019arma esclusiva 5★.', 'wp'); else add('warn', 'Arma: ' + (w ? w.rarity + ' ' : '') + e.equipped + ' R' + r, w5txt, 'wp'); }
+  else add('todo', 'Arma equipaggiata non segnata', w5txt, 'wp');
+  const r = e.rev;
+  if (!r.space) add('todo', 'Revelation Space non inserita', 'lufel: ' + c.rev_space.join(' / '), 'rv');
+  else if (c.rev_space.indexOf(r.space) >= 0) add('ok', 'Space: ' + r.space, 'Coincide con lufel (' + c.rev_space.join(' / ') + ').', 'rv');
+  else add('warn', 'Space: ' + r.space, 'lufel consiglia: ' + c.rev_space.join(' / ') + '.', 'rv');
+  const filled = [r.sun, r.moon, r.star, r.sky].filter(Boolean);
+  if (!filled.length) add('todo', 'Set Sun/Moon/Star/Sky non inseriti', 'lufel: ' + c.rev_smss.join(' / '), 'rv');
+  else { const cnt = {}; filled.forEach(s => cnt[s] = (cnt[s] || 0) + 1); const desc = Object.keys(cnt).map(s => s + ' ×' + cnt[s]).join(', ') + (filled.length < 4 ? ' (' + filled.length + '/4 inserite)' : '');
+    const best = Math.max.apply(null, [0].concat(c.rev_smss.map(s => cnt[s] || 0))); const allRec = filled.every(s => c.rev_smss.indexOf(s) >= 0);
+    if (best === 4) add('ok', 'Set: ' + desc, '4 carte di un set consigliato da lufel: 4-Set attivo.', 'rv');
+    else if (allRec) add('info', 'Set: ' + desc, 'Solo set consigliati da lufel (' + c.rev_smss.join(' / ') + '), ma il 4-Set richiede 4 carte dello stesso set.', 'rv');
+    else add('warn', 'Set: ' + desc, 'lufel consiglia: ' + c.rev_smss.join(' / ') + '.', 'rv'); }
+  [['moon', 'Moon'], ['star', 'Star'], ['sky', 'Sky']].forEach(p => { const rec = splitOpts(c.main[p[1]]); const mine = r.main[p[0]];
+    if (!rec.length) { if (mine) add('info', 'Main ' + p[1] + ': ' + mine, 'lufel non indica una stat principale per ' + p[1] + '.', 'rv'); return; }
+    if (!mine) add('todo', 'Main ' + p[1] + ' non inserita', 'lufel: ' + rec.join(' / '), 'rv');
+    else if (rec.some(x => normStat(x) === normStat(mine))) add('ok', 'Main ' + p[1] + ': ' + mine, 'Coincide con lufel (' + rec.join(' / ') + ').', 'rv');
+    else add('warn', 'Main ' + p[1] + ': ' + mine, 'lufel consiglia: ' + rec.join(' / ') + '.', 'rv'); });
+  const ms = c.mindscape || {};
+  add('info', 'Mindscape (Minds) ' + (e.minds | 0) + '/5', 'lufel LV5: RS1 ' + (ms.rs1 || '—') + ' · RS2 ' + (ms.rs2 || '—') + ' · SE1 ' + (ms.se1 || '—') + ' · SE2 ' + (ms.se2 || '—'), 'ms');
+  if (c.core) add(e.core ? 'ok' : 'todo', e.core ? 'Mindscape Core attivo' : 'Mindscape Core non attivo', 'lufel ha un Mindscape Core per questo personaggio.', 'ms');
+  return out;
+}
+function checkHTML(c, e){
+  if (!e.owned) return '<div class="note">Non hai segnato <b>' + esc(c.codename) + '</b> come posseduto. Quando lo segni, qui compare il confronto tra la tua build e quella consigliata da lufel.</div>';
+  const items = checklist(c, e); const ic = { ok: '✅', warn: '⚠️', todo: '⬜', info: 'ℹ️' }; const sr = { ok: 'come lufel', warn: 'diverso da lufel', todo: 'da inserire', info: 'informazione' }; const n = s => items.filter(i => i.s === s).length;
+  return '<div class="cksum"><span class="badge ok">✅ ' + n('ok') + ' come lufel</span><span class="badge nr">⚠️ ' + n('warn') + ' diversi</span><span class="badge">⬜ ' + n('todo') + ' da inserire</span></div>' +
+    items.map(i => '<button type="button" class="ck" data-tab="' + i.tab + '"><span class="i" aria-hidden="true">' + ic[i.s] + '</span><span><span class="sr">' + sr[i.s] + ': </span><b>' + esc(i.t) + '</b>' + (i.d ? '<br>' + esc(i.d) : '') + '</span></button>').join('');
+}
+
+function paneOverview(c, e){
+  const a = e.awareness | 0; const t = c.team || { friends: [], parties: [], weapons: [], personas: [] }; const ms = c.mindscape || {}; const main = c.main;
+  let h = '<div class="ovgrid">';
+  h += '<div class="sec" id="ovMy"><h3>Il mio ' + esc(c.codename) + ' <span class="hint">si salva da solo</span></h3><div class="frow">' +
+    fld('Posseduto', seg('owned', [[0, 'No'], [1, 'Sì']], e.owned ? 1 : 0, 'bool')) +
+    fld('Livello', '<input type="number" inputmode="numeric" min="1" max="100" data-path="level" data-type="int" value="' + (e.level || '') + '" placeholder="1–' + (c.core ? 100 : 80) + '">', c.core ? 'fino a LV100 con il Mindscape Core (lufel)' : 'cap LV80 (nessun Mindscape Core su lufel)') + '</div>' +
+    '<div style="margin-top:10px">' + fld('Awareness', seg('awareness', [0, 1, 2, 3, 4, 5, 6].map(i => [i, 'A' + i]), e.owned ? a : -1, 'int', true), e.owned ? '<b>A' + a + '</b> — ' + esc(c.awareness['a' + a]) : 'tocca il livello che possiedi') + '</div>' +
+    '<div class="frow" style="margin-top:10px">' + fld('Mindscape (Minds)', seg('minds', [0, 1, 2, 3, 4, 5].map(i => [i, String(i)]), e.owned ? (e.minds | 0) : -1, 'int', true)) +
+    (c.core ? fld('Mindscape Core', seg('core', [[0, 'Non attivo'], [1, 'Attivo']], e.owned ? (e.core ? 1 : 0) : -1, 'bool')) : '') + '</div></div>';
+  h += '<div class="sec"><h3>La mia build e lufel <span class="hint">tocca una riga per aprirla</span></h3><div id="ovCheck">' + checkHTML(c, e) + '</div></div></div>';
+  h += '<div class="sec"><h3>Build consigliata da lufel <span class="hint"><a href="' + esc(guideUrl(c)) + '"' + (SITE.public ? '' : ' target="_blank" rel="noopener"') + '>guida completa</a> · <a href="' + c.lufel_url + '" target="_blank" rel="noopener">pagina lufel ↗</a></span></h3><div class="kv2">' +
+    kvRow('Space (Universe)', esc(c.rev_space.map(s => '★ ' + s).join(' / ')), 'rv') +
+    kvRow('Sun / Moon / Star / Sky', esc(c.rev_smss.map(s => '★ ' + s).join(' / ')), 'rv') +
+    kvRow('Stat principali', 'Sun ' + esc(main.Sun) + ' · Moon ' + esc(main.Moon) + ' · Star ' + esc(main.Star) + ' · Sky ' + esc(main.Sky), 'rv') +
+    kvRow('Sub Options', esc(c.sub)) + kvRow('Recommended Stats', esc(c.rec_stats), 'st') + (c.battle_entry && String(c.rec_stats).indexOf('Battle Entry') < 0 ? kvRow('Battle Entry +', esc(c.battle_entry)) : '') +
+    kvRow('Priorità skill', esc(c.skill_prio), 'sk') +
+    kvRow('Mindscape LV5', 'RS1 ' + esc(ms.rs1 || '—') + ' · RS2 ' + esc(ms.rs2 || '—') + (ms.rs2glb ? ' (GLB: ' + esc(ms.rs2glb) + ')' : '') + ' · SE1 ' + esc(ms.se1 || '—') + ' · SE2 ' + esc(ms.se2 || '—'), 'ms') +
+    kvRow('Attribute Mindscape', 'Synergy: ' + esc(c.syn || 'nessuna consigliata') + ' · Combat Skill: ' + esc(c.combat || 'nessuna consigliata'), 'ms') +
+    kvRow('Armi esclusive', esc(c.weapons.map(w => w.rarity + ' ' + w.name).join(' · ')), 'wp') +
+    kvRow('Skill Rotation', esc(c.rotation), 'gd') + kvRow('Note lufel', esc(c.notes)) +
+    kvRow('Profilo', esc(c.persona) + ' · ' + stars(c.rarity) + ' ' + esc(c.type) + ' · ' + esc(c.element) + ' · ' + esc(c.position)) +
+    kvRow('Tag', esc(c.tags)) + kvRow('Resistenze', esc(c.reswk)) +
+    kvRow('Uscita (GLB/JP)', esc(relText(c)) + (relEst(c) ? ' — data stimata da lufel, non confermata' : '')) + '</div></div>';
+  if (t.friends.length || t.weapons.length || t.personas.length) {
+    h += '<div class="sec"><h3>Team e Wonder in breve <span class="hint"><button type="button" class="klnk" data-tab="tm">apri tutto ›</button></span></h3>';
+    if (t.friends.length) h += '<div class="party" style="border-top:0;padding-top:0">' + t.friends.map(f => f.slug ? partyMember(f.slug, null, false) : '').join('') + '</div>';
+    if (t.weapons.length) h += '<div class="effect"><b>Wonder weapon:</b> ' + t.weapons.map(w => (w.star ? '★ ' : '') + esc(w.name)).join(' · ') + '</div>';
+    if (t.personas.length) h += '<div class="effect"><b>Persona di Wonder:</b> ' + t.personas.map(g => esc(g.label) + ' — ' + g.list.map(p => (p.star ? '★ ' : '') + esc(p.name)).join(', ')).join(' · ') + '</div>';
+    h += '</div>';
+  }
+  return h;
+}
+
+function paneSkills(c, e){
+  const labs = lvLabels(c); const col = ui.lvcol;
+  const names = { s1: 'Skill 1 — ' + (c.skills.s1 || ''), s2: 'Skill 2 — ' + (c.skills.s2 || ''), s3: 'Skill 3 — ' + (c.skills.s3 || ''), ult: c.skills.ult || c.ult_label };
+  const keys = ['s1', 's2', 's3'].concat(c.has_hl ? ['ult'] : []);
+  const sel = (k, lab) => { const cur = e.skills[k]; return '<select class="lvsel" data-path="skills.' + k + '" data-type="int" data-fk="sk:' + k + '" aria-label="' + esc(lab) + '"><option value="">Lv —</option>' + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => '<option value="' + i + '"' + (i === cur ? ' selected' : '') + '>Lv ' + i + '</option>').join('') + '</select>'; };
+  const keyOf = t => /^Skill 1/.test(t) ? 's1' : /^Skill 2/.test(t) ? 's2' : /^Skill 3/.test(t) ? 's3' : null;
+  const used = {};
+  const cards = c.ref.skills.map((it, si) => { let k = keyOf(it.t); if (!k && c.has_hl && !used.ult && /^(HIGHLIGHT|Highlight|Theurgy)/.test(it.t)) k = 'ult'; if (k && (used[k] || keys.indexOf(k) < 0)) k = null; if (k) used[k] = true;
+    const pas = /^(Passiva|Stat Buff|Assist)/.test(it.t);
+    return '<div class="skc' + (pas ? ' pas' : '') + '"><h4><span>' + esc(it.t || 'Nota') + '</span>' + (k ? '<label class="mylv">il mio livello ' + sel(k, 'Il mio livello — ' + it.t) + '</label>' : '') + '</h4><div class="tx">' + rich(c, it.b, 4, col, true, 'sk:' + si) + '</div></div>'; }).join('');
+  const rest = keys.filter(k => !used[k]);
+  return '<div class="sec"><h3>Skill <span class="hint">effetti da lufel, in italiano · priorità: ' + esc(c.skill_prio || '—') + '</span></h3><div class="lvbar"><span class="lb">Mostra i valori a:</span>' +
+    labs.map((l, i) => '<button type="button" class="chip' + (col === i ? ' on' : '') + '" data-lvcol="' + i + '" data-fk="lv:' + i + '" aria-pressed="' + (col === i) + '">' + l + '</button>').join('') +
+    '<button type="button" class="chip' + (col < 0 ? ' on' : '') + '" data-lvcol="-1" data-fk="lv:-1" aria-pressed="' + (col < 0) + '">Tutti i valori</button></div>' +
+    (col < 0 ? '<div class="note" style="margin-top:0">Ordine dei valori: ' + labs.join(' / ') + '.</div>' : '') + '<div class="termhint">Le parole <span class="termdemo">sottolineate a puntini</span> sono skill, passive o stati di questo personaggio: passa il mouse (o tocca) per leggerne la descrizione.</div>' +
+    (c.has_hl ? '' : '<div class="note" style="margin-top:0">Elucidator: nessun Highlight (lufel).</div>') +
+    (rest.length ? '<div class="skc"><h4><span>I miei livelli</span></h4><div class="frow">' + rest.map(k => fld(esc(names[k]), sel(k, names[k]))).join('') + '</div></div>' : '') + cards + '</div>';
+}
+
+function paneAwareness(c, e){
+  const a = e.awareness | 0; const own = !!e.owned;
+  let h = '<div class="sec"><h3>Awareness <span class="hint">tocca A0–A6 per impostare la tua</span></h3>' + seg('awareness', [0, 1, 2, 3, 4, 5, 6].map(i => [i, 'A' + i]), own ? a : -1, 'int', true) + '<div class="termhint" style="margin-top:8px">Le parole <span class="termdemo">sottolineate a puntini</span> sono skill, passive o stati di questo personaggio: passa il mouse (o tocca) per leggerne la descrizione.</div>' +
+    c.ref.awareness.map((it, i) => '<div class="awrow ' + (own ? (i <= a ? 'on' : 'off') : '') + '"><button type="button" class="lv" data-set="awareness" data-val="' + i + '" data-type="int" data-fk="awrow:' + i + '" title="Imposta la mia Awareness ad A' + i + '" aria-label="Imposta la mia Awareness ad A' + i + '">A' + i + '</button><div><b>' + esc(c.awareness['a' + i]) + '</b>' + (own && i <= a ? ' <span class="badge ok">attiva</span>' : '') + '<div class="tx">' + rich(c, it.b, 0, -1, false, 'aw:' + i) + '</div></div></div>').join('') + '</div>';
+  if (c.base && c.base.lv80) {
+    const has100 = !!c.base.lv100;
+    h += '<div class="sec"><h3>Stat base per Awareness <span class="hint">lufel · solo il personaggio, senza arma e Revelation</span></h3><table class="bst"><thead><tr><th></th><th colspan="3" style="text-align:center">LV80</th>' + (has100 ? '<th colspan="3" style="text-align:center">LV100</th>' : '') + '</tr><tr><th>Awareness</th><th>HP</th><th>ATK</th><th>DEF</th>' + (has100 ? '<th>HP</th><th>ATK</th><th>DEF</th>' : '') + '</tr></thead><tbody>' +
+      c.base.lv80.map((r, i) => '<tr class="' + (own && i === a ? 'on' : '') + '"><td>A' + i + '</td><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td>' + (has100 ? '<td>' + c.base.lv100[i][0] + '</td><td>' + c.base.lv100[i][1] + '</td><td>' + c.base.lv100[i][2] + '</td>' : '') + '</tr>').join('') + '</tbody></table>' +
+      (c.base.lv1 ? '<div class="effect"><b>Base LV1:</b> ' + esc(c.base.lv1) + (c.base.hidden ? ' · <b>Hidden Ability LV7:</b> ' + esc(c.base.hidden) : '') + '</div>' : '') + '</div>';
+  }
+  return h;
+}
+
+function fillBtn(path, val){ return val ? '<button type="button" class="fillbtn" data-fillpath="' + path + '" data-fillval="' + esc(val) + '" title="Inserisci questo valore nel campo">usa «' + esc(val) + '»</button>' : ''; }
+function paneMindscape(c, e){
+  const ms = c.mindscape || {};
+  let h = '<div class="sec"><h3>Mindscape (Minds) <span class="hint">livello sbloccato e scelte fatte</span></h3>' + fld('Livello Mindscape', seg('minds', [0, 1, 2, 3, 4, 5].map(i => [i, i === 0 ? 'Nessuno' : String(i)]), e.owned ? (e.minds | 0) : -1, 'int', true)) +
+    '<div class="frow" style="margin-top:10px">' +
+    fld('Rank Strengthening 1 scelto', '<input list="rsopts" data-path="msel.rs1" value="' + esc(e.msel.rs1) + '" placeholder="es. ' + esc(ms.rs1 || 'Attack 20%') + '">', 'lufel LV5: <b>' + esc(ms.rs1 || '—') + '</b><br>' + fillBtn('msel.rs1', ms.rs1)) +
+    fld('Rank Strengthening 2 scelto', '<input list="rsopts" data-path="msel.rs2" value="' + esc(e.msel.rs2) + '" placeholder="es. ' + esc(ms.rs2 || 'Crit Rate 12%') + '">', 'lufel LV5: <b>' + esc(ms.rs2 || '—') + '</b>' + (ms.rs2glb ? ' (GLB: <b>' + esc(ms.rs2glb) + '</b>)' : '') + '<br>' + fillBtn('msel.rs2', ms.rs2) + fillBtn('msel.rs2', ms.rs2glb)) +
+    fld('Skill Enforce 1 scelto', '<input data-path="msel.se1" value="' + esc(e.msel.se1) + '" placeholder="es. ' + esc(ms.se1 || 'Skill1 / Skill2') + '">', 'lufel LV5: <b>' + esc(ms.se1 || '—') + '</b><br>' + fillBtn('msel.se1', ms.se1)) +
+    fld('Skill Enforce 2 scelto', '<input data-path="msel.se2" value="' + esc(e.msel.se2) + '" placeholder="es. ' + esc(ms.se2 || 'Skill3 / HIGHLIGHT') + '">', 'lufel LV5: <b>' + esc(ms.se2 || '—') + '</b><br>' + fillBtn('msel.se2', ms.se2)) + '</div></div>';
+  h += '<div class="sec"><h3>Attribute Mindscape <span class="hint">Synergy e Combat Skill</span></h3><div class="frow">' +
+    fld('Synergy sbloccata', '<input data-path="syn" value="' + esc(e.syn) + '" placeholder="' + esc(c.syn ? 'es. ' + c.syn : 'nome o vuoto') + '">', (c.syn ? 'lufel consiglia: <b>' + esc(c.syn) + '</b><br>' + fillBtn('syn', c.syn) : 'lufel: nessuna consigliata')) +
+    fld('Combat Skill sbloccata', '<input data-path="combat" value="' + esc(e.combat) + '" placeholder="' + esc(c.combat ? 'es. ' + c.combat : 'nome o vuoto') + '">', (c.combat ? 'lufel consiglia: <b>' + esc(c.combat) + '</b><br>' + fillBtn('combat', c.combat) : 'lufel: nessuna consigliata')) + '</div>' + refItems(c.ref.attr, c, 'at') + '</div>';
+  if (c.core) h += '<div class="sec"><h3>Mindscape Core <span class="hint">presente su lufel (KR V4.7)</span></h3>' + seg('core', [[0, 'Non attivato'], [1, 'Attivato']], e.owned ? (e.core ? 1 : 0) : -1, 'bool') + refItems(c.ref.core, c, 'co') + '</div>';
+  return h;
+}
+
+function paneWeapons(c, e){
+  let h = '<div class="sec"><h3>Armi esclusive <span class="hint">R0–R6 = refinement (duplicati) · i valori del tuo refinement sono evidenziati</span></h3>';
+  c.weapons.forEach(w => { const we = e.weapons[w.name] || { owned: false, ref: 0 }; const R = c.ref.weapons.find(x => x.t.indexOf(w.name) >= 0); const wi = c.ref.weapons.indexOf(R); const idx = we.owned ? (we.ref | 0) : -1;
+    h += '<div class="wcard' + (e.equipped === w.name ? ' eq' : '') + '"><div class="wh"><b>' + esc(w.rarity) + ' ' + esc(w.name) + (e.equipped === w.name ? ' <span class="badge gold">equipaggiata</span>' : '') + '</b><small>HP ' + w.hp + ' · ATK ' + w.atk + ' · DEF ' + w.def + (w.passive ? ' · passiva ' + esc(w.passive) : '') + '</small></div>' +
+      '<div class="ctl"><label class="toggle"><input type="checkbox" data-wpn="' + esc(w.name) + '" data-wfield="owned"' + (we.owned ? ' checked' : '') + '> posseduta</label>' +
+      '<label class="toggle"><input type="radio" name="equipped" data-path="equipped" data-fk="eq:' + esc(w.name) + '" value="' + esc(w.name) + '"' + (e.equipped === w.name ? ' checked' : '') + '> equipaggiata</label>' +
+      '<div class="ref" data-wpn="' + esc(w.name) + '" role="group" aria-label="Refinement">' + [0, 1, 2, 3, 4, 5, 6].map(r => '<button type="button" data-ref="' + r + '" data-fk="wr:' + esc(w.name) + ':' + r + '" class="' + (we.owned && r === (we.ref | 0) ? 'on' : '') + '" title="Refinement R' + r + '">R' + r + '</button>').join('') + '</div></div>' +
+      (R ? '<div class="tx">' + (idx >= 0 ? 'Valori evidenziati: <b class="von">R' + idx + '</b> (il tuo refinement).' : 'Valori da R0 a R6 (segnala come posseduta per evidenziare il tuo refinement).') + '<ul>' + R.e.map(x => '<li>' + rich(c, x, 7, idx, false, 'wp:' + wi) + '</li>').join('') + '</ul></div>' : '') + '</div>'; });
+  h += '<div class="wcard' + (e.equipped === '__other__' ? ' eq' : '') + '"><div class="wh"><b>Altra arma</b><small>non esclusiva (es. arma 4★ generica, evento)</small></div><div class="ctl"><input type="text" data-path="equipped_other" value="' + esc(e.equipped_other) + '" placeholder="nome arma + refinement" aria-label="Nome dell\u2019altra arma">' +
+    '<label class="toggle"><input type="radio" name="equipped" data-path="equipped" data-fk="eq:__other__" value="__other__"' + (e.equipped === '__other__' ? ' checked' : '') + '> equipaggiata</label></div></div></div>';
+  return h;
+}
+
+function paneRevelation(c, e){
+  const main = c.main; const first = [c.rev_space[0], c.rev_smss[0]].filter(Boolean);
+  return '<div class="sec"><h3>Revelation in uso <span class="hint">★ = consigliato da lufel</span></h3>' +
+    '<div class="note"><b>lufel:</b> Space ' + esc(c.rev_space.join(' / ')) + ' · Sun/Moon/Star/Sky ' + esc(c.rev_smss.join(' / ')) + ' · Main: Sun ' + esc(main.Sun) + ' · Moon ' + esc(main.Moon) + ' · Star ' + esc(main.Star) + ' · Sky ' + esc(main.Sky) + (c.sub ? ' · Sub: ' + esc(c.sub) : '') + (c.rec_stats ? ' · Target: ' + esc(c.rec_stats) : '') + '</div>' +
+    (first.length ? '<div><button type="button" class="fillbtn" data-fillrev="1" title="Riempie solo i campi set ancora vuoti">compila i set vuoti con il primo consigliato (' + esc(first.join(' + ')) + ')</button></div>' : '') +
+    '<div class="frow" style="margin-top:10px">' +
+    fld('Space (Universe) — set', '<select data-path="rev.space">' + setSelect(SPACE_SETS, e.rev.space, c.rev_space, 'space') + '</select>') +
+    fld('Space — stat principale', '<select data-path="rev.main.space" data-main="space">' + mainSelect('Space', e.rev.main.space) + '</select>') +
+    '</div><div id="spaceFx">' + spaceEffects(c, e) + '</div>' +
+    '<div class="frow" style="margin-top:10px">' +
+    fld('Sun — set', '<select data-path="rev.sun">' + setSelect(SMSS_SETS, e.rev.sun, c.rev_smss) + '</select>', 'Main stat Sun: HP (fisso)') +
+    fld('Moon — set', '<select data-path="rev.moon">' + setSelect(SMSS_SETS, e.rev.moon, c.rev_smss) + '</select>') +
+    fld('Moon — stat principale', '<select data-path="rev.main.moon" data-main="moon">' + mainSelect('Moon', e.rev.main.moon) + '</select>', 'lufel: <b>' + esc(main.Moon) + '</b>') +
+    fld('Star — set', '<select data-path="rev.star">' + setSelect(SMSS_SETS, e.rev.star, c.rev_smss) + '</select>') +
+    fld('Star — stat principale', '<select data-path="rev.main.star" data-main="star">' + mainSelect('Star', e.rev.main.star) + '</select>', 'lufel: <b>' + esc(main.Star) + '</b>') +
+    fld('Sky — set', '<select data-path="rev.sky">' + setSelect(SMSS_SETS, e.rev.sky, c.rev_smss) + '</select>') +
+    fld('Sky — stat principale', '<select data-path="rev.main.sky" data-main="sky">' + mainSelect('Sky', e.rev.main.sky) + '</select>', 'lufel: <b>' + esc(main.Sky) + '</b>') +
+    '</div><div id="smssFx">' + smssEffects(e) + '</div></div>' +
+    '<div class="sec"><h3>Dettaglio dei set consigliati <span class="hint">lufel</span></h3><div class="tx">' + esc(c.rev_line) + '</div><div class="effect"><b>Sub Options:</b> ' + esc(c.sub || '—') + '</div></div>';
+}
+
+function paneStats(c, e){
+  return '<div class="sec"><h3>Stat finali in gioco <span class="hint">dalla schermata del personaggio · opzionale</span></h3>' +
+    (c.rec_stats ? '<div class="note"><b>lufel — Recommended Stats:</b> ' + esc(c.rec_stats) + (c.battle_entry && String(c.rec_stats).indexOf('Battle Entry') < 0 ? ' · Battle Entry +: ' + esc(c.battle_entry) : '') + '</div>' : '') +
+    '<div class="frow" style="margin-top:10px">' + STAT_FIELDS.map(f => fld(f[1], f[0] === 'rating' ? '<input data-path="stats.rating" value="' + esc(e.stats.rating || '') + '" placeholder="es. S">' : '<input type="number" inputmode="decimal" step="any" data-path="stats.' + f[0] + '" data-type="num" value="' + (e.stats[f[0]] != null ? e.stats[f[0]] : '') + '">')).join('') + '</div></div>' +
+    '<div class="sec"><h3>Note</h3><div class="f"><textarea data-path="notes" placeholder="Set in farming, obiettivi, team in cui lo usi…" aria-label="Note">' + esc(e.notes) + '</textarea></div></div>';
+}
+
+function paneGuide(c){
+  const blk = (title, txt) => txt ? '<div class="sec"><h3>' + title + '</h3><div class="tx">' + rich(c, txt, 0, -1, false, null) + '</div></div>' : '';
+  const aw = c.awareness;
+  return '<div class="sec"><h3>Rotazione e priorità <span class="hint">lufel</span></h3><div class="kv2">' + kvRow('Skill Rotation', esc(c.rotation)) + kvRow('Note', esc(c.notes)) + kvRow('Priorità skill', esc(c.skill_prio)) + kvRow('Passive', esc(c.passives.join(' · '))) + kvRow('Awareness', [0, 1, 2, 3, 4, 5, 6].map(i => 'A' + i + ' ' + esc(aw['a' + i])).join(' · ')) + '</div></div>' +
+    blk('Character Review <span class="hint">lufel</span>', c.ref.review) + blk('Recommended Combination <span class="hint">lufel</span>', c.ref.combo) + blk('Recommended Parties <span class="hint">lufel</span>', c.ref.parties) + blk('Stats <span class="hint">lufel</span>', c.ref.stats) +
+    '<div class="sec"><h3>Setup completo <span class="hint">lufel</span></h3><div class="kv2">' + kvRow('Revelation', esc(c.rev_line)) + kvRow('Sub Options', esc(c.sub)) + kvRow('Recommended Stats', esc(c.rec_stats)) + kvRow('Battle Entry +', esc(c.battle_entry)) + kvRow('Guida completa', '<a href="' + esc(guideUrl(c)) + '"' + (SITE.public ? '' : ' target="_blank" rel="noopener"') + '>guida di ' + esc(c.codename) + ' (lufel, in italiano)</a>') + kvRow('Pagina lufel', '<a href="' + c.lufel_url + '" target="_blank" rel="noopener">' + esc(c.lufel_url) + '</a>') + '</div></div>';
+}
+
+/*NAJOX*/function infogHTML(c){ return c.infographics.map(i => '<figure><img src="' + esc(i.file) + '" loading="lazy" alt="' + esc(c.codename + ' — ' + i.label + ' (Najox P5X)') + '" data-cap="' + esc(c.codename + ' · ' + i.label + ' · Najox P5X') + '"><figcaption><span>' + esc(i.label) + '</span><a href="' + esc(i.file) + '" target="_blank" rel="noopener">apri in una scheda ↗</a></figcaption></figure>').join(''); }
+function paneInfog(c){
+  const now = ui.dmode === 'all' || ui.tab === 'ig';
+  return '<div class="sec infog"><h3>Infografiche Najox P5X <span class="hint">materiale aggiuntivo, non riferimento principale · autore: <a href="https://x.com/NajoxP5X" target="_blank" rel="noopener">x.com/NajoxP5X</a></span></h3><div class="hint2">' + c.infographics.length + ' immagin' + (c.infographics.length === 1 ? 'e' : 'i') + ': ' + esc(c.infographics.map(i => i.label).join(', ')) + '. Tocca un\u2019immagine per ingrandirla.</div><div class="infog-grid">' + (now ? infogHTML(c) : '') + '</div></div>';
+}/*NAJOX-ELSE*/function infogHTML(){ return ''; }
+function paneInfog(){ return ''; }/*/NAJOX*/
+
+function renderHero(c, e){
+  const owned = !!e.owned; const hero = document.getElementById('dHero'); hero.className = 'hero' + (owned ? '' : ' no'); hero.style.setProperty('--el', elColor(c));
+  const eq = e.equipped && e.equipped !== '__other__' ? c.weapons.find(w => w.name === e.equipped) : null;
+  const chip = (tab, txt, tip) => '<button type="button" class="hchip" data-tab="' + tab + '" title="' + esc(tip) + '">' + esc(txt) + '</button>';
+  const chips = ['<button type="button" class="hchip own' + (owned ? ' on' : '') + '" id="hOwn" aria-pressed="' + owned + '" title="Segna come posseduto / non posseduto">' + (owned ? '✓ Posseduto' : '+ Segna posseduto') + '</button>'];
+  if (owned) chips.push(chip('ov', 'Lv ' + (e.level || '?'), 'Livello'), chip('aw', 'A' + (e.awareness | 0), 'Awareness'), chip('ms', 'Minds ' + (e.minds | 0) + (c.core ? (e.core ? ' · Core ✓' : ' · Core —') : ''), 'Mindscape'),
+    chip('wp', eq ? eq.rarity + ' R' + ((e.weapons[eq.name] || {}).ref | 0) : (e.equipped === '__other__' ? 'Altra arma' : 'Arma —'), 'Arma equipaggiata'), chip('rv', e.rev.space || 'Revelation —', 'Revelation Space in uso'));
+  else chips.push(chip('ov', relState(c) === 'out' ? c.rel.v.split('(')[0] : REL_NAME[relState(c)], relText(c)));
+  hero.innerHTML = '<img class="dimg" src="' + c.img + '" alt="">' + '<div class="hi"><h2>' + esc(c.codename) + ' <span class="nm">' + esc(c.name) + '</span></h2><div class="sub">' + esc(c.persona) + ' · ' + stars(c.rarity) + ' ' + esc(c.type) + '<br><span class="badge el" style="--el:' + elColor(c) + '">' + esc(c.element) + '</span> ' + esc(c.position) + '<br>' + esc(relText(c)) + '<br><a href="' + c.lufel_url + '" target="_blank" rel="noopener">pagina lufel ↗</a></div><div class="hchips">' + chips.join('') + '</div></div>';
+}
+function renderTabs(c){
+  document.getElementById('dTabs').innerHTML = tabsFor(c).map((t, i) => '<button type="button" class="dtab" role="tab" id="tab-' + t[0] + '" data-dtab="' + t[0] + '" aria-selected="' + (t[0] === ui.tab) + '" aria-controls="pane-' + t[0] + '" tabindex="' + (t[0] === ui.tab ? 0 : -1) + '"><span>' + t[1] + '</span><span class="r"><span class="cnt" hidden></span><span class="kb" aria-hidden="true">' + ((i + 1) % 10) + '</span></span></button>').join('');
+}
+function renderTop(c){
+  const j = document.getElementById('dJump'); const by = (a, b) => a.codename.localeCompare(b.codename);
+  const own = CHARS.filter(x => isOwned(x.slug)).sort(by), not = CHARS.filter(x => !isOwned(x.slug)).sort(by);
+  const opt = x => '<option value="' + x.slug + '"' + (x.slug === c.slug ? ' selected' : '') + '>' + esc(x.codename) + ' — ' + esc(x.name) + '</option>';
+  j.innerHTML = (own.length ? '<optgroup label="Posseduti (' + own.length + ')">' + own.map(opt).join('') + '</optgroup>' : '') + (not.length ? '<optgroup label="Non posseduti (' + not.length + ')">' + not.map(opt).join('') + '</optgroup>' : '');
+  const b = document.getElementById('dBack'); const last = ui.hist[ui.hist.length - 1]; b.style.display = last ? '' : 'none'; if (last) { b.textContent = '↩ ' + BY[last].codename; b.title = 'Torna a ' + BY[last].codename; }
+  const m = document.getElementById('dMode'); m.innerHTML = ui.dmode === 'all' ? '▤ <span class="lbl">Tutto in una pagina</span>' : '▦ <span class="lbl">A schede</span>'; m.setAttribute('aria-pressed', ui.dmode === 'all');
+  const l = navList(); const i = l.indexOf(c.slug); document.getElementById('dPrev').title = 'Precedente: ' + BY[l[(i - 1 + l.length) % l.length]].codename + ' (←)'; document.getElementById('dNext').title = 'Successivo: ' + BY[l[(i + 1) % l.length]].codename + ' (→)';
+}
+function markTab(id){ document.querySelectorAll('#dTabs .dtab').forEach(b => { const on = b.dataset.dtab === id; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; if (on && b.scrollIntoView) b.scrollIntoView({ block: 'nearest', inline: 'center' }); }); }
+function setTab(id, scroll){
+  const c = BY[ui.open]; if (!c || !tabsFor(c).some(t => t[0] === id)) return; ui.tab = id; markTab(id);
+  const body = document.getElementById('dBody'); const pane = document.getElementById('pane-' + id); if (!pane) return;
+  if (id === 'ig') { const g = pane.querySelector('.infog-grid'); if (g && !g.childElementCount) g.innerHTML = infogHTML(c); }
+  if (ui.dmode === 'all') { if (scroll !== false) body.scrollTop = Math.max(0, pane.offsetTop - 6); return; }
+  body.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p === pane));
+  if (scroll !== false) { body.scrollTop = 0; const m = ui.dq.trim().length >= 2 ? pane.querySelector('mark') : null; if (m) m.scrollIntoView({ block: 'center' }); }
+}
+function setHits(txt, bad){ document.getElementById('dHits').textContent = txt; document.getElementById('dSearch').classList.toggle('nohit', !!bad); }
+let searchJump = false;
+function markSearch(){
+  const q = ui.dq.trim().toLowerCase(); const body = document.getElementById('dBody'); let total = 0; const counts = {};
+  body.querySelectorAll('.pane').forEach(p => { let n = 0;
+    const w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, null); const nodes = []; while (w.nextNode()) nodes.push(w.currentNode);
+    nodes.forEach(nd => { const par = nd.parentElement; if (!par || par.closest('select,option,textarea,script,style,datalist,.ph,.sr')) return; const t = nd.nodeValue, low = t.toLowerCase(); let i = low.indexOf(q); if (i < 0 || low.length !== t.length) return;
+      const frag = document.createDocumentFragment(); let last = 0;
+      while (i >= 0) { if (i > last) frag.appendChild(document.createTextNode(t.slice(last, i))); const m = document.createElement('mark'); m.textContent = t.slice(i, i + q.length); frag.appendChild(m); n++; last = i + q.length; i = low.indexOf(q, last); }
+      if (last < t.length) frag.appendChild(document.createTextNode(t.slice(last))); par.replaceChild(frag, nd); });
+    p.querySelectorAll('.vg.vc').forEach(v => { if (v.querySelector('mark')) v.classList.remove('vc'); });
+    counts[p.dataset.pane] = n; total += n; });
+  document.querySelectorAll('#dTabs .dtab').forEach(b => { const n = counts[b.dataset.dtab] || 0; const cn = b.querySelector('.cnt'); cn.hidden = !n; cn.textContent = n; });
+  setHits(total ? total + (total === 1 ? ' risultato' : ' risultati') : 'nessun risultato', !total);
+  if (!total || !searchJump) return;
+  if (ui.dmode !== 'all' && !counts[ui.tab]) { const first = tabsFor(BY[ui.open]).find(t => counts[t[0]]); if (first) setTab(first[0]); }
+  else { const scope = ui.dmode === 'all' ? body : document.getElementById('pane-' + ui.tab); const m = scope && scope.querySelector('mark'); if (m) m.scrollIntoView({ block: 'center' }); }
+}
+const PANES = { ov: paneOverview, sk: paneSkills, aw: paneAwareness, ms: paneMindscape, wp: paneWeapons, rv: paneRevelation, tm: teamSection, st: paneStats, gd: paneGuide, ig: paneInfog };
+function renderDetail(slug, keepScroll){
+  const c = BY[slug]; const e = entry(slug); ui.open = slug;
+  hideTip(); const drawer = document.getElementById('drawer'); const body = document.getElementById('dBody'); const st = keepScroll ? body.scrollTop : 0;
+  const ae = document.activeElement; const fk = ae && body.contains(ae) ? ae.getAttribute('data-fk') : null;
+  const tabs = tabsFor(c); if (!tabs.some(t => t[0] === ui.tab)) ui.tab = 'ov';
+  drawer.classList.toggle('all', ui.dmode === 'all');
+  renderHero(c, e); renderTabs(c); renderTop(c);
+  body.innerHTML = tabs.map(t => '<section class="pane' + (t[0] === ui.tab ? ' on' : '') + '" id="pane-' + t[0] + '" data-pane="' + t[0] + '" role="tabpanel" aria-labelledby="tab-' + t[0] + '"><h3 class="ph">' + t[1] + '</h3>' + PANES[t[0]](c, e) + '</section>').join('') +
+    '<datalist id="rsopts">' + RS_OPTS.map(o => '<option value="' + esc(o) + '">').join('') + '</datalist>';
+  body.scrollTop = st;
+  if (ui.dq.trim().length >= 2) markSearch(); else { setHits('', false); }
+  if (fk) { const el = body.querySelector('[data-fk="' + fk.replace(/["\\]/g, '\\$&') + '"]'); if (el) el.focus({ preventScroll: true }); }
+}
+function refreshHero(){ if (ui.open) renderHero(BY[ui.open], entry(ui.open)); }
+function refreshCheck(){ const el = document.getElementById('ovCheck'); if (el && ui.open) el.innerHTML = checkHTML(BY[ui.open], entry(ui.open)); }
+let lastFocus = null;
+function openDetail(slug, opts){
+  const d = document.getElementById('drawer'); const wasOpen = d.classList.contains('open');
+  if (!wasOpen) { ui.hist = []; ui.dq = ''; document.getElementById('dSearch').value = ''; document.querySelector('.dtop').classList.remove('showsearch'); lastFocus = document.activeElement; }
+  renderDetail(slug, false);
+  d.classList.add('open'); document.getElementById('overlay').classList.add('open'); d.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+  if (!wasOpen) d.focus({ preventScroll: true });
+}
+function closeDetail(){
+  hideTip(); ui.open = null; ui.hist = []; if (/^#c=/.test(location.hash) && history.replaceState) history.replaceState(null, '', location.pathname + location.search); const d = document.getElementById('drawer'); d.classList.remove('open'); document.getElementById('overlay').classList.remove('open'); d.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+  if (lastFocus && lastFocus.focus && document.body.contains(lastFocus)) { try { lastFocus.focus({ preventScroll: true }); } catch (err) {} } lastFocus = null;
+}
+function gotoChar(slug){ if (!BY[slug] || slug === ui.open) return; if (ui.open) { ui.hist.push(ui.open); if (ui.hist.length > 30) ui.hist.shift(); } openDetail(slug); }
+function goBack(){ const s = ui.hist.pop(); if (s) openDetail(s); }
+function navList(){ const arr = filteredChars().map(c => c.slug); return arr.indexOf(ui.open) >= 0 ? arr : CHARS.slice().sort((a, b) => a.codename.localeCompare(b.codename)).map(c => c.slug); }
+function navStep(d){ if (!ui.open) return; const l = navList(); const i = l.indexOf(ui.open); openDetail(l[(i + d + l.length) % l.length]); }
+
+function readField(elm){
+  const path = elm.dataset.path; if (!path) return null;
+  const type = elm.dataset.type || 'str'; let v;
+  if (elm.type === 'checkbox') v = elm.checked;
+  else if (elm.type === 'radio') { if (!elm.checked) return null; v = elm.value; }
+  else v = elm.value;
+  if (type === 'int') v = v === '' ? null : parseInt(v, 10);
+  else if (type === 'num') v = v === '' ? null : parseFloat(v);
+  else if (type === 'bool') v = (v === '1' || v === true || v === 'true');
+  if (v !== null && typeof v === 'number' && isNaN(v)) v = null;
+  return { path, v };
+}
+function afterEdit(slug, full){ scheduleSave(slug); refreshCard(slug); renderSummary(); if (full) renderDetail(slug, true); else { refreshHero(); refreshCheck(); } }
+function autoOwn(e){ if (!e.owned) { e.owned = true; document.querySelectorAll('#dBody [data-set="owned"]').forEach(b => { const on = b.dataset.val === '1'; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); } }
+function onDetailChange(ev){
+  const slug = ui.open; if (!slug) return; const e = entry(slug); const t = ev.target;
+  if (t.dataset.persown) { const w = wonder(); w.pers = w.pers || {}; w.pers[t.dataset.persown] = t.checked; document.querySelectorAll('#dBody input[data-persown="' + CSS.escape(t.dataset.persown) + '"]').forEach(x => x.checked = t.checked); scheduleSave('__wonder'); return; }
+  if (t.dataset.wwown) { const w = wonder(); const n = t.dataset.wwown; w.weapons[n] = w.weapons[n] || { owned: false, ref: 0 }; w.weapons[n].owned = t.checked; scheduleSave('__wonder'); renderDetail(slug, true); return; }
+  if (t.dataset.wpn && t.dataset.wfield) { e.weapons[t.dataset.wpn] = e.weapons[t.dataset.wpn] || { owned: false, ref: 0 }; e.weapons[t.dataset.wpn].owned = t.checked; if (t.checked) e.owned = true; afterEdit(slug, true); return; }
+  if (t.dataset.main && t.value === '__other__') { const cur = getPath(e, t.dataset.path) || ''; // prompt() non disponibile nel frame: usa il dialog interno
+    askText('Stat principale ' + t.dataset.main, 'Scrivi la stat principale (es. "Defense %")', cur, val => { setPath(e, t.dataset.path, val); scheduleSave(slug); renderDetail(slug, true); });
+    return; }
+  const r = readField(t); if (!r) return;
+  setPath(e, r.path, r.v);
+  if (r.path === 'level' && r.v != null) { if (r.v > 100) setPath(e, 'level', 100); if (r.v < 1) setPath(e, 'level', 1); }
+  if (r.path === 'level' || r.path.indexOf('skills') === 0) autoOwn(e);
+  if (r.path.indexOf('rev.') === 0) { const sf = document.getElementById('spaceFx'), mf = document.getElementById('smssFx'); if (sf) sf.innerHTML = spaceEffects(BY[slug], e); if (mf) mf.innerHTML = smssEffects(e); }
+  afterEdit(slug, ev.type === 'change' && r.path === 'equipped');
+}
+function onDetailClick(ev){
+  const slug = ui.open; if (!slug) return; const c = BY[slug]; const e = entry(slug);
+  const img = ev.target.closest('.infog img'); if (img) return;
+  const tb = ev.target.closest('[data-tab]'); if (tb) { setTab(tb.dataset.tab, true); return; }
+  const g = ev.target.closest('[data-goto]'); if (g) { gotoChar(g.dataset.goto); return; }
+  const lc = ev.target.closest('[data-lvcol]'); if (lc) { ui.lvcol = parseInt(lc.dataset.lvcol, 10); lsSave(); renderDetail(slug, true); return; }
+  const sg = ev.target.closest('[data-set]'); if (sg) { const path = sg.dataset.set; const v = sg.dataset.type === 'bool' ? sg.dataset.val === '1' : parseInt(sg.dataset.val, 10);
+    setPath(e, path, v); if (path !== 'owned') e.owned = true; afterEdit(slug, true); return; }
+  const fl = ev.target.closest('[data-fillpath]'); if (fl) { setPath(e, fl.dataset.fillpath, fl.dataset.fillval); e.owned = true; afterEdit(slug, true); toast('Inserito: ' + fl.dataset.fillval); return; }
+  const fr = ev.target.closest('[data-fillrev]'); if (fr) { const r = e.rev; let n = 0;
+    if (!r.space && c.rev_space[0] && REV.universe_sets[c.rev_space[0]]) { r.space = c.rev_space[0]; n++; }
+    ['sun', 'moon', 'star', 'sky'].forEach(k => { if (!r[k] && c.rev_smss[0] && REV.smss_sets[c.rev_smss[0]]) { r[k] = c.rev_smss[0]; n++; } });
+    if (n) { e.owned = true; afterEdit(slug, true); toast(n + (n === 1 ? ' campo compilato' : ' campi compilati') + ' con il primo set consigliato da lufel'); } else toast('Nessun campo set vuoto da compilare'); return; }
+  const b = ev.target.closest('.ref button'); if (!b || !b.parentElement.dataset.wpn) return;
+  const name = b.parentElement.dataset.wpn; e.weapons[name] = e.weapons[name] || { owned: false, ref: 0 }; e.weapons[name].ref = parseInt(b.dataset.ref, 10); e.weapons[name].owned = true; e.owned = true;
+  afterEdit(slug, true);
+}
+
+// ---------- wonder ----------
+function renderWonder(){
+  const w = wonder();
+  document.querySelector('[data-w="level"]').value = w.level || '';
+  document.querySelector('[data-w="personas"]').value = w.personas || '';
+  document.querySelector('[data-w="notes"]').value = w.notes || '';
+  const selfStar = Object.fromEntries((WON.wonder_self || []).map(x => [x.name, x.star]));
+  const names = WONDER_WEAPONS.map(x => x.name).filter(n => WON.weapons[n]).sort((a, b) => (WON.weapons[b].used_by.length - WON.weapons[a].used_by.length) || a.localeCompare(b));
+  const selfList = (WON.wonder_self || []).map(x => x.name);
+  document.getElementById('wonderWeapons').innerHTML = (selfList.length ? '<p class="note" style="margin-top:0">lufel evidenzia (★) per Wonder in generale: <b>' + selfList.map(esc).join(', ') + '</b>. Le altre sono ordinate per numero di personaggi che le consigliano.</p>' : '') + names.map(n => wweaponRow(n, !!selfStar[n], 'tab')).join('');
+  renderWonderPersonas();
+}
+function renderWonderPersonas(){
+  const w = wonder(); const pers = w.pers || {};
+  const all = Object.keys(WON.personas).sort((a, b) => (WON.personas[b].used_by.length - WON.personas[a].used_by.length) || a.localeCompare(b));
+  const mine = new Set(CHARS.filter(c => isOwned(c.slug)).map(c => c.slug));
+  const list = all.filter(n => ui.pf === 'all' || (ui.pf === 'own' && pers[n]) || (ui.pf === 'miss' && !pers[n]) || (ui.pf === 'team' && WON.personas[n].used_by.some(s => mine.has(s))));
+  document.getElementById('persCount').textContent = 'Possedute ' + all.filter(n => pers[n]).length + '/' + all.length + ' · fonte: lufel.net';
+  document.querySelectorAll('#persFilter .chip').forEach(ch => ch.classList.toggle('on', ch.dataset.pf === ui.pf));
+  document.getElementById('wonderPersonas').innerHTML = list.length ? list.map(n => personaRow(n, false, 'tab')).join('') : '<div class="empty">' + (ui.pf === 'team' ? 'Segna prima i personaggi posseduti nella scheda Personaggi.' : 'Nessuna Persona in questo filtro.') + '</div>';
+}
+function onWonderChange(ev){
+  const w = wonder(); const t = ev.target;
+  if (t.dataset.w === 'level') w.level = t.value === '' ? null : Math.max(1, Math.min(100, parseInt(t.value, 10) || 1));
+  else if (t.dataset.w === 'personas') w.personas = t.value;
+  else if (t.dataset.w === 'notes') w.notes = t.value;
+  else if (t.dataset.wwpn) { w.weapons[t.dataset.wwpn] = w.weapons[t.dataset.wwpn] || { owned: false, ref: 0 }; w.weapons[t.dataset.wwpn].owned = t.checked; }
+  else if (t.name === 'wequipped') w.equipped = t.value;
+  else if (t.dataset.wpers) { w.pers = w.pers || {}; w.pers[t.dataset.wpers] = t.checked; document.getElementById('persCount').textContent = 'Possedute ' + Object.keys(WON.personas).filter(n => w.pers[n]).length + '/' + Object.keys(WON.personas).length + ' · fonte: lufel.net'; }
+  else return;
+  scheduleSave('__wonder');
+}
+function onWonderClick(ev){
+  const pf = ev.target.closest('#persFilter .chip'); if (pf) { ui.pf = pf.dataset.pf; renderWonderPersonas(); return; }
+  const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) { openDetail(g.dataset.goto); return; }
+  const b = ev.target.closest('.ref button'); if (!b) return; const w = wonder(); const name = b.parentElement.dataset.wwpn; if (!name) return;
+  w.weapons[name] = w.weapons[name] || { owned: false, ref: 0 }; w.weapons[name].ref = parseInt(b.dataset.ref, 10); w.weapons[name].owned = true;
+  const cb = document.querySelector('input[data-wwpn="' + CSS.escape(name) + '"]'); if (cb) cb.checked = true;
+  b.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  scheduleSave('__wonder');
+}
+
+// ---------- dialogs ----------
+function showDialog(title, text, areaText, acts){
+  const d = document.getElementById('dialog'); document.getElementById('dlgTitle').textContent = title; document.getElementById('dlgText').innerHTML = text;
+  const a = document.getElementById('dlgArea'); if (areaText != null) { a.style.display = ''; a.value = areaText; a.readOnly = true; } else a.style.display = 'none';
+  const acEl = document.getElementById('dlgActs'); acEl.innerHTML = '';
+  acts.forEach(([label, fn, primary]) => { const b = document.createElement('button'); b.className = 'btn' + (primary ? ' primary' : ''); b.textContent = label; b.onclick = () => { const r = fn && fn(); if (r !== false) d.classList.remove('open'); }; acEl.appendChild(b); });
+  d.classList.add('open');
+}
+function askText(title, text, cur, cb){
+  const d = document.getElementById('dialog'); document.getElementById('dlgTitle').textContent = title; document.getElementById('dlgText').innerHTML = text;
+  const a = document.getElementById('dlgArea'); a.style.display = ''; a.readOnly = false; a.value = cur || ''; a.style.minHeight = '60px';
+  const acEl = document.getElementById('dlgActs'); acEl.innerHTML = '';
+  const ok = document.createElement('button'); ok.className = 'btn primary'; ok.textContent = 'OK'; ok.onclick = () => { d.classList.remove('open'); a.style.minHeight = '200px'; cb(a.value.trim()); };
+  const no = document.createElement('button'); no.className = 'btn'; no.textContent = 'Annulla'; no.onclick = () => { d.classList.remove('open'); a.style.minHeight = '200px'; if (ui.open) renderDetail(ui.open, true); };
+  acEl.appendChild(no); acEl.appendChild(ok); d.classList.add('open'); a.focus();
+}
+async function copyText(txt){ try { await navigator.clipboard.writeText(txt); toast('Copiato negli appunti'); return true; } catch (e) { toast('Copia automatica non permessa: seleziona il testo e copia manualmente'); return false; } }
+
+// ---------- export ----------
+function exportJSON(){ return JSON.stringify({ format: 'p5x-roster-tracker', version: 1, exportedAt: new Date().toISOString(), roster: state.roster, wonder: state.wonder }, null, 1); }
+function markdownSummary(){
+  const d = new Date().toLocaleDateString('it-IT');
+  const owned = CHARS.filter(c => (state.roster[c.slug] || {}).owned).sort((a, b) => b.rarity - a.rarity || a.codename.localeCompare(b.codename));
+  const lines = ['# Roster P5X — aggiornato il ' + d, '', 'Posseduti: ' + owned.length + '/' + CHARS.length + ' (dati inseriti nel tracker; riferimenti lufel.net).', '', '| Codename | Nome | ★ | Elem. | Pos. | Lv | Aw | Minds | Core | Armi (R) | Equip. | Space | Sun/Moon/Star/Sky | Main Moon/Star/Sky | Skill 1/2/3/HL | Stat | Note |', '|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|'];
+  owned.forEach(c => {
+    const e = state.roster[c.slug];
+    const arms = c.weapons.filter(w => e.weapons[w.name] && e.weapons[w.name].owned).map(w => w.rarity + ' ' + w.name + ' R' + (e.weapons[w.name].ref | 0)).join('; ') || '—';
+    const eq = e.equipped === '__other__' ? (e.equipped_other || 'altra') : (e.equipped || '—');
+    const r = e.rev; const sets = [r.sun, r.moon, r.star, r.sky].map(x => x || '—').join('/');
+    const mains = [r.main.moon, r.main.star, r.main.sky].map(x => x || '—').join('/');
+    const sk = [e.skills.s1, e.skills.s2, e.skills.s3, c.has_hl ? e.skills.ult : '—'].map(x => x == null ? '—' : x).join('/');
+    const st = STAT_FIELDS.filter(([k]) => e.stats[k] != null && e.stats[k] !== '').map(([k, lab]) => lab.replace(/ %| \(gioco\)/g, '') + ' ' + e.stats[k]).join(', ') || '—';
+    const ms = (e.minds | 0) + (e.msel.rs1 || e.msel.rs2 || e.msel.se1 || e.msel.se2 ? ' (' + [e.msel.rs1, e.msel.rs2, e.msel.se1, e.msel.se2].filter(Boolean).join(', ') + ')' : '') + (e.syn || e.combat ? ' · Attr: ' + [e.syn, e.combat].filter(Boolean).join(' / ') : '');
+    lines.push('| ' + [c.codename, c.name, c.rarity, c.element, c.position, e.level || '—', 'A' + (e.awareness | 0), ms, c.core ? (e.core ? 'sì' : 'no') : 'n/d', arms, eq, r.space || '—', sets, mains, sk, st, (e.notes || '').replace(/\|/g, '/').replace(/\n/g, ' ')].map(x => String(x)).join(' | ') + ' |');
+  });
+  const notOwned = CHARS.filter(c => !(state.roster[c.slug] || {}).owned);
+  lines.push('', '## Non posseduti (' + notOwned.length + ')', notOwned.map(c => c.codename + (isOut(c) ? '' : ' (in arrivo ' + (relEst(c) ? '≈ ' : '') + fmtDate(c.rel.d) + ')')).join(', '));
+  const w = wonder();
+  const ww = WONDER_WEAPONS.filter(x => w.weapons[x.name] && w.weapons[x.name].owned).map(x => x.name + ' R' + (w.weapons[x.name].ref | 0) + (w.equipped === x.name ? ' (equipaggiata)' : '')).join('; ') || '—';
+  lines.push('', '## Wonder', '- Livello: ' + (w.level || '—'), '- Wonder weapon: ' + ww, '- Persona (note): ' + (w.personas || '—'), '- Persona possedute: ' + (Object.keys(w.pers || {}).filter(n => w.pers[n]).sort().join(', ') || '—'), '- Note: ' + (w.notes || '—'));
+  return lines.join('\n');
+}
+async function importJSON(text){
+  let j; try { j = JSON.parse(text); } catch (e) { toast('File non valido (JSON non leggibile)'); return; }
+  if (!j || typeof j !== 'object' || !j.roster) { toast('File non riconosciuto: manca la sezione "roster"'); return; }
+  const slugs = Object.keys(j.roster).filter(s => BY[s]); const unknown = Object.keys(j.roster).filter(s => !BY[s]);
+  showDialog('Importare questi dati?', 'Il file contiene <b>' + slugs.length + '</b> personaggi' + (j.wonder ? ' + Wonder' : '') + (unknown.length ? ' (ignorati ' + unknown.length + ' sconosciuti: ' + esc(unknown.join(', ')) + ')' : '') + '. I personaggi presenti nel file sovrascriveranno quelli attuali.', null, [
+    ['Annulla', null],
+    ['Importa', () => { (async () => {
+      const now = new Date().toISOString();   // le voci importate diventano le modifiche più recenti
+      for (const s of slugs) { state.roster[s] = mergeEntry(s, j.roster[s]); state.roster[s].updatedAt = now; }
+      if (j.wonder) { state.wonder = mergeWonder(j.wonder); state.wonder.updatedAt = now; }
+      lsSave(); renderAllSoft(); renderWonder();
+      if (SYNC && ghCfg.token) { await SYNC.sync('import'); toast(SYNC.status().phase === 'ok' ? 'Import completato e sincronizzato: ' + slugs.length + ' personaggi' : 'Import completato (' + slugs.length + ' personaggi): la sincronizzazione riproverà più tardi'); return; }
+      toast('Import completato: ' + slugs.length + ' personaggi');
+    })(); }, true]
+  ]);
+}
+async function resetAll(){
+  showDialog('Azzerare tutti i dati?', 'Verranno cancellati tutti i dati inseriti (personaggi e Wonder) in questo browser e, se GitHub è collegato, anche nel repository dati e quindi sugli altri dispositivi. Le versioni precedenti restano solo nella cronologia del repository su GitHub: fai prima un backup JSON.', null, [
+    ['Annulla', null],
+    ['Azzera tutto', () => { (async () => {
+      state.roster = {}; state.extra = {}; state.wonder = null; lsSave(); renderAllSoft(); renderWonder();
+      if (SYNC && ghCfg.token) await SYNC.sync('azzeramento');
+      toast('Dati azzerati');
+    })(); }, true]
+  ]);
+}
+
+// ---------- events ----------
+function switchView(v){ ui.view = v; document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.view === v)); ['roster', 'wonder', 'tools'].forEach(x => document.getElementById('view-' + x).style.display = x === v ? '' : 'none'); if (v === 'roster') renderGrid(); if (v === 'wonder') renderWonder(); if (v === 'tools') { storageInfo(); fillSyncForm(); } }
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => switchView(t.dataset.view)));
+document.getElementById('search').addEventListener('input', ev => { ui.search = ev.target.value; renderGrid(); });
+document.getElementById('ownFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; ui.own = ch.dataset.own; renderFilters(); renderGrid(); lsSave(); });
+document.getElementById('elFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; const k = ch.dataset.el; ui.els.has(k) ? ui.els.delete(k) : ui.els.add(k); renderFilters(); renderGrid(); });
+document.getElementById('posFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; const k = ch.dataset.pos; ui.poss.has(k) ? ui.poss.delete(k) : ui.poss.add(k); renderFilters(); renderGrid(); });
+document.getElementById('rarFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; const k = ch.dataset.rar; ui.rars.has(k) ? ui.rars.delete(k) : ui.rars.add(k); renderFilters(); renderGrid(); });
+const onlyInfogCb = document.getElementById('onlyInfogcb');
+if (onlyInfogCb) onlyInfogCb.addEventListener('change', ev => { ui.infog = ev.target.checked; document.getElementById('onlyInfog').classList.toggle('on', ui.infog); renderGrid(); });
+document.getElementById('sort').addEventListener('change', ev => { ui.sort = ev.target.value; renderGrid(); lsSave(); });
+document.getElementById('grid').addEventListener('click', ev => {
+  const box = ev.target.closest('.ownbox'); if (box) { ev.stopPropagation(); const slug = box.dataset.slug; entry(slug).owned = box.checked; scheduleSave(slug); refreshCard(slug); renderSummary(); return; }
+  if (ev.target.closest('label.toggle')) return;
+  const card = ev.target.closest('.card'); if (card) openDetail(card.dataset.slug);
+});
+document.getElementById('dClose').addEventListener('click', closeDetail);
+document.getElementById('overlay').addEventListener('click', closeDetail);
+const dBody = document.getElementById('dBody');
+dBody.addEventListener('change', onDetailChange);
+dBody.addEventListener('input', ev => { if (ev.target.matches('textarea, input[type=text], input:not([type]), input[type=number]')) onDetailChange(ev); });
+dBody.addEventListener('click', onDetailClick);
+dBody.addEventListener('click', ev => { const img = ev.target.closest('.infog img'); if (!img) return; const lb = document.getElementById('lightbox'); document.getElementById('lbImg').src = img.getAttribute('src'); document.getElementById('lbCap').textContent = img.dataset.cap || ''; document.getElementById('lbOpen').href = img.getAttribute('src'); lb.classList.remove('zoom'); lb.classList.add('open'); });
+document.getElementById('lbImg').addEventListener('click', () => document.getElementById('lightbox').classList.toggle('zoom'));
+document.getElementById('lbClose').addEventListener('click', () => document.getElementById('lightbox').classList.remove('open'));
+const drawerEl = document.getElementById('drawer');
+drawerEl.addEventListener('focusout', () => { if (!deferredRender) return; setTimeout(() => { const a = document.activeElement; if (ui.open && !(a && drawerEl.contains(a) && a.matches('input, select, textarea'))) { deferredRender = false; renderDetail(ui.open, true); } }, 60); });
+document.getElementById('dPrev').addEventListener('click', () => navStep(-1));
+document.getElementById('dNext').addEventListener('click', () => navStep(1));
+document.getElementById('dBack').addEventListener('click', goBack);
+document.getElementById('dJump').addEventListener('change', ev => { if (BY[ev.target.value]) openDetail(ev.target.value); });
+document.getElementById('dMode').addEventListener('click', () => { ui.dmode = ui.dmode === 'all' ? 'tabs' : 'all'; lsSave(); if (!ui.open) return; renderDetail(ui.open, false); if (ui.dmode === 'all') setTab(ui.tab, true); toast(ui.dmode === 'all' ? 'Vista: tutto in una pagina' : 'Vista: a schede'); });
+document.getElementById('dSearchBtn').addEventListener('click', () => { const top = document.querySelector('.dtop'); const on = top.classList.toggle('showsearch'); if (on) document.getElementById('dSearch').focus(); });
+let dqTimer = 0;
+function runSearch(){ if (!ui.open) return; searchJump = true; renderDetail(ui.open, true); searchJump = false; }
+document.getElementById('dSearch').addEventListener('input', ev => { ui.dq = ev.target.value; clearTimeout(dqTimer); dqTimer = setTimeout(runSearch, 200); });
+document.getElementById('dSearch').addEventListener('keydown', ev => { if (ev.key === 'Enter') { clearTimeout(dqTimer); runSearch(); } });
+document.getElementById('dHero').addEventListener('click', ev => {
+  if (!ui.open) return; const slug = ui.open;
+  if (ev.target.closest('#hOwn')) { const e = entry(slug); e.owned = !e.owned; afterEdit(slug, true); return; }
+  const ch = ev.target.closest('[data-tab]'); if (ch) setTab(ch.dataset.tab, true);
+});
+let tsx = 0, tsy = 0;
+document.getElementById('dHero').addEventListener('touchstart', ev => { const t = ev.changedTouches[0]; tsx = t.clientX; tsy = t.clientY; }, { passive: true });
+document.getElementById('dHero').addEventListener('touchend', ev => { if (ev.target.closest('.hchips')) return; const t = ev.changedTouches[0]; const dx = t.clientX - tsx, dy = t.clientY - tsy; if (Math.abs(dx) > 70 && Math.abs(dy) < 40) navStep(dx < 0 ? 1 : -1); }, { passive: true });
+const dTabsEl = document.getElementById('dTabs');
+dTabsEl.addEventListener('click', ev => { const b = ev.target.closest('.dtab'); if (b) setTab(b.dataset.dtab, true); });
+dTabsEl.addEventListener('keydown', ev => {
+  const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }; if (!(ev.key in keys) && ev.key !== 'Home' && ev.key !== 'End') return;
+  const btns = Array.from(dTabsEl.querySelectorAll('.dtab')); const i = btns.indexOf(document.activeElement); if (i < 0) return;
+  const n = ev.key === 'Home' ? 0 : ev.key === 'End' ? btns.length - 1 : (i + keys[ev.key] + btns.length) % btns.length;
+  ev.preventDefault(); ev.stopPropagation(); setTab(btns[n].dataset.dtab, true); btns[n].focus();
+});
+let spyRaf = 0;
+dBody.addEventListener('scroll', () => { if (ui.dmode !== 'all' || spyRaf) return; spyRaf = requestAnimationFrame(() => { spyRaf = 0; const top = dBody.scrollTop + 60; let cur = null; dBody.querySelectorAll('.pane').forEach(p => { if (p.offsetTop <= top) cur = p.dataset.pane; });
+  if (cur && cur !== ui.tab) { ui.tab = cur; markTab(cur); if (cur === 'ig') { const g = dBody.querySelector('#pane-ig .infog-grid'); if (g && !g.childElementCount) g.innerHTML = infogHTML(BY[ui.open]); } } }); }, { passive: true });
+document.addEventListener('keydown', ev => {
+  const lb = document.getElementById('lightbox'), dlg = document.getElementById('dialog');
+  if (ev.key === 'Escape') { if (tipFor) { const el = tipFor; hideTip(); if (el && el.focus && document.body.contains(el)) el.focus({ preventScroll: true }); return; } if (lb.classList.contains('open')) { lb.classList.remove('open'); return; } if (dlg.classList.contains('open')) { dlg.classList.remove('open'); return; } if (ui.open) { if (ui.dq) { ui.dq = ''; document.getElementById('dSearch').value = ''; renderDetail(ui.open, true); } else closeDetail(); } return; }
+  if (!ui.open || ev.ctrlKey || ev.metaKey || ev.altKey || lb.classList.contains('open') || dlg.classList.contains('open')) return;
+  const t = ev.target; if (t && t.matches && t.matches('input, select, textarea, [contenteditable]')) return;
+  if (ev.key === 'ArrowLeft') { navStep(-1); ev.preventDefault(); }
+  else if (ev.key === 'ArrowRight') { navStep(1); ev.preventDefault(); }
+  else if (ev.key === '/') { document.querySelector('.dtop').classList.add('showsearch'); document.getElementById('dSearch').focus(); ev.preventDefault(); }
+  else if (/^[0-9]$/.test(ev.key)) { const tabs = tabsFor(BY[ui.open]); const i = ev.key === '0' ? 9 : parseInt(ev.key, 10) - 1; if (tabs[i]) setTab(tabs[i][0], true); }
+});
+const tipEl = document.getElementById('tip');
+drawerEl.addEventListener('mouseover', ev => { const t = ev.target.closest && ev.target.closest('#dBody .term'); if (!t || tipPinned) return; clearTimeout(tipTimer); tipTimer = setTimeout(() => showTip(t, false), 110); });
+drawerEl.addEventListener('mouseout', ev => { const t = ev.target.closest && ev.target.closest('#dBody .term'); if (!t || tipPinned) return; clearTimeout(tipTimer); tipTimer = setTimeout(() => { if (!tipPinned && !tipEl.matches(':hover')) hideTip(); }, 260); });
+tipEl.addEventListener('mouseleave', () => { if (!tipPinned) { clearTimeout(tipTimer); tipTimer = setTimeout(() => { if (!tipPinned && !(tipFor && tipFor.matches(':hover'))) hideTip(); }, 200); } });
+dBody.addEventListener('focusin', ev => { const t = ev.target.closest('.term'); if (t && !tipPinned && Date.now() - tipMute > 350 && t.matches(':focus-visible')) showTip(t, false); });
+dBody.addEventListener('focusout', ev => { const t = ev.target.closest('.term'); if (t && !tipPinned) setTimeout(() => { if (!tipPinned && !tipEl.contains(document.activeElement)) hideTip(); }, 80); });
+dBody.addEventListener('click', ev => { const t = ev.target.closest('.term'); if (!t) return; if (tipPinned && tipFor === t) hideTip(); else showTip(t, true); });
+dBody.addEventListener('keydown', ev => { const t = ev.target.closest('.term'); if (!t || (ev.key !== 'Enter' && ev.key !== ' ')) return; ev.preventDefault(); if (tipPinned && tipFor === t) hideTip(); else showTip(t, true); });
+dBody.addEventListener('scroll', () => { if (tipFor && !tipPinned) hideTip(); else if (tipFor) placeTip(tipFor); }, { passive: true });
+tipEl.addEventListener('click', ev => {
+  if (ev.target.closest('[data-tipclose]')) { const el = tipFor; hideTip(); if (el && el.focus) el.focus({ preventScroll: true }); return; }
+  if (ev.target.closest('[data-tipback]')) { const prev = tipStack.pop(); if (prev) renderTip(prev); return; }
+  const tm = ev.target.closest('.term'); if (tm) { tipPinned = true; if (tipName) tipStack.push(tipName); if (!renderTip(tm.dataset.term)) tipStack.pop(); return; }
+  const tb = ev.target.closest('[data-tab]'); if (tb) { const tab = tb.dataset.tab; hideTip(); setTab(tab, true); }
+});
+tipEl.addEventListener('keydown', ev => { const tm = ev.target.closest('.term'); if (tm && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); tm.click(); } });
+document.addEventListener('click', ev => { if (!tipFor || !tipPinned) return; if (ev.target.closest('#tip') || ev.target.closest('.term')) return; hideTip(); }, true);
+window.addEventListener('resize', () => { if (tipFor) placeTip(tipFor); });
+document.getElementById('relFilter').addEventListener('click', ev => { const ch = ev.target.closest('.chip'); if (!ch) return; ui.rel = ch.dataset.rel; renderFilters(); renderGrid(); lsSave(); });
+document.getElementById('relStrip').addEventListener('click', ev => { const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) openDetail(g.dataset.goto); });
+document.getElementById('relStrip').addEventListener('keydown', ev => { if (ev.key !== 'Enter' && ev.key !== ' ') return; const g = ev.target.closest('[data-goto]'); if (g && BY[g.dataset.goto]) { ev.preventDefault(); openDetail(g.dataset.goto); } });
+const wv = document.getElementById('view-wonder');
+wv.addEventListener('change', onWonderChange); wv.addEventListener('input', ev => { if (ev.target.matches('textarea, input[type=text], input[type=number]')) onWonderChange(ev); }); wv.addEventListener('click', onWonderClick);
+document.getElementById('btnMd').addEventListener('click', () => { const md = markdownSummary(); showDialog('Riepilogo Markdown', 'Copia e incolla in chat (o salvalo nel progetto come nuovo roster).', md, [['Chiudi', null], ['Copia', () => { copyText(md); return false; }, true]]); });
+document.getElementById('btnJson').addEventListener('click', () => { const js = exportJSON(); showDialog('Backup JSON', 'Copia il testo e salvalo in un file .json; potrai reimportarlo con "Importa da file JSON".', js, [['Chiudi', null], ['Copia', () => { copyText(js); return false; }, true]]); });
+document.getElementById('btnDownload').addEventListener('click', () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([exportJSON()], { type: 'application/json' })); a.download = 'p5x_roster_' + new Date().toISOString().slice(0, 10) + '.json'; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); toast('Backup scaricato'); });
+document.getElementById('fileImport').addEventListener('change', ev => { const f = ev.target.files && ev.target.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => importJSON(String(rd.result)); rd.readAsText(f); ev.target.value = ''; });
+document.getElementById('btnReset').addEventListener('click', resetAll);
+
+// ---------- sito: guide, link diretti, sincronizzazione, funzionamento offline ----------
+function guideUrl(c){ return SITE.guideBase + c.slug + '.html'; }
+function openSync(){ switchView('tools'); const s = document.getElementById('syncSec'); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function applyHash(){
+  const h = decodeURIComponent((location.hash || '').slice(1)); const m = h.match(/^c=([a-z0-9-]+)$/);
+  if (m && BY[m[1]]) { if (ui.view !== 'roster') switchView('roster'); openDetail(m[1]); }
+  else if (h === 'wonder') switchView('wonder');
+  else if (h === 'sync' || h === 'backup') openSync();
+}
+function initSiteExtras(){
+  const gl = document.getElementById('guideLink'); gl.href = SITE.guideBase + 'index.html'; if (!SITE.public) { gl.target = '_blank'; gl.rel = 'noopener'; }
+  document.getElementById('status').addEventListener('click', openSync);
+  document.getElementById('syncBanGo').addEventListener('click', openSync);
+  document.getElementById('syncBanX').addEventListener('click', () => { try { localStorage.setItem(BAN_KEY, '1'); } catch (e) { /* */ } document.getElementById('syncBan').hidden = true; });
+  document.getElementById('ghSave').addEventListener('click', async () => {
+    const repo = document.getElementById('ghRepo').value.trim() || DEFAULT_REPO, tok = document.getElementById('ghToken').value.trim(), dev = document.getElementById('ghDevice').value.trim();
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { toast('Repository non valido: scrivilo come proprietario/nome'); return; }
+    if (!tok && !ghCfg.token) { toast('Incolla prima il token'); document.getElementById('ghToken').focus(); return; }
+    if (tok && !/^[\w-]{20,}$/.test(tok)) { toast('Il token contiene caratteri non validi: ricopialo da GitHub'); return; }
+    ghCfg = Object.assign({}, ghCfg, { repo, device: dev }); if (tok) ghCfg.token = tok;
+    saveCfg(); document.getElementById('ghToken').value = ''; renderStatus(); storageInfo();
+    await runCheck(true);
+  });
+  document.getElementById('ghTest').addEventListener('click', () => { if (!ghCfg.token) { toast('Nessun token salvato: incollalo e premi «Salva e collega»'); return; } runCheck(false); });
+  document.getElementById('ghNow').addEventListener('click', async () => { if (!ghCfg.token) { toast('Prima collega GitHub con un token'); return; } await SYNC.sync('manuale'); const s = SYNC.status(); toast(s.phase === 'ok' ? 'Sincronizzazione completata' : s.phase === 'offline' ? 'Sei offline: riproverò appena torna la rete' : 'Sincronizzazione non riuscita: ' + ((s.error && s.error.msg) || '')); });
+  document.getElementById('ghForget').addEventListener('click', () => {
+    if (!ghCfg.token) { toast('Nessun token salvato su questo dispositivo'); return; }
+    showDialog('Rimuovere il token da questo dispositivo?', 'I dati restano in questo browser e su GitHub: questo dispositivo smette solo di sincronizzarsi finché non inserisci di nuovo un token. Per revocarlo del tutto eliminalo anche su GitHub (Settings › Developer settings › Personal access tokens).', null,
+      [['Annulla', null], ['Rimuovi', () => { ghCfg.token = ''; saveCfg(); document.getElementById('ghCheck').hidden = true; renderStatus(); storageInfo(); toast('Token rimosso da questo dispositivo'); }, true]]);
+  });
+  document.getElementById('conflictBox').addEventListener('click', ev => {
+    if (ev.target.closest('#confClear')) { saveConf([]); renderConflicts(); return; }
+    const b = ev.target.closest('[data-confrest]'); if (!b) return;
+    const log = loadConf(), idx = +b.dataset.confrest, c = log[idx]; if (!c || c.deleted) return;
+    const lost = c.kept === 'local' ? c.remote : c.local;
+    if (c.kind === 'wonder') { setPathArr(wonder(), c.path, lost); scheduleSave('__wonder'); renderWonder(); }
+    else if (BY[c.id]) { setPathArr(entry(c.id), c.path, lost); afterEdit(c.id, ui.open === c.id); }
+    else { toast('Personaggio non presente in questa versione del tracker'); return; }
+    log.splice(idx, 1); saveConf(log); renderConflicts(); toast('Valore ripristinato: verrà sincronizzato');
+  });
+  window.addEventListener('hashchange', applyHash);
+  applyHash();
+  if (SITE.sw && 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) navigator.serviceWorker.register('sw.js').catch(() => { /* senza service worker il sito funziona lo stesso, solo non offline */ });
+}
+
+// ---------- boot ----------
+lsLoad(); renderFilters(); renderSummary(); renderGrid(); renderWonder();
+initSync();
+initSiteExtras();
+})();
+</script>
+</body>
+</html>
